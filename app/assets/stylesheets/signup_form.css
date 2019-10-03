@@ -1,3 +1,124 @@
+.signup-form-container {
+    margin: 0 auto;
+    padding-left: 50px;
+    width: 60%;
+    margin-top: 50px;
+    font-family: 'Arimo', sans-serif;
+}
+
 .signup-input {
+    border: 1px solid rgb(177, 191, 196);
+    border-radius: 4px;
+    padding: 10px;
+    height: 24px;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+
+.signup-component {
+    display: flex;
+    flex-direction: column;
+}
+.signup-component > label {
+    padding: 15px;
+    
+}
+.signup-component > label > input {
+    width: 99%;
+
+}
+
+.signup-header {
+    padding-left: 20px;
+    /* font-family: 'Arimo', sans-serif; */
+}
+.signup-header > h1 {
+    padding-bottom: 12px;
+    font-size: 40px;
+    
+}
+.signup-header > h2 {
+    font-size: 20px;
+    
+}
+.names {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.names > label  {
+    padding: 10px;
+    box-sizing: content-box;
+    width: 40%;
+    
+}
+.names > label > .signup-input {
+    width: 100%;
+    box-sizing: content-box;
+    height: 19px;
+}
+
+::placeholder {
+    color: rgb(180, 194, 198);
+    /* font-family: 'Arimo', sans-serif; */
+    font-weight: 100;
+}
+
+.signup-submit {
+    border: 1px solid rgb(53, 209, 153);
+    margin-top: 25px;
+    background-color: rgb(53, 209, 153);
+    padding: 10px 10px 10px 15px;
+    width: 96%;
+    box-sizing: content-box;
+    border-radius: 4px;
+    height: 24px;
+    color: #fff;
+    text-align: center;
+}
+
+.signup-button-container {
+    padding-left: 15px;
+}
+
+.signup-submit:hover {
+    background-color: rgb(40, 165, 120);
+}
+
+.signup-error {
+    font-size: 13px;
+    position: absolute;
+    z-index: 1;
+    top: -18px;
+    left: 50px;
+    background-color: rgba(0,0,0, 0.8);
+    color:white;
+    height: 28px;
+    padding: 0 10px;
+    border-radius: 4px;
+    line-height: 30px;
+    
+   
+}
+.signup-input:focus {
+    border: 1px solid rgb(177, 191, 196);
+    border-radius: 4px;
+}
+
+.signup-component label {
+    position: relative;
+}
+
+.errored {
     border: 1px solid red;
 }
+
+.errored:focus + div{
+    display: none;
+}
+

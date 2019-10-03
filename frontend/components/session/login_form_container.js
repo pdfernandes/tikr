@@ -4,7 +4,7 @@ import LoginForm from "./login_form";
 
 const mapState = (state, ownprops) => {
     const formType = "login";
-    const errors = state.session.errors
+    const errors = state.errors.session
     return {
         formType,
         errors

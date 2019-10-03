@@ -15,19 +15,15 @@ class NavBar extends React.Component {
             .then(response => this.props.history.push("/login"))
     }
 
-    changeClass(e) {
-        
-    }
-
+   
    
 
     render() {
         if (this.props.currentUser !== null) {
             return (
-                <section class='nav-bar'>
+                <section className='nav-bar'>
                     <div className='nav-logo'>
-                        <img className='logo-image' src={window.logo} alt="tikr logo" />
-                        <img className='logo-image-green' src={window.logo_green} alt="tikr logo" />
+                        <Link className='logo-icon' to='/'><i className="fas fa-tenge"></i> </Link>
                         <Link className='logo' to='/'>tikr</Link>
                     </div>
                     <div>Search Bar</div>
@@ -42,21 +38,32 @@ class NavBar extends React.Component {
                 {null}
                 </>
             )
+        } else if (this.props.history.location.pathname === '/signup'){
+            return(
+                <section className='nav-bar'>
+                    <div className='nav-logo'>
+                        <Link className='logo-icon' to='/'><i className="fas fa-tenge"></i> </Link>
+                    </div>
+                </section>
+            )
+
         } else {
             return (
-            <section className='nav-bar'>
-                <div className='nav-logo'>
-                    <img className='logo-image'src={window.logo} alt="tikr logo"/>
-                    <img className='logo-image-green'src={window.logo_green} alt="tikr logo"/>
-                    <Link className='logo' to='/'>tikr</Link>
+                <div className='nav-bar-outer'>
+                    <section className='nav-bar'>
+                        <div className='nav-logo'> 
+                            
+                                <Link className='logo-icon' to='/'><i className="fas fa-tenge"></i> </Link>
+                                <Link className='logo' to='/'>tikr</Link>
+                        </div>
+                        <div className="nav-links">
+                    
+                                <Link className='login-link' to="/login" >Log In</Link>
+                                <Link className='signup-link' to="/signup">Sign Up</Link>
+                        
+                        </div>
+                    </section>
                 </div>
-                <div className="nav-links">
-            
-                        <Link className='login-link' to="/login" >Log In</Link>
-                        <Link className='signup-link' to="/signup">Sign Up</Link>
-                 
-                </div>
-            </section>
             )
         }
 

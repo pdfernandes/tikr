@@ -19,6 +19,8 @@ html, body {
     min-width: 50%;
     height: 100%;
     overflow: hidden;
+    background-image: image_url("login_page_image");
+    background-size: cover;
 }
 
 .login-img {
@@ -39,6 +41,7 @@ html, body {
     width: 330px;
     justify-content: space-between;
     padding-left: 50px;
+    position: relative;
     
 } 
 .login-heading {
@@ -81,4 +84,10 @@ html, body {
 .label-text {
     margin-bottom: 6px;
     font-family: 'Economica', sans-serif;
+}
+
+.login-errors {
+    font-size: 12px;
+    position: absolute;
+    bottom: 20%;
 }

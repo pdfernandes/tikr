@@ -1,7 +1,8 @@
 import { merge } from 'lodash';
 import {
     RECEIVE_ERRORS,
-    RECEIVE_USER
+    RECEIVE_USER,
+    CLEAR_ERRORS
 } from '../actions/session_actions';
 
 const sessionErrorReducer = (state = [], action) => {
@@ -11,6 +12,9 @@ const sessionErrorReducer = (state = [], action) => {
             return merge([], action.errors)
 
         case RECEIVE_USER:
+            return [];
+
+        case CLEAR_ERRORS: 
             return [];
   
         default:

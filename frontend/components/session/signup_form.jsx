@@ -13,6 +13,9 @@ class SignupForm extends React.Component {
             password: ""
         }
     }
+    componentWillUnmount() {
+       this.props.clearErrors();
+    }
 
 
     handleSubmit(e) {
@@ -28,32 +31,92 @@ class SignupForm extends React.Component {
     }
 
     render() {
+        let usernameError = null;
+        let emailError = null;
+        let fnameError = null;
+        let lnameError = null;
+        let passwordError = null;
+        let usernameClassError;
+        let emailClassError;
+        let fnameClassError;
+        let lnameClassError;
+        let passwordClassError;
+        const errorTitles = ['Username', 'Email', 'Fname', 'Lname', 'Password'];
 
+        this.props.errors.forEach(error => {
+            let word = error.split(" ")[0]
+            if (errorTitles.includes(word)) {
+                switch (word){
+                    case 'Username':
+                        usernameClassError = 'errored'
+                        usernameError = <div className='signup-error'>{'Please enter your desired username'}</div>;
+                        return;
+                    case 'Email':
+                        emailClassError = 'errored'
+                        emailError = <div className='signup-error'>{'Please enter your email address.'}</div>
+                        return;
+                    case 'Fname':
+                        fnameClassError = 'errored'
+                        fnameError = <div className='signup-error'>{"Please enter your first name."}</div>;
+                        return;
+                    case 'Lname':
+                        lnameClassError = 'errored'
+                        lnameError = <div className='signup-error'>{"Please enter your last name."}</div>;
+                        return;
+                    case 'Password':
+                        passwordClassError = 'errored';
+                        passwordError = <div className='signup-error'>{'Your password must be at least 10 characters'}</div>
+                        return;
+
+                }
+            }
+
+
+        })
+
+        
 
         return (
             <main className='signup-form-container'>
                 <form onSubmit={this.handleSubmit} className='signup-form'>
-                    <div>
-                        <h1>Make Your Money Move </h1>
+                    <div className='signup-header'>
+                        <h1>Make Your Money Samba </h1>
                         <h2>Tikr lets you make pretend you're investing, commision free.</h2>
                     </div>
-                    <div>
+                    <div className='signup-component'>
+                        <div className='names'>
+                            <label>
+                                <input className={`signup-input ${fnameClassError}`} type="text" value={this.state.fname} 
+                                onChange={this.update("fname")} placeholder="First Name"/>
+                                {fnameError}
+                            </label>
+                            
+                        
+                            <label>
+                                <input className={`signup-input ${lnameClassError}`} type="text" value={this.state.lname} 
+                                onChange={this.update("lname")} placeholder="Last Name" />
+                                {lnameError}
+                            </label>
+                        </div>
+
                         <label>
-                            <input className='signup-input' type="text" value={this.state.fname} onChange={this.update("fname")} placeholder="First Name"/>
+                            <input className={`signup-input ${emailClassError}`} type="text" value={this.state.email} 
+                            onChange={this.update("email")} placeholder="Email address" />
+                            {emailError}
                         </label>
                         <label>
-                            <input className='signup-input' type="text" value={this.state.lname} onChange={this.update("lname")} placeholder="Last Name" />
+                            <input className={`signup-input ${usernameClassError}`} type="text" value={this.state.username} 
+                            onChange={this.update("username")} placeholder="Username" />
+                            {usernameError}
                         </label>
                         <label>
-                            <input className='signup-input' type="text" value={this.state.email} onChange={this.update("email")} placeholder="Email address" />
+                            <input className={`signup-input ${passwordClassError}`} type="password" value={this.state.password} 
+                            onChange={this.update("password")} placeholder="Password (min. 10 characters)" />
+                            {passwordError}
                         </label>
-                        <label>
-                            <input className='signup-input' type="text" value={this.state.username} onChange={this.update("username")} placeholder="Username" />
-                        </label>
-                        <label>
-                            <input className='signup-input' type="password" value={this.state.password} onChange={this.update("password")} placeholder="Password (min. 10 characters)" />
-                        </label>
-                        <input type="submit" value={this.props.formType} />
+                        <div className='signup-button-container'>
+                            <input className='signup-submit' type="submit" value="Sign Up" />
+                        </div>
                     </div>
                 </form>
             </main>

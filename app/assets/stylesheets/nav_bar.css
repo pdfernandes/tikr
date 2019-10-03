@@ -5,14 +5,15 @@
     display: flex;
     justify-content: space-between;
     height: 70px;
-    padding: 10px;
     box-sizing: border-box;
-    padding: 0 60px;
+    /* padding: 0 60px; */
+    margin: 0 auto;
+    width: 65%
 }
-.nav-bar .logo:hover, .nav-bar .signup-link:hover, .nav-bar .login-link:hover {
+.nav-bar .signup-link:hover, .nav-bar .login-link:hover {
     text-decoration: underline;
 }
-.nav-bar .logo:hover, .nav-bar .login-link:hover {
+.nav-bar .login-link:hover {
    color: rgb(52, 209, 153);
 }
 
@@ -20,22 +21,31 @@
   display: flex;
   align-items: center;
   font-size: 20px;
-  
+}
+.nav-logo .logo{
+  margin-left: 8px;
 }
 
-.logo-image {
+.nav-logo:hover i, .nav-logo:hover .logo{
+    color: rgb(52, 209, 153);
+}
+.nav-logo:hover .logo{
+    text-decoration: underline;
+}
+
+/* .logo-image {
     max-width: 25%;
     height: auto;
     box-sizing: content-box;
     padding: 0 8px;
-}
-.logo-image-green {
+} */
+/* .logo-image-green {
     max-width: 25%;
     height: auto;
     box-sizing: content-box;
     padding: 0 8px;
     display: none;
-}
+} */
 
 .nav-links {
     display: flex;

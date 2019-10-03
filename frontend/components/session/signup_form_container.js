@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import { signup } from '../../actions/session_actions';
+import { signup, clearErrors } from '../../actions/session_actions';
 import SignupForm from "./signup_form";
 
 const mapState = (state, ownProps) => {
     const formType = "signup";
-    const errors = state.session.errors
+    const errors = state.errors.session
     return {
         formType,
         errors
@@ -13,7 +13,8 @@ const mapState = (state, ownProps) => {
 
 const mapDispatch = dispatch => {
     return {
-        processForm: user => dispatch(signup(user))
+        processForm: user => dispatch(signup(user)),
+        clearErrors: () => dispatch(clearErrors())
     }
 }
 

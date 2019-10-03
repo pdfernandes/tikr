@@ -11,9 +11,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <script type="text/javascript"> window.logo = "<%= image_url('tape.png') %>";</script>
-    <script type="text/javascript"> window.logo_green = "<%= image_url('tape_green.png') %>";</script>
-    <script type="text/javascript"> window.login_page_image = "<%= image_url('login_page_image.png') %>";</script>
+    <script
+      src="https://kit.fontawesome.com/c147d9240a.js" crossorigin="anonymous">
+      type="text/javascript"> window.login_page_image = "<%= image_url('login_page_image.png') %>";
+      type="text/javascript"> window.splash_page_phones = "<%= image_url('splash_[age_phones].png') %>";
+     </script>
   </head>
 
   <body>

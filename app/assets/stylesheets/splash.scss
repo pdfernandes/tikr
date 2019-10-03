@@ -1,0 +1,53 @@
+.splash-container {
+    font-family: 'Arimo', sans-serif;
+    height: 800px;
+    width: 62.5%;
+    margin: 0 auto;
+    display: flex;
+    padding-top: 20px;
+    flex-wrap: wrap;
+}
+
+.splash-two-phones {
+    height: 721px;
+    width: 70%;
+    background-image: image_url("splash_page_phones.png");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display:inline-block;
+}
+.splash-container-text {
+   display:inline-block;
+   width: 30%;
+   padding-top: 225px;
+}
+
+.splash-container-text > h2 {
+    padding-top: 20px;
+    font-size: 16px;
+    line-height: 25px;
+}
+.splash-container-text > h1 {
+    font-size: 40px;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+strong {
+    color: rgb(52,209,153);
+    font-weight: bold;
+}
+
+.splash-signup-link {
+    margin-top: 40px;
+      background-color: rgb(52, 209, 153);
+    padding:  0 24px;
+    border-radius: 50px;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    display: inline-block;
+}
+
+
