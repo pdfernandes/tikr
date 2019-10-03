@@ -11,7 +11,7 @@
 .splash-two-phones {
     height: 721px;
     width: 70%;
-    background-image: image_url("splash_page_phones.png");
+    background-image: image-url("splash_page_phones.png");
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -49,5 +49,45 @@ strong {
     color: white;
     display: inline-block;
 }
+
+.cash-management-splash {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    background: rgb(120,235,195);
+    background: linear-gradient(90deg, rgba(120,235,195,1) 0%, 
+    rgba(80,187,150,1) 0%, rgba(112,225,186,1) 0%, 
+    rgba(62,159,126,1) 10%, rgba(63,153,118,1) 13%, 
+    rgba(35,88,62,1) 25%, rgba(13,22,18,1) 42%, rgba(0,0,0,1) 53%);
+    color: white;
+    height: 200px;
+    justify-content: space-around;
+}
+
+.jetpack-pug {
+    background-image: image-url("jetpack_pug.png");
+    height: 100%;
+    background-size: 350px;
+    width: 300px;
+    background-position: center;
+    -webkit-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+}
+
+.cash-management-text {
+    width: 40%;
+    display:flex;
+    align-items: center;
+}
+
+.cash-management-text > h1 {
+    font-size: 30px;
+    font-weight: bold;
+    width: 80%;
+}
+
+
+
+
 
 

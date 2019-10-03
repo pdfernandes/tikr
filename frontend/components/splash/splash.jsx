@@ -18,7 +18,11 @@ const Splash = props => {
             </div>
             <div className='splash-two-phones'></div>
             <div className='cash-management-splash'>
-                <h1>Cash management, coming soon.</h1>
+                <div className='cash-management-text'>
+                    <h1>Cash management,
+                        coming soon.</h1>
+                </div>
+                <div className='jetpack-pug'></div>
             </div>
 
         </div>
