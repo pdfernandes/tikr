@@ -4,9 +4,16 @@
     <title>Tikr</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <link href="https://fonts.googleapis.com/css?family=Arimo:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Economica&display=swap" rel="stylesheet">
+  
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script type="text/javascript"> window.logo = "<%= image_url('tape.png') %>";</script>
+    <script type="text/javascript"> window.logo_green = "<%= image_url('tape_green.png') %>";</script>
+    <script type="text/javascript"> window.login_page_image = "<%= image_url('login_page_image.png') %>";</script>
   </head>
 
   <body>
