@@ -67,6 +67,7 @@ const Splash = props => {
 
         </div>
         <div className='next-level-investing'>
+          
             <div className='next-level-img'></div>
             <div className='next-level-text'>
                 <h1>Next Level Investing</h1>
@@ -78,6 +79,129 @@ const Splash = props => {
                 <div>Learn More</div>
             </div>
 
+        </div>
+        <div className='keep-tabs-outer'>
+                <div className='keep-tabs'>
+                    <div className='keep-tabs-text'>
+                        <h1>Keep Tabs on the Market</h1>
+                        <p>
+                            Access tools and features such as price movement notifications and customized 
+                            investment news so you can find the right moment to invest.
+                        </p>
+                    </div>
+                    <div className='keep-tabs-img'></div>
+                </div>
+            
+        </div>
+        <div class='trusted-by-millions-container'>
+            <div className='trusted-by-millions'>
+                <div className='eagle'></div>
+                <h1>Trusted by Millions in the USA</h1>
+                    <p>
+                        Robinhood is a member of SIPC, which protects securities customers of its members up to $500,000 (including $250,000 for claims for cash). Explanatory brochure available 
+                        upon request or at <strong>www.sipc.org.</strong>
+                    </p>
+
+
+
+            </div>
+        </div>
+
+        <div className='get-started-container'>
+            <div className='get-started'>
+                <h1>Get Started</h1>
+                <p>
+                    It only takes a few minutes to take control of your financial future. 
+                    Sign up now to start investing with Robinhood.
+                </p>
+                    <Link className='splash-signup-link white' to="/signup">Sign Up</Link>
+
+            </div>
+        </div>
+
+        <div className='disclaimers-container'>
+            <div className='disclaimers'>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda!  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda!  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! <br/> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio <br/> <br/> recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda!
+
+
+                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! Lorem ipsum <br/> <br/> dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda!
+
+                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipi <br/> <br/> sci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! Lorem ipsum dolor si <br/> <br/> t amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                assumenda!
+                
+            </div>
+            <div className='disclaimers'>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+    assumenda!  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+    assumenda!  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                assumenda! <br /> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                aliquam fugiat adipisci odio <br /> <br /> recusandae itaque molestias ea ipsa alias doloribus omnis
+                    assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                    assumenda!
+    
+    
+                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                assumenda! Lorem ipsum <br /> <br /> dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                    assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                    assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                    assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                    assumenda!
+    
+                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                    assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                aliquam fugiat adipi <br /> <br /> sci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                    assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                    assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis
+                assumenda! Lorem ipsum dolor si <br /> <br /> t amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                    assumenda! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, atque quisquam tempora rerum temporibus, in ducimus expedita 
+                    aliquam fugiat adipisci odio recusandae itaque molestias ea ipsa alias doloribus omnis 
+                    assumenda! TIKR RULES!
+                    
+            </div>
         </div>
         </>
     )

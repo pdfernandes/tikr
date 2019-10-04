@@ -71,3 +71,13 @@
     line-height: 50px;
     color: white;
 }
+
+.github {
+    font-size: 30px;
+    line-height: 80px;
+    color: black;
+}
+
+.github:hover {
+    color: rgb(52, 209, 153);
+}

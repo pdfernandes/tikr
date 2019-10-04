@@ -91,3 +91,10 @@ html, body {
     position: absolute;
     bottom: 20%;
 }
+
+.login-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
+}

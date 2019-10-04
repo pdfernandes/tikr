@@ -14,7 +14,6 @@
     background-image: image-url("two_phones_2.png");
     background-size: cover;
     background-position: center;
-    overflow: hidden;
     display:inline-block;
 }
 .splash-container-text {
@@ -41,13 +40,14 @@ strong {
 
 .splash-signup-link {
     margin-top: 40px;
-      background-color: rgb(52, 209, 153);
+    background-color: rgb(52, 209, 153);
     padding:  0 24px;
     border-radius: 50px;
     height: 50px;
     line-height: 50px;
     color: white;
     display: inline-block;
+    font-weight: bold;
 }
 
 .cash-management-splash {
@@ -184,7 +184,6 @@ strong {
 .next-level-investing {
     font-family: 'Arimo', sans-serif;
     background: black;
-    overflow: visible;
     height: 600px;
     width: 100%;
     overflow: hidden;
@@ -228,7 +227,6 @@ strong {
 .next-level-text > div {
     position:absolute;
     bottom: 150px;
-    border: 1px solid red;
     width: 140px;
     left: 150px;
     text-align: center;
@@ -240,6 +238,156 @@ strong {
     line-height: 50px;
     font-weight: bold;
 }  
+
+.keep-tabs-outer {
+    width: 100%;
+    height: 700px;
+    font-family: 'Arimo', sans-serif;
+}
+
+.keep-tabs {
+    width: 1190px;
+    height: 700px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.keep-tabs-img {
+    background: image-url("splash_black_phone.png");
+    height: 700px;
+    width: 50%;
+    display: flex;
+    background-size: cover;
+    background-position: center;
+}
+
+.keep-tabs-text {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.keep-tabs-text > h1{
+    width: 65%;
+    font-size: 45px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    letter-spacing: -1px;
+
+}
+
+.keep-tabs-text > p {
+    line-height: 25px;
+    width: 65%
+}
+
+.trusted-by-millions-container {
+    width: 100%;
+    height: 800px;
+    background-color: rgb(4,12,20);
+    color: white;
+}
+
+.trusted-by-millions {
+    font-family: 'Arimo', sans-serif;
+    height: 100%;
+    width: 1190px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.eagle {
+    background: image-url("usa_eagle.png");
+    width: 185px;
+    height: 221px;
+    margin-bottom: 30px;
+
+}
+
+.trusted-by-millions > h1 {
+    width: 33%;
+    font-size: 43px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    text-align: center;
+
+}
+.trusted-by-millions > p {
+    line-height: 25px;
+    width: 40%;
+    text-align: center;
+}
+
+.get-started-container {
+    font-family: 'Arimo', sans-serif;
+    width: 100%;
+    background-color: rgb(52, 209, 153);
+    height: 460px;
+    display: flex;
+    justify-content: center;
+}
+
+.get-started {
+    width: 40%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+.get-started > h1 {
+    width: 50%;
+    font-size: 43px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.get-started > p {
+    line-height: 25px;
+    width: 90%;
+    text-align: center;
+}
+
+.white {
+    color: rgb(52, 209, 153);
+    background: white;
+}
+
+.splash-signup-link:hover {
+    text-decoration: underline;
+}
+
+.disclaimers-container {
+    height: 1000px;
+    width: 80%;
+    color: rgb(201, 203, 204);
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    font-size: 10px;
+
+}
+
+.disclaimers {
+   width: 40%;
+   margin-top: 80px;
+}
+
+
+
+
+
+
+
+
 
 
 

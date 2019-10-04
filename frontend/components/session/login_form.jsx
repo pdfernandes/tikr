@@ -9,6 +9,8 @@ class LoginForm extends React.Component {
             username: "",
             password: ""
         }
+
+        this.demoLogin = this.demoLogin.bind(this)
     }
     componentWillUnmount() {
 
@@ -16,6 +18,14 @@ class LoginForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault()
         this.props.processForm(this.state)
+    }
+
+    demoLogin(e) {
+        e.preventDefault()
+        this.props.processForm({
+            username: 'DemoUser',
+            password: 'password123'
+        })
     }
 
     update(field) {
@@ -53,8 +63,11 @@ class LoginForm extends React.Component {
                             <div className='label-text'>Password</div>
                             <input className="input"type="password" value={this.state.password} onChange={this.update("password")} required />
                         </label>    
-                        {errors}  
-                        <input className="login-button" type="submit" value="Sign In"/>
+                        {errors} 
+                        <div className='login-buttons'>
+                            <input className="login-button" type="submit" value="Sign In"/>
+                            <input className="login-button" type="submit" value=" Demo " onClick={this.demoLogin}/>
+                        </div> 
                     </form>
                     </main>
                 </div>

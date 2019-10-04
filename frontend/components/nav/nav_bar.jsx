@@ -19,6 +19,7 @@ class NavBar extends React.Component {
    
 
     render() {
+        let git = <a className='github' href="https://github.com/pdfernandes"><i class="fab fa-github"></i></a>;
         if (this.props.currentUser !== null) {
             return (
                 <section className='nav-bar'>
@@ -27,6 +28,7 @@ class NavBar extends React.Component {
                         <Link className='logo' to='/'>tikr</Link>
                     </div>
                     <div>Search Bar</div>
+                    {git}
                     <button type="submit" onClick={this.handleClick}>Log Out</button>
 
 
@@ -44,6 +46,7 @@ class NavBar extends React.Component {
                     <div className='nav-logo'>
                         <Link className='logo-icon' to='/'><i className="fas fa-tenge"></i> </Link>
                     </div>
+                    {git}
                 </section>
             )
 
@@ -56,8 +59,9 @@ class NavBar extends React.Component {
                                 <Link className='logo-icon' to='/'><i className="fas fa-tenge"></i> </Link>
                                 <Link className='logo' to='/'>tikr</Link>
                         </div>
+                        {git}
                         <div className="nav-links">
-                    
+
                                 <Link className='login-link' to="/login" >Log In</Link>
                                 <Link className='signup-link' to="/signup">Sign Up</Link>
                         
