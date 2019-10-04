@@ -1,7 +1,7 @@
 .splash-container {
     font-family: 'Arimo', sans-serif;
     height: 800px;
-    width: 62.5%;
+    width: 85%;
     margin: 0 auto;
     display: flex;
     padding-top: 20px;
@@ -11,7 +11,7 @@
 .splash-two-phones {
     height: 721px;
     width: 70%;
-    background-image: image-url("splash_page_phones.png");
+    background-image: image-url("two_phones_2.png");
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -29,7 +29,7 @@
     line-height: 25px;
 }
 .splash-container-text > h1 {
-    font-size: 40px;
+    font-size: 30px;
     white-space: nowrap;
     font-weight: bold;
 }
@@ -70,8 +70,8 @@ strong {
     background-size: 350px;
     width: 300px;
     background-position: center;
-    -webkit-transform: rotate(-15deg);
-    transform: rotate(-15deg);
+    -webkit-transform: rotate(-15deg) translate(-13px);
+    transform: rotate(-15deg) translate(-13px);
 }
 
 .cash-management-text {
@@ -85,6 +85,93 @@ strong {
     font-weight: bold;
     width: 80%;
 }
+
+.splash-assets {
+    width: 100%;
+    display: flex;
+    height: 300px;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+
+.splash-assets-content {
+   height: 100%;
+    width: 20%;
+    padding: 0 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    
+}
+
+.splash-assets-content > h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.splash-assets-content > p {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.stocks-img {
+    background: image-url("stocks.svg");
+    width: 72px;
+    height: 53px;
+}
+
+.etfs-img {
+    background: image-url("etfs.png");
+    height: 57px;
+    width: 54px;
+}
+
+.crypto-img {
+    background: image-url("crypto.svg");
+    width: 68px;
+    height: 61px;
+}
+.options-img {
+    background: image-url("options.svg");
+    width: 53px;
+    height: 59px;
+}
+
+.splash-links {
+    color: rgb(52,209,153);
+    font-weight: bold;
+}
+
+.no-manual-needed {
+    height: 550px;
+    border: 1px solid red;
+    display: flex;
+}
+
+.white-phone {
+    background: image-url("splash_white_phone");
+    height: 550px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid blue;
+
+}
+
+.white-phone-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.white-phone-text > h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
 
 
 
