@@ -6,6 +6,7 @@ const Splash = props => {
 
 
     return (
+        <>
         <div className='splash-container'>
             <div className='splash-container-text'>
                 <h1>Invest</h1> 
@@ -53,16 +54,31 @@ const Splash = props => {
             <div className='no-manual-needed'>
                 <div className='white-phone'></div>
                 <div className='white-phone-text'>
-                    <h1>No Manual Needed</h1>
-                    <p>
-                        Intuitively designed for newcomers and experts alike, Robinhood gives you a clear picture of your portfolio’s performance over time,
-                        so you can adjust your positions and learn by doing.
-                    </p>
+                    <div>
+                        <h1>No Manual Needed</h1>
+                        <p>
+                            Intuitively designed for newcomers and experts alike, Robinhood gives you a clear picture of your portfolio’s performance over time,
+                            so you can adjust your positions and learn by doing.
+                        </p> 
+                    </div>
                 </div>
 
             </div>
 
         </div>
+        <div className='next-level-investing'>
+            <div className='next-level-img'></div>
+            <div className='next-level-text'>
+                <h1>Next Level Investing</h1>
+                <p>
+                    Access professional research reports, trade on margin,
+                    and make bigger instant deposits with Robinhood Gold—all
+                        starting at $5 a month.
+                </p>
+            </div>
+
+        </div>
+        </>
     )
 }
 

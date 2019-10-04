@@ -1,6 +1,6 @@
 .splash-container {
     font-family: 'Arimo', sans-serif;
-    height: 800px;
+    height: auto;
     width: 85%;
     margin: 0 auto;
     display: flex;
@@ -144,18 +144,15 @@ strong {
 }
 
 .no-manual-needed {
-    height: 550px;
-    border: 1px solid red;
+    height: 600px;
     display: flex;
 }
 
 .white-phone {
     background: image-url("splash_white_phone");
-    height: 550px;
     width: 100%;
     background-size: cover;
     background-position: center;
-    border: 1px solid blue;
 
 }
 
@@ -165,12 +162,42 @@ strong {
     align-items: center;
     justify-content: center;
 }
+.white-phone-text > div {
+    width: 65%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
 
-.white-phone-text > h1 {
+.white-phone-text > div > h1 {
     font-size: 40px;
     font-weight: bold;
 }
 
+.white-phone-text > div > p {
+    line-height: 30px;
+    font-size: 16px;
+}
+
+.next-level-investing {
+    background: black;
+    overflow: visible;
+    height: 600px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.next-level-img {
+    background: image-url("splash_phones");
+    width: 50%;
+    height: 600px;
+    background-size: cover;
+    // background-position-x: -100px;
+    background-position-y: -170px;
+    transform: scale(1.4);
+}
 
 
 
