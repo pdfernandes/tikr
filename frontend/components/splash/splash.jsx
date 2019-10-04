@@ -75,6 +75,7 @@ const Splash = props => {
                     and make bigger instant deposits with Robinhood Gold—all
                         starting at $5 a month.
                 </p>
+                <div>Learn More</div>
             </div>
 
         </div>

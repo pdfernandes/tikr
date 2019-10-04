@@ -182,22 +182,65 @@ strong {
 }
 
 .next-level-investing {
+    font-family: 'Arimo', sans-serif;
     background: black;
     overflow: visible;
     height: 600px;
     width: 100%;
     overflow: hidden;
+    display: flex;
 }
 
 .next-level-img {
     background: image-url("splash_phones");
     width: 50%;
-    height: 600px;
+    height: 100%;
     background-size: cover;
-    // background-position-x: -100px;
-    background-position-y: -170px;
-    transform: scale(1.4);
+    background-position-x: 10px;
+    background-position-y: -120px;
+    transform: scale(1.5);
 }
+
+.next-level-text {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative
+} 
+
+.next-level-text > * {
+    width: 60%;
+}  
+.next-level-text > h1 {
+    font-size: 45px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    position: absolute;
+    top: 170px;
+    
+}  
+
+.next-level-text > p {
+    line-height: 25px;
+}  
+.next-level-text > div {
+    position:absolute;
+    bottom: 150px;
+    border: 1px solid red;
+    width: 140px;
+    left: 150px;
+    text-align: center;
+    padding: 0 24px;
+    border-radius: 36px;
+    background: linear-gradient(114.36deg,#956436 0%,#bc935e 100%);
+    box-sizing: border-box;
+    height: 48px;
+    line-height: 50px;
+    font-weight: bold;
+}  
+
 
 
 
