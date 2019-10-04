@@ -12,9 +12,7 @@ class LoginForm extends React.Component {
 
         this.demoLogin = this.demoLogin.bind(this)
     }
-    componentWillUnmount() {
 
-    }
     handleSubmit(e) {
         e.preventDefault()
         this.props.processForm(this.state)
@@ -34,12 +32,15 @@ class LoginForm extends React.Component {
         )
 
     }
+    componentDidMount() {
+        debugger
+    }
 
     render() {
         let errors;
         if (this.props.errors.length !== 0) {
             errors = (
-                <h3 class='login-errors'><i class="fas fa-exclamation"></i>  {this.props.errors}</h3>
+                <h3 className='login-errors'><i className="fas fa-exclamation"></i>  {this.props.errors}</h3>
             )
         } else {
             errors = null

@@ -19,7 +19,7 @@ class NavBar extends React.Component {
    
 
     render() {
-        let git = <a className='github' href="https://github.com/pdfernandes"><i class="fab fa-github"></i></a>;
+        let git = <a className='github' href="https://github.com/pdfernandes"><i className="fab fa-github"></i></a>;
         if (this.props.currentUser !== null) {
             return (
                 <section className='nav-bar'>

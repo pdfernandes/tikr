@@ -93,7 +93,7 @@ const Splash = props => {
                 </div>
             
         </div>
-        <div class='trusted-by-millions-container'>
+        <div className='trusted-by-millions-container'>
             <div className='trusted-by-millions'>
                 <div className='eagle'></div>
                 <h1>Trusted by Millions in the USA</h1>

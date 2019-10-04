@@ -9,7 +9,7 @@ class Api::SessionsController < ApplicationController
             login(@user)
             render '/api/users/show'
         else
-            render json: ['Unable to log in with provded credentials'], status: 422
+            render json: ['Unable to log in with provided credentials'], status: 422
         end
     end
 

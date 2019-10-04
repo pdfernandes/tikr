@@ -7,11 +7,11 @@
 #  email           :string           not null
 #  fname           :string           not null
 #  lname           :string           not null
-#  funds           :float            not null
 #  password_digest :string           not null
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  funds           :float            default(0.0), not null
 #
 
 class User < ApplicationRecord 
@@ -21,6 +21,17 @@ class User < ApplicationRecord
     after_initialize :ensure_session_token, :set_defaults
 
     attr_reader :password
+    
+    has_many :transactions,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Transaction
+
+    has_many :companies,
+    through: :transactions,
+    source: :company
+
+    
    
     def set_defaults
         self.funds ||= 0.0
