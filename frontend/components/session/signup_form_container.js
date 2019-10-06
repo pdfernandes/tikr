@@ -14,7 +14,7 @@ const mapState = (state, ownProps) => {
 const mapDispatch = dispatch => {
     return {
         processForm: user => dispatch(signup(user)),
-        clearErrors: () => dispatch(clearErrors())
+        clearErrors: () => dispatch(clearErrors()),
     }
 }
 

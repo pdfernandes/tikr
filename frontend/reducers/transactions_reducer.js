@@ -16,8 +16,8 @@ const transactionsReducer = (state = {}, action) => {
             return merge({}, state, {[action.transaction.id]: action.transaction})
         case RECEIVE_TRANSACTIONS:
             return merge({}, action.transactions)
-        case RECEIVE_USER:
-            return {}
+        // case RECEIVE_USER:
+        //     return {}
         case REMOVE_USER:
             return {};
         

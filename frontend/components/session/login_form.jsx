@@ -24,6 +24,7 @@ class LoginForm extends React.Component {
             username: 'DemoUser',
             password: 'password123'
         })
+        
     }
 
     update(field) {

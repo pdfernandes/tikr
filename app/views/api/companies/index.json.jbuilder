@@ -1,5 +1,5 @@
 @companies.each do |company|
     json.set! company.id do
-        json.extract! company, :name, :ticker
+        json.extract! company, :id, :name, :ticker
     end
 end
