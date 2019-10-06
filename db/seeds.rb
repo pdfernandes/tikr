@@ -7,10 +7,23 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+require 'csv'
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'companies.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  c = Company.new
+  c.ticker = row["TICKER"]
+  c.name = row["NAME"]
+  c.save
+end
+
+
+
+
 
 demoUser = User.create!(username:"DemoUser", email:'demoUser@tikr.app', fname:'Demo', lname:'User', funds:100000, password: "password123")
 
-demoCompany = Company.create!(name: 'DemoCo', ticker:'DEMO')
+demoCompany = Company.first
 
 demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, price: 50 )
 demoTransaction = Transaction.create!(order_type: true, quantity: 20, company_id: demoCompany.id, user_id: demoUser.id, price: 100 )

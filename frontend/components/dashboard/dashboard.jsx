@@ -4,11 +4,15 @@ import React from 'react'
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
+        debugger
     }
 
+
+
     componentDidMount() {
-    this.props.allTransactions()
-        debugger
+    this.props.allTransactions();
+    this.props.allCompanies();
+        
     }
 
     render () {

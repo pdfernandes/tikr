@@ -1,18 +1,22 @@
 import { connect } from 'react-redux';
 import { allTransactions } from "../../actions/transaction_actions";
+import { allCompanies} from "../../actions/company_actions";
 import Dashboard from "./dashboard";
 
 
 const mapState = (state) => {
     return {
         user: state.entities.user,
-        transactions: state.entities.transactions
+        transactions: state.entities.transactions,
+        companies: state.entities.companies,
     }
 }
 
 const mapDispatch = dispatch => {
     return {
-        allTransactions: () => dispatch(allTransactions())
+        allTransactions: () => dispatch(allTransactions()),
+        allCompanies: () => dispatch(allCompanies())
+
     }
 }
 

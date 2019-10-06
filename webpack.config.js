@@ -13,6 +13,9 @@ module.exports = {
     module: {
         rules: [
             {
+                parser: {
+                    amd: false
+                },
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
                 use: {
