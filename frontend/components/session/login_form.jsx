@@ -33,9 +33,6 @@ class LoginForm extends React.Component {
         )
 
     }
-    componentDidMount() {
-        debugger
-    }
 
     render() {
         let errors;

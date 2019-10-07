@@ -5,7 +5,6 @@ import Dashboard from "./dashboard";
 
 
 const mapState = (state) => {
-    debugger
     return {
         user: state.entities.user,
         transactions: state.entities.transactions,
