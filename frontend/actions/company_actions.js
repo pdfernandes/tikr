@@ -19,6 +19,11 @@ export const allCompanies = () => dispatch => {
 
 
 
+export const allUserCompanies = id => dispatch => {
+    return CompaniesAPIUtil.allUserCompanies(id)
+        .then(companies => dispatch(receiveCompanies(companies)));
+}
+
 
 
 

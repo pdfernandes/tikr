@@ -1,7 +1,10 @@
 class Api::CompaniesController < ApplicationController
     def index
-        # @companies = current_user.companies
-        @companies = Company.all
+        if current_user
+            @companies = current_user.companies 
+        else 
+            @companies = Company.all
+        end
         render :index
     end 
     

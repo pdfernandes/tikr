@@ -1,6 +1,6 @@
 import { merge } from 'lodash'
 import {
-    RECEIVE_USER,
+    RECEIVE_USER, REMOVE_USER
 
 } from '../actions/session_actions'
 
@@ -12,7 +12,9 @@ const usersReducer = (state= {}, action) => {
     Object.freeze(state)
     switch (action.type) {
         case RECEIVE_USER:
-            return merge({}, { [action.user.id]: action.user})
+            return merge({}, { [action.user.id]: action.user});
+        case REMOVE_USER:
+            return {};
         default:
             return state;
     }

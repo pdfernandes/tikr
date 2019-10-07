@@ -25,7 +25,7 @@ demoUser = User.create!(username:"DemoUser", email:'demoUser@tikr.app', fname:'D
 
 demoCompany = Company.first
 
-demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, price: 50 )
+demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, price: 50)
 demoTransaction = Transaction.create!(order_type: true, quantity: 20, company_id: demoCompany.id, user_id: demoUser.id, price: 100 )
 demoTransaction = Transaction.create!(order_type: true, quantity: 30, company_id: demoCompany.id, user_id: demoUser.id, price: 150 )
 demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, price: 100 )
