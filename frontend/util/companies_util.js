@@ -5,6 +5,13 @@ export const allCompanies = () => {
     })
 }
 
+export const getCompany = (id) => {
+    return $.ajax({
+        method: "GET",
+        url: `api/companies/${id}`
+    })
+}
+
 
 export const allUserCompanies = id => {
     return $.ajax({

@@ -1,5 +1,6 @@
 import * as CompaniesAPIUtil from "../util/companies_util";
-export const RECEIVE_COMPANIES = "RECEIVE_COMPANIES"
+export const RECEIVE_COMPANIES = "RECEIVE_COMPANIES";
+export const RECEIVE_COMPANY = 'RECEIVE_COMPANY';
 
 
 const receiveCompanies = companies => {
@@ -9,12 +10,24 @@ const receiveCompanies = companies => {
     }
 }
 
+const receiveCompany = company => {
+    return {
+        type: RECEIVE_COMPANY,
+        company
+    }
+}
+
 
 
 
 export const allCompanies = () => dispatch => {
     return CompaniesAPIUtil.allCompanies()
         .then(companies => dispatch(receiveCompanies(companies)));
+}
+
+export const getCompany = (id) => dispatch => {
+    return CompaniesAPIUtil.getCompany(id)
+    .then(company => dispatch(receiveCompany(company)))
 }
 
 

@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import { allTransactions } from "../../actions/transaction_actions";
 import { allUserCompanies} from "../../actions/company_actions";
-import { getLastPrices } from "../../actions/intrinio_actions"
+import { getLastPrices } from "../../actions/stocks_actions"
 import Dashboard from "./dashboard";
 
 
 const mapState = (state) => {
     return {
-        user: state.entities.user,
+        user: Object.values(state.entities.user)[0],
         transactions: state.entities.transactions,
         companies: state.entities.companies,
         prices: state.entities.prices,

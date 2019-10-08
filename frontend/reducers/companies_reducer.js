@@ -3,7 +3,7 @@ import {
     REMOVE_USER
 } from "../actions/session_actions";
 import { merge } from "lodash";
-import { RECEIVE_COMPANIES } from "../actions/company_actions"
+import { RECEIVE_COMPANIES, RECEIVE_COMPANY } from "../actions/company_actions"
 
 
 const companiesReducer = (state = {}, action ) => {
@@ -11,6 +11,9 @@ const companiesReducer = (state = {}, action ) => {
     switch (action.type) {
         case RECEIVE_COMPANIES: 
             return merge({}, action.companies);
+
+        case RECEIVE_COMPANY:
+            return merge({}, state, action.company)
 
         case REMOVE_USER:
             return {};

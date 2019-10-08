@@ -5,10 +5,10 @@ export const apiKey = "OmU4MDMzZmM5MjE3YWU2YjEyNjA0YzIxZjlmMmQ4MWE1"
 
 export const getAllSecurities = (ticker, frequency) => {
     let date = new Date()
-    date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    end = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     return $.ajax({
         method: "GET",
-        url: `https://api-v2.intrinio.com/securities/${ticker}/prices?end_date=${date}&frequency=${frequency}&api_key=${apiKey}`
+        url: `https://api-v2.intrinio.com/securities/${ticker}/historical_data/adj_close_price?frequency=${frequency}&api_key=${apiKey}`
     })
 }
 

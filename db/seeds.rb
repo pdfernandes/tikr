@@ -25,8 +25,16 @@ demoUser = User.create!(username:"DemoUser", email:'demoUser@tikr.app', fname:'D
 
 demoCompany = Company.first
 
-demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, price: 50)
-demoTransaction = Transaction.create!(order_type: true, quantity: 20, company_id: demoCompany.id, user_id: demoUser.id, price: 100 )
-demoTransaction = Transaction.create!(order_type: true, quantity: 30, company_id: demoCompany.id, user_id: demoUser.id, price: 150 )
-demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, price: 100 )
-demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, price: 50 )
+demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, transaction_time: '01-01-1993', price: 50)
+demoTransaction = Transaction.create!(order_type: true, quantity: 20, company_id: demoCompany.id, user_id: demoUser.id, transaction_time: '01-01-1993', price: 100 )
+demoTransaction = Transaction.create!(order_type: true, quantity: 30, company_id: demoCompany.id, user_id: demoUser.id, transaction_time: '01-01-1993', price: 150 )
+demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, transaction_time: '03-05-2001', price: 100 )
+demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, transaction_time: '03-05-2006', price: 22 )
+demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '03-05-2006', price: 20 )
+demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '03-05-2006', price: 50 )
+demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '03-05-2006',price: 50 )
+demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '03-05-2012', price: 54 )
+demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '03-05-2016', price: 50 )
+demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '11-05-2018', price: 36 )
+demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '10-05-2019', price: 150 )
+demoTransaction = Transaction.create!(order_type: true, quantity: 20, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '10-05-2019', price: 25 )

@@ -9,6 +9,8 @@ class Api::CompaniesController < ApplicationController
     end 
     
     def show
+        @company = Company.find(params[:id])
+        render :show
     end
 
 end

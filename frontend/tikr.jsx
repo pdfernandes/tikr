@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as SessionAPIUtil from "./util/session_api_util"
 import configureStore from "./store/store";
 import Root from "./components/root";
-import { getAllSecurities, getIntradayPrice, getLastPrice } from "./util/intrinio_api_util";
+import { getAllSecurities, getIntradayPrice, getLastPrice } from "./util/stocks_api_util";
 
 
 window.getAllSecurities = getAllSecurities;
