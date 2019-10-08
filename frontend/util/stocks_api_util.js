@@ -9,7 +9,7 @@ export const getAllSecurities = (ticker, frequency, start, end) => {
     debugger
     return $.ajax({
         method: "GET",
-        url: `https://api-v2.intrinio.com/securities/${ticker}/historical_data/adj_close_price?frequency=${frequency}&end_date=${end}&api_key=${apiKey}`
+        url: `https://api-v2.intrinio.com/securities/${ticker}/historical_data/adj_close_price?frequency=${frequency}&start_date=${start}&end_date=${end}&api_key=${apiKey}`
     })
 }
 

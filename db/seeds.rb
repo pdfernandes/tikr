@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+Company.destroy_all
+Transaction.destroy_all
 
 require 'csv'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'companies.csv'))

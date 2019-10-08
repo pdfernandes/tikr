@@ -18,8 +18,8 @@ class Dashboard extends React.Component {
         this.calculatePortfolioValue = this.calculatePortfolioValue.bind(this);
         this.chartData = this.chartData.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        this.rollingPortfolioValue = this.rollingPortfolioValue.bind(this)
-        this.chartData = this.chartData.bind(this)
+        this.runningPortfolioTotal = this.runningPortfolioTotal.bind(this);
+        this.formatStartDate = this.formatStartDate.bind(this);
     }
 
     componentDidMount() {
@@ -30,12 +30,12 @@ class Dashboard extends React.Component {
             .then(responseArr => {
                 transactions = Object.values(responseArr[0].transactions);
                 companies = Object.values(responseArr[1].companies).map(company => company.ticker)
-                this.props.getLastPrices(companies).then(() => this.buildPortfolio())
+                this.props.getLastPrices(companies).then(() => this.buildPortfolio(this.state.timeFrame))
             })
 
     }
 
-    buildPortfolio(time = "1yr") {
+    buildPortfolio(time = this.state.timeFrame) {
         let { user, companies, transactions } = this.props;
         let portfolio = {};
         // user = Object.values(user)[0];
@@ -73,23 +73,24 @@ class Dashboard extends React.Component {
     setFrequency(timeFrame) {
         let frequency;
         if (timeFrame === "1d") {
-            frequency = 'daily';
+            frequency = 'intraday';
         } else if (timeFrame === '1w') {
-            frequency = 'weekly';
+            frequency = 'daily';
         } else if (timeFrame === "1m") {
-            frequency = "monthly";
+            frequency = "daily";
         } else if (timeFrame === "3m") {
-            frequency = "quarterly";
+            frequency = "daily";
         } else if (timeFrame === '1yr') {
-            frequency = 'yearly';
+            frequency = 'quarterly';
         } else {
-            frequency = 'yearly';
+            frequency = 'quarterly';
         }
         return frequency;
     }
 
     determineTime(time) {
         let timeSpan = new Date();
+        debugger
         if (time === "1d") {
             timeSpan.setHours(0, 0, 0)
         } else if (time === '1w') {
@@ -107,8 +108,34 @@ class Dashboard extends React.Component {
 
     }
 
-    calculatePortfolioValue(portfolio, timeFrame) {
+
+    formatStartDate(date) {
+        let time = this.state.timeFrame
+        let timeSpan = new Date(date);
         debugger
+        if (time === "1d") {
+            timeSpan.setHours(0, 0, 0)
+        } else if (time === '1w') {
+            timeSpan.setDate(timeSpan.getDate() - 7)
+        } else if (time === "1m") {
+            timeSpan.setMonth(timeSpan.getMonth() - 1)
+        } else if (time === "3m") {
+            timeSpan.setMonth(timeSpan.getMonth() - 3)
+        } else if (time === '1yr') {
+            timeSpan.setYear(timeSpan.getYear() - 1)
+        } else {
+            timeSpan = timeSpan.setYear(timeSpan.getYear() - 30)
+        }
+        let year = timeSpan.getFullYear()
+        let month = timeSpan.getMonth();
+        let day = timeSpan.getDate();
+        
+        return `${year}-${month + 1}-${day}`
+    }
+
+
+    calculatePortfolioValue(portfolio, timeFrame) {
+        
         // portfolio shape {AAPL : 30}
         let { funds, portfolioValue } = this.state;
         let { prices } = this.props
@@ -123,25 +150,33 @@ class Dashboard extends React.Component {
             if (timeFrame === "1d") {
                 console.log("1d")
             } else {
-                debugger
+                
                 Promise.all(
                     this.state.transactionTimeFrame.map(transaction => {
+                        let date = new Date()
+                        let year = date.getFullYear()
+                        let month = date.getMonth();
+                        let day = date.getDate();
+                        let end_date = `${year}-${month}-${day}`
+                        let start_date = this.formatStartDate(end_date)
                         debugger
-                        let date = transaction.date.split("-")
-                        let year = date.pop()
-                        date.unshift(year)
-                        date = date.join("-")
-                        return StocksAPIUtil.getAllSecurities(transaction.ticker, frequency,date, date)
+                        // date = transaction.date.split("-")
+                        // let year = date.pop()
+                        // date.unshift(year)
+                        // date = date.join("-")
+                        
+                        
+                        return StocksAPIUtil.getAllSecurities(transaction.ticker, frequency, start_date, end_date)
                     })
                 
                 ).then(response => {
-                    this.rollingPortfolioValue(response)
+                    this.runningPortfolioTotal(response)
                 })
             }
 
             // prices.forEach(price => {
             //     value += price.last_price * portfolio[price.security.ticker]
-            //     debugger
+            //     
             // })
             // this.setState({
             //     portfolioValue: portfolioValue + value
@@ -153,37 +188,55 @@ class Dashboard extends React.Component {
 
     }
 
-    rollingPortfolioValue(arrayOfHistories) {
+    runningPortfolioTotal(arrayOfHistories) {
+        
+        let formatedHistory = {};
+        arrayOfHistories.forEach(history => {
+            formatedHistory[history.security.ticker] = history.historical_data.reduce((obj, item) => {
+                obj[item.date] = item.value
+                return obj
+            }, {})
+        })
         debugger
         let portfolioValues = {};
         let portfolioValuesArray = [];
-        for (let i = 0; i < arrayOfHistories.length; i++) {
-            const history = arrayOfHistories[i];
-            const transaction = this.state.transactionTimeFrame[i];
-            debugger
-        
-            if (portfolioValues[transaction.date] === undefined && history.historical_data.length > 0) {
-                debugger
-                portfolioValues[transaction.date] = this.state.funds + (history.historical_data[0].value * transaction.quantity)
-            } else if (portfolioValues[transaction.date] !== undefined && history.historical_data.length === 0) {
-                
-            } else if (portfolioValues[transaction.date] === undefined && history.historical_data.length === 0) {
+        let dates = arrayOfHistories[0].historical_data.map(obj => obj.date).reverse()
 
-            } else {
-                portfolioValues[transaction.date] += (history.historical_data[0].value * transaction.quantity)
-                debugger
+        for (let i = 0; i < dates.length; i++) {
+            const date = dates[i];
+            
+            for (let j = 0; j < this.state.transactionTimeFrame.length; j++) {
+                const transaction = this.state.transactionTimeFrame[j];
+               
+                if (new Date(transaction.date) >= new Date(date)) {
+                   
+                    if (portfolioValues[transaction.ticker] === undefined && transaction.order_type) {
+                        portfolioValues[date] = transaction.quantity * formatedHistory[transaction.ticker][date]
+                    } else if (portfolioValues[transaction.ticker] === undefined && transaction.order_type === false) {
+                        portfolioValues[date] = transaction.quantity * formatedHistory[transaction.ticker][date] * -1;
+                    } else if (transaction.order_type) {
+                        portfolioValues[date] += (transaction.quantity * formatedHistory[transaction.ticker][date])
+                    } else {
+                        portfolioValues[date] -= (transaction.quantity * formatedHistory[transaction.ticker][date])
+                    }
+
+
+                }
+
+                
             }
             
-            
         }
+        debugger
+
         for (let date in portfolioValues) {
-            debugger
+            
             portfolioValuesArray.push({
                 date,
                 value : portfolioValues[date],
             })
         }
-        debugger
+        
         this.setState({ "portfolioValuesArray" : portfolioValuesArray })
 
     }
@@ -195,21 +248,28 @@ class Dashboard extends React.Component {
     }
 
     handleClick(e) {
-        e.preventDefault();
-        this.buildPortfolio(e.target.value)
+        debugger
+        // e.preventDefault();
+        this.setState({timeFrame : e.target.value}, () => {
+            this.buildPortfolio()
+        })
+        
     }
 
 
 
     render() {
+        debugger
         let { funds, portfolioValue } = this.state;
         let chart;
         if (this.state.portfolioValuesArray.length === 0) {
-            debugger
+            
             chart = this.state.funds
         } else {
-            debugger
-            chart = (<LineChart
+           
+            chart = (
+                 <>
+            <LineChart
                 width={730}
                 height={250}
                 data={this.state.portfolioValuesArray}
@@ -217,30 +277,32 @@ class Dashboard extends React.Component {
                 <XAxis dataKey="date" hide={true}/>
                 <YAxis hide={true} domain={['dataMin', 'dataMax']} />
                 <Tooltip />
-                <Line type="monotone" dataKey="value" stroke="#34ce99" strokeWidth='4' />
+                <Line type="monotone" dataKey="value" stroke="#34ce99" strokeWidth='4' dot={false} />
 
 
 
-            </LineChart>)
+            </LineChart>
+            <button onClick={this.handleClick} value="1m">1m</button>
+            <button onClick={this.handleClick} value='3m'>3m</button>
+            <button onClick={this.handleClick} value='1yr'>1yr</button>
+            {/* <button onClick={this.handleClick} value='all'>All</button> */}
+            </>
+            )
         }
 
 
 
-        portfolioValue = portfolioValue.toFixed(2);
-        let gain = (portfolioValue - funds).toFixed(2);
-        let percentGain = (((portfolioValue / funds) - 1) * 100).toFixed(2);
+        // portfolioValue = portfolioValue.toFixed(2);
+        // let gain = (portfolioValue - funds).toFixed(2);
+        // let percentGain = (((portfolioValue / funds) - 1) * 100).toFixed(2);
         return (
             <>
                 <div className='portfolio-graph'>
                     {chart}
-
-
-
-
                 </div>
-
+{/* 
                 <p>{portfolioValue}</p>
-                <h2>{gain} ({percentGain}%)</h2>
+                <h2>{gain} ({percentGain}%)</h2> */}
             </>
         )
 
