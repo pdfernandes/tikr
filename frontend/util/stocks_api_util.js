@@ -3,12 +3,13 @@ export const apiKey = "OmU4MDMzZmM5MjE3YWU2YjEyNjA0YzIxZjlmMmQ4MWE1"
 // const https = require("https")
 //daily prices
 
-export const getAllSecurities = (ticker, frequency) => {
-    let date = new Date()
-    end = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+export const getAllSecurities = (ticker, frequency, start, end) => {
+    // let date = new Date()
+    // let end = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    debugger
     return $.ajax({
         method: "GET",
-        url: `https://api-v2.intrinio.com/securities/${ticker}/historical_data/adj_close_price?frequency=${frequency}&api_key=${apiKey}`
+        url: `https://api-v2.intrinio.com/securities/${ticker}/historical_data/adj_close_price?frequency=${frequency}&end_date=${end}&api_key=${apiKey}`
     })
 }
 

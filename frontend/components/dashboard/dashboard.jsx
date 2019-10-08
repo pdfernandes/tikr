@@ -11,12 +11,15 @@ class Dashboard extends React.Component {
             funds: this.props.user.funds,
             portfolio: {},
             portfolioValue: this.props.user.funds,
-            frequency: "1d"
+            portfolioValuesArray: [],
+            timeFrame: "1yr"
         }
         this.buildPortfolio = this.buildPortfolio.bind(this);
         this.calculatePortfolioValue = this.calculatePortfolioValue.bind(this);
         this.chartData = this.chartData.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.rollingPortfolioValue = this.rollingPortfolioValue.bind(this)
+        this.chartData = this.chartData.bind(this)
     }
 
     componentDidMount() {
@@ -27,53 +30,57 @@ class Dashboard extends React.Component {
             .then(responseArr => {
                 transactions = Object.values(responseArr[0].transactions);
                 companies = Object.values(responseArr[1].companies).map(company => company.ticker)
-                this.props.getLastPrices(companies).then(() => this.buildPortfolio())  
+                this.props.getLastPrices(companies).then(() => this.buildPortfolio())
             })
 
     }
 
-    buildPortfolio (time = "all") {
+    buildPortfolio(time = "1yr") {
         let { user, companies, transactions } = this.props;
         let portfolio = {};
         // user = Object.values(user)[0];
+        let transactionTimeFrame = []
 
         if (Object.values(companies).length > 0 && Object.values(transactions).length > 0) {
             user.transactions.forEach(transactionId => {
                 let transaction = transactions[transactionId];
                 let ticker = companies[transaction.company_id].ticker;
                 let desiredTime = this.determineTime(time);
-                debugger
+
                 if (new Date(Date.parse(transaction.transaction_time)) > desiredTime) {
-                    debugger
                     if (transaction.order_type) {
                         portfolio[ticker] === undefined ? portfolio[ticker] = transaction.quantity : portfolio[ticker] += transaction.quantity
                     } else {
                         portfolio[ticker] -= transaction.quantity
                     }
+                    //array will have all possible transactions woth company ids
+                    //pass in {ticker: aapl, date: date, quantity: amount}
+                    transactionTimeFrame.push({ 'ticker': ticker, "date": transaction.transaction_time, quantity: transaction.quantity, order_type: transaction.order_type })
                 }
-                debugger
-            })  
-            this.setState({
-                "portfolio" : portfolio
-            },() => {
-                debugger
-                this.calculatePortfolioValue(this.state.portfolio, this.state.frequency);
             })
-  
+            
+            this.setState({
+                "portfolio": portfolio,
+                "transactionTimeFrame": transactionTimeFrame
+            }, () => {
+                
+                this.calculatePortfolioValue(this.state.portfolio, this.state.timeFrame);
+            })
+
         }
 
     }
-    setFrequency(time) {
+    setFrequency(timeFrame) {
         let frequency;
-        if (time === "1d") {
-           frequency = 'daily';
-        } else if (time === '1w') {
+        if (timeFrame === "1d") {
+            frequency = 'daily';
+        } else if (timeFrame === '1w') {
             frequency = 'weekly';
-        } else if (time === "1m") {
+        } else if (timeFrame === "1m") {
             frequency = "monthly";
-        } else if (time === "3m") {
-            frequency = "monthly";
-        } else if (time === '1yr') {
+        } else if (timeFrame === "3m") {
+            frequency = "quarterly";
+        } else if (timeFrame === '1yr') {
             frequency = 'yearly';
         } else {
             frequency = 'yearly';
@@ -100,22 +107,45 @@ class Dashboard extends React.Component {
 
     }
 
-    calculatePortfolioValue (portfolio, frequency) {  
+    calculatePortfolioValue(portfolio, timeFrame) {
+        debugger
+        // portfolio shape {AAPL : 30}
         let { funds, portfolioValue } = this.state;
         let { prices } = this.props
         let value = 0;
-        debugger
+        let frequency = this.setFrequency(timeFrame);
+        
         if (Object.keys(portfolio).length === 0) {
-            
+
             return funds;
         } else {
-            prices.forEach(price => {
-                value += price.last_price * portfolio[price.security.ticker]
+            let tickersArray = Object.keys(portfolio)
+            if (timeFrame === "1d") {
+                console.log("1d")
+            } else {
                 debugger
-            })
-            this.setState({
-                portfolioValue: portfolioValue + value
-            })
+                Promise.all(
+                    this.state.transactionTimeFrame.map(transaction => {
+                        debugger
+                        let date = transaction.date.split("-")
+                        let year = date.pop()
+                        date.unshift(year)
+                        date = date.join("-")
+                        return StocksAPIUtil.getAllSecurities(transaction.ticker, frequency,date, date)
+                    })
+                
+                ).then(response => {
+                    this.rollingPortfolioValue(response)
+                })
+            }
+
+            // prices.forEach(price => {
+            //     value += price.last_price * portfolio[price.security.ticker]
+            //     debugger
+            // })
+            // this.setState({
+            //     portfolioValue: portfolioValue + value
+            // })
 
             //possibly call the success callback after the set state is complete??
         }
@@ -123,21 +153,44 @@ class Dashboard extends React.Component {
 
     }
 
-    chartData(frequency = "1d") {
-        let data = [];
-        const { user, transactions } = this.props;
-        user.transactions.forEach(transactionId => {
-            let transaction = transactions[transactionId]
-            if (transaction.order_type) {
-                data.push({
-                    time: transaction.transaction_type,
-                    price: (transaction.quantity) * 3
+    rollingPortfolioValue(arrayOfHistories) {
+        debugger
+        let portfolioValues = {};
+        let portfolioValuesArray = [];
+        for (let i = 0; i < arrayOfHistories.length; i++) {
+            const history = arrayOfHistories[i];
+            const transaction = this.state.transactionTimeFrame[i];
+            debugger
+        
+            if (portfolioValues[transaction.date] === undefined && history.historical_data.length > 0) {
+                debugger
+                portfolioValues[transaction.date] = this.state.funds + (history.historical_data[0].value * transaction.quantity)
+            } else if (portfolioValues[transaction.date] !== undefined && history.historical_data.length === 0) {
+                
+            } else if (portfolioValues[transaction.date] === undefined && history.historical_data.length === 0) {
 
-                })
+            } else {
+                portfolioValues[transaction.date] += (history.historical_data[0].value * transaction.quantity)
+                debugger
             }
-        })
+            
+            
+        }
+        for (let date in portfolioValues) {
+            debugger
+            portfolioValuesArray.push({
+                date,
+                value : portfolioValues[date],
+            })
+        }
+        debugger
+        this.setState({ "portfolioValuesArray" : portfolioValuesArray })
+
+    }
 
 
+    chartData() {
+        let data = this.state.portfolioValuesArray
         return data;
     }
 
@@ -148,47 +201,49 @@ class Dashboard extends React.Component {
 
 
 
-    render () {
+    render() {
         let { funds, portfolioValue } = this.state;
         let chart;
-       if (Object.values(this.props.prices).length === 0) {
-            chart = null
+        if (this.state.portfolioValuesArray.length === 0) {
+            debugger
+            chart = this.state.funds
         } else {
-           chart = (<LineChart
-               width={730}
-               height={250}
-               data={this.chartData()}
+            debugger
+            chart = (<LineChart
+                width={730}
+                height={250}
+                data={this.state.portfolioValuesArray}
             >
-               <XAxis dataKey="time" hide="true" />
-               <YAxis dataKey="price" hide="true" />
-               <Tooltip />
-               <Line type="monotone" dataKey="price" stroke="#34ce99" strokeWidth='4' />
+                <XAxis dataKey="date" hide={true}/>
+                <YAxis hide={true} domain={['dataMin', 'dataMax']} />
+                <Tooltip />
+                <Line type="monotone" dataKey="value" stroke="#34ce99" strokeWidth='4' />
 
 
 
-           </LineChart>)
+            </LineChart>)
         }
 
 
- 
+
         portfolioValue = portfolioValue.toFixed(2);
         let gain = (portfolioValue - funds).toFixed(2);
-        let percentGain = (((portfolioValue / funds )- 1) * 100).toFixed(2);
+        let percentGain = (((portfolioValue / funds) - 1) * 100).toFixed(2);
         return (
             <>
-            <div className='portfolio-graph'>
-                {chart}
-                
+                <div className='portfolio-graph'>
+                    {chart}
 
 
 
-            </div>
-            
-            <p>{portfolioValue}</p>
-            <h2>{gain} ({percentGain}%)</h2>
+
+                </div>
+
+                <p>{portfolioValue}</p>
+                <h2>{gain} ({percentGain}%)</h2>
             </>
-        ) 
-        
+        )
+
     }
 }
 
