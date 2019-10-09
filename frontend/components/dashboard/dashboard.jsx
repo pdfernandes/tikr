@@ -1,6 +1,8 @@
 import React from 'react'
 import * as StocksAPIUtil from "../../util/stocks_api_util";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import CustomTooltip from './tooltip_content';
+import Odometer from 'react-odometerjs';
 
 //this component is in charge of making and showing the graph
 
@@ -12,7 +14,8 @@ class Dashboard extends React.Component {
             portfolio: {},
             portfolioValue: this.props.user.funds,
             portfolioValuesArray: [],
-            timeFrame: "1yr"
+            timeFrame: "1yr",
+            value: 0,
         }
         this.buildPortfolio = this.buildPortfolio.bind(this);
         this.calculatePortfolioValue = this.calculatePortfolioValue.bind(this);
@@ -20,6 +23,7 @@ class Dashboard extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.runningPortfolioTotal = this.runningPortfolioTotal.bind(this);
         this.formatStartDate = this.formatStartDate.bind(this);
+        this.showValue = this.showValue.bind(this)
     }
 
     componentDidMount() {
@@ -90,7 +94,7 @@ class Dashboard extends React.Component {
 
     determineTime(time) {
         let timeSpan = new Date();
-        debugger
+        
         if (time === "1d") {
             timeSpan.setHours(0, 0, 0)
         } else if (time === '1w') {
@@ -112,7 +116,7 @@ class Dashboard extends React.Component {
     formatStartDate(date) {
         let time = this.state.timeFrame
         let timeSpan = new Date(date);
-        debugger
+        
         if (time === "1d") {
             timeSpan.setHours(0, 0, 0)
         } else if (time === '1w') {
@@ -159,7 +163,7 @@ class Dashboard extends React.Component {
                         let day = date.getDate();
                         let end_date = `${year}-${month}-${day}`
                         let start_date = this.formatStartDate(end_date)
-                        debugger
+                        
                         // date = transaction.date.split("-")
                         // let year = date.pop()
                         // date.unshift(year)
@@ -197,7 +201,7 @@ class Dashboard extends React.Component {
                 return obj
             }, {})
         })
-        debugger
+        
         let portfolioValues = {};
         let portfolioValuesArray = [];
         let dates = arrayOfHistories[0].historical_data.map(obj => obj.date).reverse()
@@ -227,7 +231,7 @@ class Dashboard extends React.Component {
             }
             
         }
-        debugger
+        
 
         for (let date in portfolioValues) {
             
@@ -248,7 +252,7 @@ class Dashboard extends React.Component {
     }
 
     handleClick(e) {
-        debugger
+        
         // e.preventDefault();
         this.setState({timeFrame : e.target.value}, () => {
             this.buildPortfolio()
@@ -256,10 +260,15 @@ class Dashboard extends React.Component {
         
     }
 
+    showValue(e) {
+        this.setState({ value: e.activePayload[0].payload.value })
+
+    }
+
 
 
     render() {
-        debugger
+        
         let { funds, portfolioValue } = this.state;
         let chart;
         if (this.state.portfolioValuesArray.length === 0) {
@@ -269,19 +278,23 @@ class Dashboard extends React.Component {
            
             chart = (
                  <>
-            <LineChart
-                width={730}
-                height={250}
-                data={this.state.portfolioValuesArray}
-            >
-                <XAxis dataKey="date" hide={true}/>
-                <YAxis hide={true} domain={['dataMin', 'dataMax']} />
-                <Tooltip />
-                <Line type="monotone" dataKey="value" stroke="#34ce99" strokeWidth='4' dot={false} />
+                    
+                    <ResponsiveContainer width='100%' aspect={7 / 2.0}>
+                    <LineChart
+                        width={730}
+                        height={250}
+                        data={this.state.portfolioValuesArray}
+                        onMouseMove={this.showValue}
+                    >
+                        <XAxis dataKey="date" hide={true}/>
+                        <YAxis hide={true} domain={['dataMin', 'dataMax']} />
+                        <Tooltip content={<CustomTooltip />} active={true}/>
+                        <Line type="monotone" dataKey="value" stroke="#34ce99" strokeWidth='4' dot={false} />
 
 
 
-            </LineChart>
+                    </LineChart>
+                 </ResponsiveContainer>
             <button onClick={this.handleClick} value="1m">1m</button>
             <button onClick={this.handleClick} value='3m'>3m</button>
             <button onClick={this.handleClick} value='1yr'>1yr</button>
@@ -292,21 +305,23 @@ class Dashboard extends React.Component {
 
 
 
-        // portfolioValue = portfolioValue.toFixed(2);
-        // let gain = (portfolioValue - funds).toFixed(2);
-        // let percentGain = (((portfolioValue / funds) - 1) * 100).toFixed(2);
+        let value = (funds + this.state.value).toFixed(2);
+        let gain = this.state.value.toFixed(2)
+        let percentGain = (((value/funds) - 1) * 100).toFixed(2);
         return (
             <>
                 <div className='portfolio-graph'>
-                    {chart}
+                    <Odometer duration={600} value={value} />
+                <h2>{gain} ({percentGain}%)</h2>
+                    <div>
+                        {chart}
+                    </div>
                 </div>
-{/* 
-                <p>{portfolioValue}</p>
-                <h2>{gain} ({percentGain}%)</h2> */}
             </>
         )
 
     }
 }
+
 
 export default Dashboard;
