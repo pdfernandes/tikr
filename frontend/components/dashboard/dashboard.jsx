@@ -240,6 +240,7 @@ class Dashboard extends React.Component {
                 value : portfolioValues[date],
             })
         }
+        debugger
         
         this.setState({ "portfolioValuesArray" : portfolioValuesArray })
 
@@ -260,7 +261,9 @@ class Dashboard extends React.Component {
     }
 
     showValue(e) {
-        this.setState({ value: e.activePayload[0].payload.value })
+        if (e.activePayload !== undefined) {
+            this.setState({ value: e.activePayload[0].payload.value })
+        }
 
     }
 

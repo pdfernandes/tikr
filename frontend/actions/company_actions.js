@@ -25,8 +25,8 @@ export const allCompanies = () => dispatch => {
         .then(companies => dispatch(receiveCompanies(companies)));
 }
 
-export const getCompany = (id) => dispatch => {
-    return CompaniesAPIUtil.getCompany(id)
+export const getCompany = (ticker) => dispatch => {
+    return CompaniesAPIUtil.getCompany(ticker)
     .then(company => dispatch(receiveCompany(company)))
 }
 

@@ -1,3 +1,33 @@
+.homepage{
+    position: relative;
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: around;
+    
+}
+
+.homepage-main {
+    width: 65%;
+}
+
+.homepage-watchlist {
+    
+    width: 30%
+}
+
+.watchlist {
+    position:fixed;
+    height: 90% ;
+    width: 282px;
+    border: 1px solid white;
+    border-radius: 4px;
+    box-shadow: 0 0 14px rgb(220,220,220)
+    
+}
+
+
+
 .portfolio-graph {
     width: 70%;
     background-color: transparent;

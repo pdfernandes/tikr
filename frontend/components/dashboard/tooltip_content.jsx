@@ -3,8 +3,9 @@ import React from "react";
 
 
 const CustomTooltip = ({ active, payload }) => {
-    debugger
-    if (active) {
+    
+    if (active && payload[0] !== undefined) {
+        
         const date = new Date(payload[0].payload.date)
         let time = date.toLocaleTimeString('en-US')
 
