@@ -1,0 +1,38 @@
+.portfolio-graph {
+    width: 70%;
+    background-color: transparent;
+    margin: 0 auto;
+    font-family: 'Arimo', sans-serif;
+    border-bottom: 1px solid rgb(244,244,245);
+    padding-top: 20px;
+
+}
+
+.portfolio-graph > h1 {
+    font-size: 35px;
+    display:flex;
+    padding-bottom: 5px;
+    
+}
+.portfolio-graph > h2 {
+    font-size: 12px;
+
+}
+
+.portfolio-buttons {
+    display:flex;
+    width: 25%;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    padding-top: 20px;
+    font-size: 12px;
+}
+
+.portfolio-buttons > button:hover {
+    color: rgb(52,206,153);
+    border-bottom: 1px solid rgb(52,206,153);
+}
+
+
+
+

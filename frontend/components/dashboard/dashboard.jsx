@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
             portfolio: {},
             portfolioValue: this.props.user.funds,
             portfolioValuesArray: [],
-            timeFrame: "1yr",
+            timeFrame: "1Y",
             value: 0,
         }
         this.buildPortfolio = this.buildPortfolio.bind(this);
@@ -76,15 +76,15 @@ class Dashboard extends React.Component {
     }
     setFrequency(timeFrame) {
         let frequency;
-        if (timeFrame === "1d") {
+        if (timeFrame === "1D") {
             frequency = 'intraday';
-        } else if (timeFrame === '1w') {
+        } else if (timeFrame === '1W') {
             frequency = 'daily';
-        } else if (timeFrame === "1m") {
+        } else if (timeFrame === "1M") {
             frequency = "daily";
-        } else if (timeFrame === "3m") {
+        } else if (timeFrame === "3M") {
             frequency = "daily";
-        } else if (timeFrame === '1yr') {
+        } else if (timeFrame === '1Y') {
             frequency = 'quarterly';
         } else {
             frequency = 'quarterly';
@@ -95,15 +95,15 @@ class Dashboard extends React.Component {
     determineTime(time) {
         let timeSpan = new Date();
         
-        if (time === "1d") {
+        if (time === "1D") {
             timeSpan.setHours(0, 0, 0)
-        } else if (time === '1w') {
+        } else if (time === '1W') {
             timeSpan.setDate(timeSpan.getDate() - 7)
-        } else if (time === "1m") {
+        } else if (time === "1M") {
             timeSpan.setMonth(timeSpan.getMonth() - 1)
-        } else if (time === "3m") {
+        } else if (time === "3M") {
             timeSpan.setMonth(timeSpan.getMonth() - 3)
-        } else if (time === '1yr') {
+        } else if (time === '1Y') {
             timeSpan.setYear(timeSpan.getYear() - 1)
         } else {
             timeSpan = timeSpan.setYear(timeSpan.getYear() - 30)
@@ -117,15 +117,15 @@ class Dashboard extends React.Component {
         let time = this.state.timeFrame
         let timeSpan = new Date(date);
         
-        if (time === "1d") {
+        if (time === "1D") {
             timeSpan.setHours(0, 0, 0)
-        } else if (time === '1w') {
+        } else if (time === '1W') {
             timeSpan.setDate(timeSpan.getDate() - 7)
-        } else if (time === "1m") {
+        } else if (time === "1M") {
             timeSpan.setMonth(timeSpan.getMonth() - 1)
-        } else if (time === "3m") {
+        } else if (time === "3M") {
             timeSpan.setMonth(timeSpan.getMonth() - 3)
-        } else if (time === '1yr') {
+        } else if (time === '1Y') {
             timeSpan.setYear(timeSpan.getYear() - 1)
         } else {
             timeSpan = timeSpan.setYear(timeSpan.getYear() - 30)
@@ -151,8 +151,8 @@ class Dashboard extends React.Component {
             return funds;
         } else {
             let tickersArray = Object.keys(portfolio)
-            if (timeFrame === "1d") {
-                console.log("1d")
+            if (timeFrame === "1D") {
+                console.log("1D")
             } else {
                 
                 Promise.all(
@@ -161,7 +161,7 @@ class Dashboard extends React.Component {
                         let year = date.getFullYear()
                         let month = date.getMonth();
                         let day = date.getDate();
-                        let end_date = `${year}-${month}-${day}`
+                        let end_date = `${year}-${month + 1}-${day}`
                         let start_date = this.formatStartDate(end_date)
                         
                         // date = transaction.date.split("-")
@@ -252,7 +252,6 @@ class Dashboard extends React.Component {
     }
 
     handleClick(e) {
-        
         // e.preventDefault();
         this.setState({timeFrame : e.target.value}, () => {
             this.buildPortfolio()
@@ -288,16 +287,19 @@ class Dashboard extends React.Component {
                     >
                         <XAxis dataKey="date" hide={true}/>
                         <YAxis hide={true} domain={['dataMin', 'dataMax']} />
-                        <Tooltip content={<CustomTooltip />} active={true}/>
-                        <Line type="monotone" dataKey="value" stroke="#34ce99" strokeWidth='4' dot={false} />
+                        <Tooltip content={<CustomTooltip />} active={true} position={{y: 0}}/>
+                            <Line type="monotone" dataKey="value" stroke="#34D199" strokeWidth='3' dot={false} />
 
 
 
                     </LineChart>
                  </ResponsiveContainer>
-            <button onClick={this.handleClick} value="1m">1m</button>
-            <button onClick={this.handleClick} value='3m'>3m</button>
-            <button onClick={this.handleClick} value='1yr'>1yr</button>
+            <div className='portfolio-buttons' >
+                <button className='dash-button' onClick={this.handleClick} value="1W">1W</button>
+                <button className='dash-button active' onClick={this.handleClick} value="1M">1M</button>
+                <button className='dash-button' onClick={this.handleClick} value='3M'>3M</button>
+                <button className='dash-button' onClick={this.handleClick} value='1Y'>1Y</button>
+            </div>
             {/* <button onClick={this.handleClick} value='all'>All</button> */}
             </>
             )
@@ -311,8 +313,10 @@ class Dashboard extends React.Component {
         return (
             <>
                 <div className='portfolio-graph'>
-                    <Odometer duration={600} value={value} />
-                <h2>{gain} ({percentGain}%)</h2>
+                    <h1>
+                        <div className='money-sign'>$</div><Odometer duration={600} value={value} />
+                    </h1>
+                    <h2>${gain} ({percentGain}%)</h2>
                     <div>
                         {chart}
                     </div>

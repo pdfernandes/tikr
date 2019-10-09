@@ -9,10 +9,10 @@ class News extends React.Component {
 
     componentDidMount() {
       let { news } = this.props;
-    //   if (news.length === 0) {
-    //       debugger
-    //       this.props.getTopNews()
-    //   }
+      if (news.length === 0) {
+          debugger
+          this.props.getTopNews()
+      }
     }
 
 
@@ -46,7 +46,8 @@ class News extends React.Component {
             
         }
         return (
-            <div>
+            <div className='news-container'>
+                <h1>Recent News</h1>
                 <ul className='news_list'>{newsItems}</ul>
             </div>
         )

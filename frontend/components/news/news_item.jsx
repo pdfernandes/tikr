@@ -5,17 +5,18 @@ const NewsItem = ({ author, content, description, publishedAt, source, imageUrl,
 
     return (
         <>
-            <div>
-                <h1>{source}</h1>
-                <h2>{title}</h2>
-            </div>
-            <div>
-                <img src={imageUrl} alt="news image"/>
-            </div>
-            <div className="news_link">
-                <a href={url}>This is a link to the thing</a>
-            </div>
+            <a href={url}>
+                <div className='news-text'>
+                    <h1>{source}</h1>
+                    <h2>{title}</h2>
+                    <div><i className="fas fa-eye"></i>  {Math.floor(Math.random() * 1000)}</div>
+                </div>
                 
+                <div className='news-image' >
+                    <img src={imageUrl} alt="news image"/>
+                </div>
+            
+            </a>
 
         </>
     )
