@@ -102,7 +102,21 @@ class Company extends React.Component {
 
 
     render () {
-        
+        let value;
+        let gain;
+        let percentGain;
+        if (this.state[this.state.selected].length === 0 || this.state.value === null ) {
+            value = 0;
+            gain = 0;
+            percentGain = 0;
+        } else {
+
+            let firstPrice = this.state[this.state.selected][0].price
+            
+            value = this.state.value.toFixed(2);
+            gain = (this.state.value - firstPrice).toFixed(2)
+            percentGain = (((value / firstPrice) - 1) * 100).toFixed(2);
+        }
         return (
             <>
                 <div className='portfolio-graph'>
