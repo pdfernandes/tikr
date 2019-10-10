@@ -25,7 +25,7 @@ class Company extends React.Component {
     componentDidMount () {
       StocksAPIUtil.getIntradayPrices(this.props.ticker)
         .then(response => {
-            debugger
+            
             this.formatData("1D", response);
         })
         
@@ -40,12 +40,12 @@ class Company extends React.Component {
                 "price": dataPoint["close"]
             })
         })
-        debugger
+        
         this.setState({
             [timeFrame] : dataPoints,
             selected: timeFrame
         },() => {
-            debugger
+            
         })
 
     }
@@ -54,21 +54,21 @@ class Company extends React.Component {
         if (e.target.value === "1D") {
             StocksAPIUtil.getIntradayPrices(this.props.ticker)
                 .then(response => {
-                    debugger
+                    
                     this.formatData("1D", response);
                 })
         } else if (e.target.value === "1W") {
             let val = e.target.value
             StocksAPIUtil.fetchHistoricalPrices(this.props.ticker, "5dm")
                 .then(response => {
-                    debugger
+                    
                     this.formatData(val, response)
                 })
         } else {
             let val = e.target.value
             StocksAPIUtil.fetchHistoricalPrices(this.props.ticker, e.target.value)
                 .then(response => {
-                    debugger
+                    
                     this.formatData(val, response)
                 })
         }
@@ -85,7 +85,7 @@ class Company extends React.Component {
 
 
     render () {
-        debugger
+        
         return (
             <div>
                 <ResponsiveContainer width='100%' aspect={7 / 2.0}>
