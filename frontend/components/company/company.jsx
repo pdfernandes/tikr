@@ -25,11 +25,14 @@ class Company extends React.Component {
     }
 
     componentDidMount () {
-      StocksAPIUtil.getIntradayPrices(this.props.ticker)
-        .then(response => {
-            
-            this.formatData("1D", response);
-        })
+        StocksAPIUtil.getCompanyName(this.props.ticker)
+            .then(response => this.setCompanyName(response))
+
+        StocksAPIUtil.getIntradayPrices(this.props.ticker)
+            .then(response => {
+                this.formatData("1D", response);
+            })
+
         
     }
 
