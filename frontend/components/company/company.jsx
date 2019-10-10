@@ -104,7 +104,6 @@ class Company extends React.Component {
 
 
     render () {
-        
         let value;
         let gain;
         let percentGain;
