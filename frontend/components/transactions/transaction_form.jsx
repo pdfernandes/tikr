@@ -4,7 +4,6 @@ import * as StocksAPIUtil from "../../util/stocks_api_util";
 
 class TransactionForm extends React.Component {
     constructor(props) {
-        debugger
         super(props);
         this.state = {
             header: true,
