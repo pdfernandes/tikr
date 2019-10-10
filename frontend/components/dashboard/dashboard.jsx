@@ -204,6 +204,7 @@ class Dashboard extends React.Component {
         
         let portfolioValues = {};
         let portfolioValuesArray = [];
+        
         let dates = arrayOfHistories[0].historical_data.map(obj => obj.date).reverse()
 
         for (let i = 0; i < dates.length; i++) {
@@ -240,7 +241,7 @@ class Dashboard extends React.Component {
                 value : portfolioValues[date],
             })
         }
-        debugger
+        
         
         this.setState({ "portfolioValuesArray" : portfolioValuesArray })
 
@@ -291,7 +292,7 @@ class Dashboard extends React.Component {
                         <XAxis dataKey="date" hide={true}/>
                         <YAxis hide={true} domain={['dataMin', 'dataMax']} />
                         <Tooltip content={<CustomTooltip />} active={true} position={{y: 0}}/>
-                            <Line type="monotone" dataKey="value" stroke="#34D199" strokeWidth='3' dot={false} />
+                            <Line type="monotone" dataKey="value" stroke="#34D199" connectNulls strokeWidth='3' dot={false} />
 
 
 

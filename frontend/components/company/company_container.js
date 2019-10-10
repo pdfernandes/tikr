@@ -14,4 +14,4 @@ const msp = (state, ownProps) => {
 }
 
 
-export default connect(msp)(Company)
+export default connect(msp)(Company);

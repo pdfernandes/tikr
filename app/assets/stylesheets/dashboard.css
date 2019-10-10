@@ -1,9 +1,9 @@
 .homepage{
     position: relative;
     display: flex;
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
-    justify-content: around;
+    justify-content: space-around;
     
 }
 
@@ -29,7 +29,7 @@
 
 
 .portfolio-graph {
-    width: 70%;
+    width: 80%;
     background-color: transparent;
     margin: 0 auto;
     font-family: 'Arimo', sans-serif;
@@ -61,6 +61,10 @@
 .portfolio-buttons > button:hover {
     color: rgb(52,206,153);
     border-bottom: 1px solid rgb(52,206,153);
+}
+
+.dash-button {
+    margin-right: 10px;
 }
 
 

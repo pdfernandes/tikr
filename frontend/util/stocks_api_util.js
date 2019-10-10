@@ -1,12 +1,9 @@
 export const apiKey = "OmU4MDMzZmM5MjE3YWU2YjEyNjA0YzIxZjlmMmQ4MWE1"
 export const iexKey = 'Tpk_8af615155092418191683b2478cb6bfd'
 
-// const https = require("https")
-//daily prices
+
 
 export const getAllSecurities = (ticker, frequency, start, end) => {
-    // let date = new Date()
-    // let end = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     return $.ajax({
         method: "GET",
         url: `https://api-v2.intrinio.com/securities/${ticker}/historical_data/adj_close_price?frequency=${frequency}&start_date=${start}&end_date=${end}&api_key=${apiKey}`
@@ -51,33 +48,25 @@ export const fetchHistoricalPrices = (ticker, range) => {
 export const getIntradayPrices = ticker => {
     return $.ajax({
         method: "GET",
-        url: `https://sandbox.iexapis.com/stable/stock/${ticker}/intraday-prices?token=${iexKey}`
+        url: `https://sandbox.iexapis.com/stable/stock/${ticker}/intraday-prices/?token=${iexKey}`
     })
 }
 
 
 
+export const getCompanyInfo = ticker => {
+    return $.ajax({
+        method: "GET",
+        url: `https://sandbox.iexapis.com/stable/stock/${ticker}/company/?token=${iexKey}`
+    })
+}
+
+export const getCompanyName = ticker => {
+    return $.ajax({
+        method:"GET",
+        url: `https://sandbox.iexapis.com/stable/stock/${ticker}/company?filter=companyName&token=${iexKey}`
+    })
+}
 
 
-
-
-// `https://api-v2.intrinio.com/securities/${ticker}/prices?end_date=${date}&frequency=${frequency}y&api_key=${apiKey}`
-// refer to site for help: https://docs.intrinio.com/documentation/web_api/get_security_stock_prices_v2?values=eyJpZGVudGlmaWVyIjoiQUFQTCIsInN0YXJ0X2RhdGUiOm51bGwsImVuZF9kYXRlIjoiMjAxOS0wOS0zMCIsImZyZXF1ZW5jeSI6InF1YXJ0ZXJseSIsInBhZ2Vfc2l6ZSI6bnVsbCwibmV4dF9wYWdlIjpudWxsfQ%3D%3D
-//weekly
-
-
-
-//monthly
-
-
-
-//3-month (quarterly)
-
-
-
-//yearly
-
-
-
-//All
 

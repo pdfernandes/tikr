@@ -8,7 +8,9 @@ import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import Splash from './splash/splash';
 import NewsContainer from './news/news_container';
 import WatchlistContainer from "./watchlist/watchlist_container";
-import CompanyContainer from './company/company_container'
+import CompanyContainer from './company/company_container';
+import CompanyInfo from "./company/company_info";
+import TransactionFormContainer from './transactions/transaction_form_container'
 
 const App = () => (
     <>
@@ -16,7 +18,16 @@ const App = () => (
         <AuthRoute exact path='/' component={Splash} />
         <AuthRoute exact path='/login' component={LoginFormContainer} />
         <AuthRoute exact path='/signup' component={SignupFormContainer} />
-        <ProtectedRoute exact path='/stocks/:ticker' component={CompanyContainer} />
+        <div className="company-show">
+            <div className='company-show-main'>
+                <ProtectedRoute exact path='/stocks/:ticker' component={CompanyContainer} />
+                <ProtectedRoute exact path='/stocks/:ticker' component={CompanyInfo} />
+                <ProtectedRoute exact path='/stocks/:ticker' component={NewsContainer} />
+            </div>
+            <div className='company-show-transactions'>
+                <ProtectedRoute exact path='/stocks/:ticker' component={TransactionFormContainer} />   
+            </div>
+        </div>
         <div className='homepage'> 
             <div className='homepage-main'>
                 <ProtectedRoute exact path='/' component={DashboardContainer} />

@@ -1,0 +1,90 @@
+.company-show {
+    font-family: 'Arimo', sans-serif;
+    display: flex;
+    width: 65%;
+    margin: 0 auto;
+    justify-content: space-around;
+    
+}
+.company-show-main {
+    width: 65%;
+}
+
+
+
+.company-name {
+    font-weight: bold;
+}
+
+.about-company {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.about-company > h1 {
+    letter-spacing: 0.5px;
+    font-size: 25px;
+    padding-left: 2px;
+    margin-top: 40px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(244,244,245);
+}
+
+.company-show-transactions {
+    position: relative;
+    width: 30%;
+    height: auto;
+}
+
+.transaction-form {
+    position: fixed;
+    height: 355px;
+    width: 282px;
+    border: 1px solid white;
+    border-radius: 4px;
+    box-shadow: 0 0 14px rgb(220,220,220);
+    margin-top: 40px;
+}
+
+.about-company > p {
+    margin-top: 25px;
+    line-height: 24px;
+    font-size: 15px;
+    width: 90%;
+    padding-left: 3px;
+    margin-bottom: 20px;
+    
+}
+
+.about-company > ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+
+}
+.about-company > ul > li {
+    width: 23%;
+    padding: 10px 2px;;
+    font-size: 13px;
+}
+
+.CEO {
+    color: rgb(52,209,153);
+}
+
+.about-company > ul > li > h1 {
+    margin-bottom: 4px;
+    font-weight:bold;
+}
+
+
+
+
+
+
+
+

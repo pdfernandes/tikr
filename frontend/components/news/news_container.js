@@ -10,7 +10,7 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        getTopNews: () => dispatch(getTopNews())
+        getTopNews: (query) => dispatch(getTopNews(query))
     }
 }
 

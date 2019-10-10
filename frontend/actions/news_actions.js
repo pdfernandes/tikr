@@ -9,7 +9,7 @@ const receiveNews = news => {
 }
 
 
-export const getTopNews = () => dispatch => {
-    StockNewsAPI.getTopNews()
+export const getTopNews = (query) => dispatch => {
+    StockNewsAPI.getTopNews(query)
         .then(response => dispatch(receiveNews(response.articles)))
 }

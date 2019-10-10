@@ -1,6 +1,6 @@
 .news-container {
     margin: 0 auto;
-    width: 70%;
+    width: 80%;
     font-family: 'Arimo', sans-serif;
 }
 
@@ -11,7 +11,10 @@
     margin-top: 40px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgb(244,244,245);
+<<<<<<< HEAD
     
+=======
+>>>>>>> companies
 }
 
 ul > li > a {
@@ -27,13 +30,13 @@ ul > li > a:hover {
 
 }
 .news-image {
-    width: 200px;
-    height: 136px;
+    max-width:100%;
+    max-height:100%;
     
 }
 
 .news-image > img {
-    width: 100%;
+    width: 180px;
     height: 100%;
 }
 
