@@ -10,10 +10,6 @@ const companiesReducer = (state = {}, action ) => {
     Object.freeze(state)
     switch (action.type) {
         case RECEIVE_COMPANIES: 
-<<<<<<< HEAD
-        
-=======
->>>>>>> companies
             return merge({}, action.companies);
 
         case RECEIVE_COMPANY:

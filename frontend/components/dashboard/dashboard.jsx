@@ -152,14 +152,7 @@ class Dashboard extends React.Component {
         } else {
             let tickersArray = Object.keys(portfolio)
             if (timeFrame === "1D") {
-<<<<<<< HEAD
-<<<<<<< HEAD
-               
-=======
->>>>>>> companies
-=======
-               
->>>>>>> portfolios
+
             } else {
                 
                 Promise.all(
@@ -248,10 +241,6 @@ class Dashboard extends React.Component {
                 value : portfolioValues[date],
             })
         }
-<<<<<<< HEAD
-        
-=======
->>>>>>> portfolios
         
         this.setState({ "portfolioValuesArray" : portfolioValuesArray })
 
