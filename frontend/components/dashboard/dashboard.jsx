@@ -152,7 +152,6 @@ class Dashboard extends React.Component {
         } else {
             let tickersArray = Object.keys(portfolio)
             if (timeFrame === "1D") {
-                console.log("1D")
             } else {
                 
                 Promise.all(

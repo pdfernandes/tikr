@@ -4,7 +4,6 @@ import * as StocksAPIUtil from "../../util/stocks_api_util";
 
 class TransactionForm extends React.Component {
     constructor(props) {
-        debugger
         super(props);
         this.state = {
             header: true,
@@ -28,11 +27,6 @@ class TransactionForm extends React.Component {
             })
     }
     findCompany() {
-        // let formattedCompany = this.props.companies.map(company => {
-        //    return ( {
-        //         [company.ticker]: company
-        //     })
-        // })
 
         const formatCompanies = this.props.companies.reduce((obj, company) => {
             obj[company.ticker] = company

@@ -7,7 +7,7 @@ import { allCompanies } from "../../actions/company_actions";
 const msp = (state, Ownprops) => {
     return {
         user: Object.values(state.entities.user)[0],
-        ticker: Ownprops.match.params.ticker,
+        ticker: Ownprops.match.params.ticker.toUpperCase(),
         companies: Object.values(state.entities.companies)
     }
 }
