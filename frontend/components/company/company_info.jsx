@@ -31,16 +31,10 @@ class CompanyInfo extends React.Component {
     }
 
     formatState(company) {
-<<<<<<< HEAD
-        this.setState({
-            "Company Name" : company.companyName,
-            "CEO" : company.ceo,
-=======
         
         this.setState({
             "Company Name" : company.companyName,
             "CEO" : company.CEO,
->>>>>>> companies
             "Employees" : company.employees,
             "Headquarters" : `${company.city}, ${company.state}`,
             "Description" : company.description
@@ -52,26 +46,6 @@ class CompanyInfo extends React.Component {
     render() {
         let stateArray = [];
         let titles = Object.keys(this.state)
-<<<<<<< HEAD
-        for (let i = 0; i < titles.length; i++) {
-            let title = titles[i]
-            if (title !== "Description") {
-                stateArray.push(
-                
-                <li key={i} className='about-company-item'>
-                    <h1 className='about-company-category'>
-                        {title}
-                    </h1>
-                    <h2>
-                        {this.state[title]}
-                    </h2>
-
-                </li>
-            
-
-                )
-            }
-=======
         
         for (let i = 0; i < titles.length; i++) {
             let title = titles[i]
@@ -109,7 +83,6 @@ class CompanyInfo extends React.Component {
                 }
             }
             
->>>>>>> companies
 
         }
         
