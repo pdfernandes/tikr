@@ -24,27 +24,5 @@ const CustomTooltip = ({ active, payload }) => {
     
 }
 
-// const { PropTypes } = React;
-// const CustomTooltip = React.createClass({
-//     propTypes: {
-//         type: PropTypes.string,
-//         payload: PropTypes.array,
-//         label: PropTypes.string,
-//     },
-//     render() {
-//         const { active } = this.props;
-        
-//         if (active) {
-//             const { payload, label } = this.props;
-//             debugger
-//             return (
-//                 <div className="custom-tooltip">
-//                   {payload}
-//                 </div>
-//             );
-//         }
-        
-//         return null;
-//     }
-// });
+
 export default CustomTooltip;

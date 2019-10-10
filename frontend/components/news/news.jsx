@@ -10,7 +10,7 @@ class News extends React.Component {
     componentDidMount() {
       let { news } = this.props;
     //   if (news.length === 0) {
-    //       debugger
+    //      
     //       this.props.getTopNews()
     //   }
     }
