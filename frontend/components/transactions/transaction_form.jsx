@@ -27,11 +27,6 @@ class TransactionForm extends React.Component {
             })
     }
     findCompany() {
-        // let formattedCompany = this.props.companies.map(company => {
-        //    return ( {
-        //         [company.ticker]: company
-        //     })
-        // })
 
         const formatCompanies = this.props.companies.reduce((obj, company) => {
             obj[company.ticker] = company

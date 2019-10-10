@@ -152,7 +152,10 @@ class Dashboard extends React.Component {
         } else {
             let tickersArray = Object.keys(portfolio)
             if (timeFrame === "1D") {
+<<<<<<< HEAD
                
+=======
+>>>>>>> companies
             } else {
                 
                 Promise.all(
