@@ -25,4 +25,8 @@ const CustomTooltip = ({ active, payload }) => {
     
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> portfolios
 export default CustomTooltip;

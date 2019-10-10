@@ -9,7 +9,11 @@ import { getAllSecurities, getIntradayPrice, getLastPrice } from "./util/stocks_
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root")
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> portfolios
     let store;
     if (window.currentUser) {
         const preloadedState = {

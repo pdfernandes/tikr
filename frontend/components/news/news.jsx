@@ -10,6 +10,7 @@ class News extends React.Component {
 
     componentDidMount() {
       let { news } = this.props;
+<<<<<<< HEAD
        if (this.props.match.url === "/") {
            this.props.getTopNews("?q=business")
        } else {
@@ -19,6 +20,12 @@ class News extends React.Component {
        }
         
       
+=======
+    //   if (news.length === 0) {
+    //      
+    //       this.props.getTopNews()
+    //   }
+>>>>>>> portfolios
     }
 
 

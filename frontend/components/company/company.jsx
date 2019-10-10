@@ -25,12 +25,19 @@ class Company extends React.Component {
     }
 
     componentDidMount () {
+<<<<<<< HEAD
         StocksAPIUtil.getCompanyName(this.props.ticker)
             .then(response => this.setCompanyName(response))
 
         StocksAPIUtil.getIntradayPrices(this.props.ticker)
             .then(response => {
                 this.formatData("1D", response);
+=======
+      StocksAPIUtil.getIntradayPrices(this.props.ticker)
+        .then(response => {
+            
+            this.formatData("1D", response);
+>>>>>>> portfolios
         })
         
     }
@@ -105,6 +112,7 @@ class Company extends React.Component {
 
     render () {
         
+<<<<<<< HEAD
         let value;
         let gain;
         let percentGain;
@@ -120,6 +128,8 @@ class Company extends React.Component {
             gain = (this.state.value - firstPrice).toFixed(2)
             percentGain = (((value / firstPrice) - 1) * 100).toFixed(2);
         }
+=======
+>>>>>>> portfolios
         return (
             <>
                 <div className='portfolio-graph'>
