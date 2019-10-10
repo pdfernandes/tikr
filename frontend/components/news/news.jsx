@@ -5,14 +5,20 @@ class News extends React.Component {
     constructor(props) {
         
         super(props);
+        
     }
 
     componentDidMount() {
       let { news } = this.props;
-    //   if (news.length === 0) {
-    //       debugger
-    //       this.props.getTopNews()
-    //   }
+    //    if (this.props.match.url === "/") {
+    //        this.props.getTopNews("?q=business")
+    //    } else {
+        
+    //        this.props.getTopNews(`?q=${this.props.match.params.ticker}`)
+
+    //    }
+        
+      
     }
 
 
@@ -21,6 +27,8 @@ class News extends React.Component {
     render () {
         let { news } = this.props;
         let newsItems = [];
+        let heading;
+        this.props.match.url === "/" ? heading = "Recent News" : heading = "News";
         if (news.length === 0) {
             newsItems = null
         } else {
@@ -45,9 +53,10 @@ class News extends React.Component {
             })
             
         }
+      
         return (
             <div className='news-container'>
-                <h1>Recent News</h1>
+                <h1>{heading}</h1>
                 <ul className='news_list'>{newsItems}</ul>
             </div>
         )

@@ -6,9 +6,10 @@ const CustomTooltip = ({ active, payload }) => {
     
     if (active && payload[0] !== undefined) {
         
-        const date = new Date(payload[0].payload.date)
-        let time = date.toLocaleTimeString('en-US')
-
+        let date = Date.parse(payload[0].payload.date)
+        let newDate = new Date(date)
+        let time = newDate.toLocaleString('en-US')
+        
         return (
         <>
             <div className="tooltip-content">
