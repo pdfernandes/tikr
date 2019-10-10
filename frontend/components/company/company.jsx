@@ -9,6 +9,7 @@ class Company extends React.Component {
         
         super(props);
         this.state = {
+            "name": "-",
             selected: "1D",
             "1D" : [],
             "1W" : [],
@@ -24,12 +25,20 @@ class Company extends React.Component {
     }
 
     componentDidMount () {
-      StocksAPIUtil.getIntradayPrices(this.props.ticker)
-        .then(response => {
-            
-            this.formatData("1D", response);
+        StocksAPIUtil.getCompanyName(this.props.ticker)
+            .then(response => this.setCompanyName(response))
+
+        StocksAPIUtil.getIntradayPrices(this.props.ticker)
+            .then(response => {
+                this.formatData("1D", response);
         })
         
+    }
+
+    setCompanyName (response) {
+        this.setState({
+            "name" : response.companyName,
+        })
     }
 
     formatData(timeFrame = "1D", response) {
@@ -114,6 +123,7 @@ class Company extends React.Component {
         return (
             <>
                 <div className='portfolio-graph'>
+                    <h1 className='company-name'>{this.state["name"]}</h1>
                     <h1>
                         <div className='money-sign'>$</div><Odometer duration={600} value={value} />
                     </h1>
@@ -129,7 +139,7 @@ class Company extends React.Component {
                                 <XAxis dataKey="date" hide={true} domain={['dataMin', 'dataMax']} />
                                 <YAxis hide={true} domain={['dataMin', 'dataMax']} />
                                 <Tooltip content={<CustomTooltip />} active={true} position={{ y: 0 }} />
-                                <Line type="monotone" nullConnects={true} dataKey="price" stroke="#34D199" strokeWidth='3' dot={false} />
+                                <Line type="monotone" connectNulls dataKey="price" stroke="#34D199" strokeWidth='3' dot={false} />
 
 
 

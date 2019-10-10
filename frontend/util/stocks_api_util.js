@@ -61,5 +61,12 @@ export const getCompanyInfo = ticker => {
     })
 }
 
+export const getCompanyName = ticker => {
+    return $.ajax({
+        method:"GET",
+        url: `https://sandbox.iexapis.com/stable/stock/${ticker}/company?filter=companyName&token=${iexKey}`
+    })
+}
+
 
 
