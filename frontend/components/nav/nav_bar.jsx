@@ -20,16 +20,23 @@ class NavBar extends React.Component {
 
     render() {
         let git = <a className='github' href="https://github.com/pdfernandes"><i className="fab fa-github"></i></a>;
+        let linkedin = <a className='linkedin'href="https://www.linkedin.com/in/phelipe-fernandes-68002b154"><i className="fab fa-linkedin"></i></a>
+
         if (this.props.currentUser !== null) {
             return (
                 <section className='nav-bar'>
-                    <div className='nav-logo'>
-                        <Link className='logo-icon' to='/'><i className="fas fa-tenge"></i> </Link>
-                        <Link className='logo' to='/'>tikr</Link>
+                    <div className='left-nav'>
+                        <div className='nav-logo'>
+                            <Link className='logo-icon' to='/'><i className="fas fa-tenge"></i> </Link>
+                            <Link className='logo' to='/'>tikr</Link>
+                        </div>
+                        <div className='plugs'>
+                            {git}
+                            {linkedin}
+                        </div>
                     </div>
-                    <div>Search Bar</div>
-                    {git}
-                    <button type="submit" onClick={this.handleClick}>Log Out</button>
+                    <div className='search-bar'>Search Goes Here</div>
+                    <button className='logout-button' type="submit" onClick={this.handleClick}>Log Out</button>
 
 
                 </section>
@@ -46,7 +53,12 @@ class NavBar extends React.Component {
                     <div className='nav-logo'>
                         <Link className='logo-icon' to='/'><i className="fas fa-tenge"></i> </Link>
                     </div>
-                    {git}
+                    <div className='right-nav-signup'>
+                        <div className='plugs'>
+                            {git}
+                            {linkedin}
+                        </div>
+                    </div>
                 </section>
             )
 
@@ -54,17 +66,19 @@ class NavBar extends React.Component {
             return (
                 <div className='nav-bar-outer'>
                     <section className='nav-bar'>
-                        <div className='nav-logo'> 
-                            
-                                <Link className='logo-icon' to='/'><i className="fas fa-tenge"></i> </Link>
-                                <Link className='logo' to='/'>tikr</Link>
+                        <div className='left-nav'>
+                            <div className='nav-logo'> 
+                                    <Link className='logo-icon' to='/'><i className="fas fa-tenge"></i> </Link>
+                                    <Link className='logo' to='/'>tikr</Link>
+                            </div>
+                            <div className='plugs'>
+                                {git}
+                                {linkedin}
+                            </div>
                         </div>
-                        {git}
                         <div className="nav-links">
-
                                 <Link className='login-link' to="/login" >Log In</Link>
                                 <Link className='signup-link' to="/signup">Sign Up</Link>
-                        
                         </div>
                     </section>
                 </div>

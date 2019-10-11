@@ -1,0 +1,37 @@
+.watchlist {
+    font-family: 'Arimo', sans-serif;
+}
+
+.watchlist > h1 {
+    font-weight: bold;
+    padding: 12px 12px 10px 12px;
+    border-bottom: 1px solid rgb(240,240,240);
+
+}
+
+.watchlist > ul {
+    width:100%;
+}
+
+.watchlist > ul > li {
+    height: 25%;
+}
+
+.watchlist-link {
+    height: 100%
+}
+
+.watchlist-link > div > h1 {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    margin-left: 6px;
+}
+
+.watchlist-link > div > h2 {
+    margin-bottom: 5px;
+    color: rgb(192,203,207);
+    font-size: 14px;
+    margin-left: 6px;
+}
+
