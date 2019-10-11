@@ -35,8 +35,8 @@ class NavBar extends React.Component {
                             {linkedin}
                         </div>
                     </div>
-                    <div>Search Bar</div>
-                    <button type="submit" onClick={this.handleClick}>Log Out</button>
+                    <div className='search-bar'>Search Goes Here</div>
+                    <button className='logout-button' type="submit" onClick={this.handleClick}>Log Out</button>
 
 
                 </section>

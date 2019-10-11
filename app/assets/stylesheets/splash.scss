@@ -15,14 +15,18 @@
     display:flex;
     align-items: center;
     margin-bottom: 10px;
+    justify-content: space-around;
+
 }
 
 .splash-two-phones {
-    width: 70%;
+    width: 45%;
     height:100%;
     background-image: image-url("two_phones_2.png");
     background-size: cover;
     background-position: center;
+    box-sizing: border-box;
+    background-origin: padding-box;
 }
 .splash-container-text {
    width: 30%;
@@ -199,11 +203,11 @@ strong {
 .next-level-img {
     background: image-url("splash_phones");
     width: 50%;
-    height: 100%;
     background-size: cover;
-    background-position-x: 10px;
-    background-position-y: -120px;
+    // background-position-x: 10px;
+    background-position-y: 65%;
     transform: scale(1.5);
+    box-sizing: border-box;
 }
 
 .next-level-text {
@@ -388,6 +392,15 @@ strong {
 .disclaimers {
    width: 40%;
    margin-top: 80px;
+}
+
+// .splash-signup-link:hover {
+//     box-shadow: 10px;
+// }
+
+.signup-link:hover {
+    box-shadow: 4px 4px rgb(240,240,240);
+    transition: box-shadow .3s ease-in-out;
 }
 
 
