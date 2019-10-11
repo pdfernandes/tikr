@@ -1,6 +1,5 @@
 import React from 'react';
 import * as StocksAPIUtil from "../../util/stocks_api_util";
-import { combineReducers } from '../../../../../Library/Caches/typescript/3.6/node_modules/redux';
 
 
 class TransactionForm extends React.Component {
