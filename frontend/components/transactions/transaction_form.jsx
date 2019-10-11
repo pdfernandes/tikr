@@ -20,7 +20,7 @@ class TransactionForm extends React.Component {
         this.findCompany = this.findCompany.bind(this);
         this.toggleBuy = this.toggleBuy.bind(this);
         this.buildPortfolio = this.buildPortfolio.bind(this);
-        debugger
+        
     }
 
     componentDidMount () {
@@ -174,19 +174,19 @@ class TransactionForm extends React.Component {
    
 
     toggleBuy(e) {
-        debugger
+        
         if (e.target.className.slice(" ").includes("buy")) {
             
             this.setState({
                 order : true
             },()=>{
-                debugger
+                
             })
         } else {
             this.setState({
                 order : false
             },() => {
-                debugger
+                
             })
         }
     }
