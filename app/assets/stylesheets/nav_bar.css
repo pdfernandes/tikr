@@ -16,6 +16,7 @@
     /* padding: 0 60px; */
     margin: 0 auto;
     width: 85%;
+    align-items: center;
     
 }
 .nav-bar .signup-link:hover, .nav-bar .login-link:hover {
@@ -73,11 +74,28 @@
 }
 
 .github {
-    font-size: 30px;
-    line-height: 60px;
     color: black;
+    margin: 0 8px;
+    font-size: 22px
 }
 
-.github:hover {
+.github:hover, .linkedin:hover {
     color: rgb(52, 209, 153);
+}
+
+.left-nav {
+    display: flex;
+    width: 13%;
+    justify-content: space-between;
+
+}
+
+
+.github {
+    margin: 0 8px;
+    font-size: 22px
+}
+.linkedin {
+    margin: 0 8px;
+    font-size: 22px;
 }
