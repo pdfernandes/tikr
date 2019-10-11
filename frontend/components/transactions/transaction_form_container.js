@@ -8,7 +8,8 @@ const msp = (state, Ownprops) => {
     return {
         user: Object.values(state.entities.user)[0],
         ticker: Ownprops.match.params.ticker.toUpperCase(),
-        companies: Object.values(state.entities.companies)
+        companies: Object.values(state.entities.companies),
+        transactions: Object.values(state.entities.transactions)
     }
 }
 
@@ -16,7 +17,9 @@ const msp = (state, Ownprops) => {
 const mdp = dispatch => {
     return {
         transact: transaction => dispatch(transact(transaction)),
-        allCompanies: () => dispatch(allCompanies())
+        allCompanies: () => dispatch(allCompanies()),
+        allTransactions:  () => dispatch(allTransactions())
+
     }
 }
 

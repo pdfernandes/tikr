@@ -33,21 +33,6 @@
     border-bottom: 1px solid rgb(244,244,245);
 }
 
-.company-show-transactions {
-    position: relative;
-    width: 30%;
-    height: auto;
-}
-
-.transaction-form {
-    position: fixed;
-    height: 355px;
-    width: 282px;
-    border: 1px solid white;
-    border-radius: 4px;
-    box-shadow: 0 0 14px rgb(220,220,220);
-    margin-top: 40px;
-}
 
 .about-company > p {
     margin-top: 25px;

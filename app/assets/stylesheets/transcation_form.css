@@ -1,0 +1,122 @@
+.company-show-transactions {
+    position: relative;
+    width: 30%;
+    height: auto;
+}
+
+.transaction-form {
+    position: fixed;
+    height: 355px;
+    width: 282px;
+    border-radius: 4px;
+    box-shadow: 0 0 14px rgb(220,220,220);
+    margin-top: 20px;
+}
+.buy-sell {
+    display:flex;
+    width: 100%;
+    justify-content: space-evenly;
+    border-bottom: 1px solid rgb(240,240,240);
+}
+.buy-sell > h1 {
+     padding: 8px 34px;
+     text-align: center;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 85%;
+    margin-right: 13px;
+    margin-left: 13px;
+    font-size: 14px;
+    margin-top: 3px;
+
+   
+}
+
+.shares, .market-price, .estimated-cost {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px
+}
+.shares > input {
+    border: 1px solid rgb(60,209,152);
+    background-color: rgb(245,245,245);
+    border-radius: 5px;
+    padding: 10px;
+    width: 35%;
+    text-align: right;
+  
+}
+
+
+.market-price > h1 {
+    color: rgb(60, 209, 152);
+    font-size: 14px;
+}
+
+.market-price {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(230,230,230);
+}
+
+.estimated-cost > h1 {
+    font-weight: bold;
+}
+
+.buy-button {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 5px;
+    font-size: 13px;
+    border-radius: 6px;
+    background-color:rgb(53, 206,153);
+    color: white;
+
+}
+
+.sell-button {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 5px;
+    font-size: 13px;
+    border-radius: 6px;
+    background-color:rgb(236, 81,56);
+    color: white;
+
+}
+
+.buying-power {
+    border-top: 1px solid rgb(245,245,245);
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    padding-top: 8px;
+    color: rgb(53,206,153);
+}
+
+.buying-power > h2 {
+    margin-right: 5px;
+}
+
+.active-buy {
+    background-color: rgb(53,206,153);
+    color: white;
+    border: 1px solid  rgb(53,206,153);
+    border-radius: 4px;
+}
+
+.active-sell {
+    background-color:rgb(236, 81,56);
+    color: white;
+    border: 1px solid rgb(236, 81,56);
+    border-radius: 4px;
+
+}
+
+
