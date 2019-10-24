@@ -262,7 +262,7 @@ class Dashboard extends React.Component {
 
     showValue(e) {
         if (e.activePayload !== undefined) {
-            this.setState({ value: e.activePayload[0].payload.value })
+            this.setState({ value: parseFloat(e.activePayload[0].payload.value.toFixed(2)) })
         }
 
     }
@@ -291,7 +291,7 @@ class Dashboard extends React.Component {
                         <XAxis dataKey="date" hide={true}/>
                         <YAxis hide={true} domain={['dataMin', 'dataMax']} />
                         <Tooltip content={<CustomTooltip />} active={true} position={{y: 0}}/>
-                            <Line type="monotone" dataKey="value" stroke="#34D199" connectNulls strokeWidth='3' dot={false} />
+                            <Line type="monotone" dataKey="value" stroke="#34D199" connectNulls strokeWidth='2' dot={false} />
 
 
 
@@ -310,7 +310,7 @@ class Dashboard extends React.Component {
 
 
 
-        let value = (funds + this.state.value).toFixed(2);
+        let value = parseFloat((funds + this.state.value).toFixed(2));
         let gain = this.state.value.toFixed(2)
         let percentGain = (((value/funds) - 1) * 100).toFixed(2);
         return (
