@@ -2,45 +2,73 @@ import React from "react";
 import * as StocksAPIUtil from "../../util/stocks_api_util";
 
 class TransactionForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            funds: this.props.user.funds,
-            order: true,
-            price: 0,
-            shares: 0,
-            id: null,
-            estimated_cost: parseInt(Number(0).toFixed(2)),
-            errors: null,
-        }
-        this.showPrice = this.showPrice.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.findCompany = this.findCompany.bind(this);
-        this.toggleBuy = this.toggleBuy.bind(this);
-        this.buildPortfolio = this.buildPortfolio.bind(this);
-        
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      funds: this.props.user.funds,
+      order: true,
+      price: 0,
+      shares: 0,
+      id: null,
+      estimated_cost: parseInt(Number(0).toFixed(2)),
+      errors: null
+    };
+    this.showPrice = this.showPrice.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.findCompany = this.findCompany.bind(this);
+    this.toggleBuy = this.toggleBuy.bind(this);
+    this.buildPortfolio = this.buildPortfolio.bind(this);
+    debugger
+  }
 
-    componentDidMount () {
-        
-        this.props.allTransactions()
-        this.props.allCompanies()
-            .then(() => {
-               this.findCompany()
-            })
-        StocksAPIUtil.getLastPrice(this.props.ticker)
-            .then(response => {
-                this.showPrice(response.last_price)
-            })
-    }
+  componentDidMount() {
+    this.props.allTransactions();
+    this.props.allCompanies().then(() => {
+      this.findCompany();
+    });
+    StocksAPIUtil.getLastPrice(this.props.ticker).then(response => {
+      this.showPrice(response.last_price);
+    });
+  }
 
-    findCompany() {
+  findCompany() {
+    const formatCompanies = this.props.companies.reduce((obj, company) => {
+      obj[company.ticker] = company;
+      return obj;
+    }, {});
 
-        const formatCompanies = this.props.companies.reduce((obj, company) => {
-            obj[company.ticker] = company
-            return obj
-        }, {})
-        
+     this.setState({
+       id: formatCompanies[this.props.ticker].id
+     });
+
+    // if (this.state.order) {
+    //   this.setState({
+    //     funds: this.state.funds - this.state.estimated_cost
+    //   });
+    // } else {
+    //   this.setState({
+    //     funds: this.state.funds + this.state.estimated_cost
+    //   });
+    // }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    let quantity = this.buildPortfolio()[this.props.ticker];
+    if (
+      (this.state.order && this.isValidBuy()) ||
+      (this.state.order === false && this.isValidSell(quantity))
+    ) {
+      this.props.transact({
+        order_type: this.state.order,
+        quantity: this.state.shares,
+        company_id: this.state.id,
+        user_id: this.props.user.id,
+        price: this.state.estimated_cost
+      });
+
+      if (this.state.order) {
         this.setState({
           funds: this.state.funds - this.state.estimated_cost
         });
@@ -50,37 +78,12 @@ class TransactionForm extends React.Component {
         });
       }
     }
+  }
 
-    
-
-    handleSubmit(e) {
-        e.preventDefault();
-        
-        let quantity = this.buildPortfolio()[this.props.ticker]
-        if ((this.state.order && this.isValidBuy()) || (this.state.order === false && this.isValidSell(quantity))) {
-            this.props.transact({
-                order_type : this.state.order,
-                quantity : this.state.shares,
-                company_id: this.state.id,
-                user_id : this.props.user.id,
-                price: this.state.estimated_cost,
-            })
-
-            
-
-            if (this.state.order) {
-                
-                this.setState({
-                    funds : this.state.funds - this.state.estimated_cost
-                })
-            } else {
-                
-                this.setState({
-                    funds: this.state.funds + this.state.estimated_cost
-                })
-            }
-        }
-    }
+  showPrice(price) {
+    this.setState({
+      price
+    });
   }
 
   isValidBuy() {
@@ -96,6 +99,24 @@ class TransactionForm extends React.Component {
       return false;
     } else {
       return true;
+    }
+  }
+
+  isValidSell(owned) {
+    if (owned > this.state.shares && this.state.shares !== 0) {
+      return true;
+    } else if (this.state.shares <= 0) {
+      this.setState({
+        errors: "Invalid Transaction."
+      });
+
+      return false;
+    } else {
+      this.setState({
+        errors: "Not Valid"
+      });
+
+      return false;
     }
   }
 
@@ -152,6 +173,38 @@ class TransactionForm extends React.Component {
 
   toggleBuy(e) {
     if (e.target.className.slice(" ").includes("buy")) {
+      this.setState({
+        order: true
+      });
+    } else {
+      this.setState({
+        order: false
+      });
+    }
+  }
+
+  handleChange(field) {
+    return e => {
+      if (e.target.value === "" || isNaN(parseFloat(e.target.value))) {
+        this.setState({
+          errors: null,
+          [field]: 0,
+          estimated_cost: parseFloat(parseInt(Number(0)).toFixed(2))
+        });
+      } else {
+        this.setState({
+          errors: null,
+          [field]: parseFloat(e.target.value),
+          estimated_cost: parseFloat(
+            (parseFloat(e.target.value) * this.state.price).toFixed(2)
+          )
+        });
+      }
+    };
+  }
+
+  toggleBuy(e) {
+    if (e.target.className.slice(" ").includes("buy")) {
       this.setState(
         {
           order: true
@@ -166,99 +219,66 @@ class TransactionForm extends React.Component {
         () => {}
       );
     }
+  }
 
-    handleChange(field) {
-        return (e) => {
-            
-            if (e.target.value === "" || isNaN(parseFloat(e.target.value))) {
-                this.setState({
-                    errors: null,
-                    [field]: 0,
-                    estimated_cost: parseFloat(parseInt(Number(0)).toFixed(2))
-                })
-            } else {
-               
-                this.setState({
-                    errors: null,
-                    [field] : parseFloat(e.target.value),
-                    estimated_cost: parseFloat((parseFloat(e.target.value) * this.state.price).toFixed(2))
-                })
-                
+  render() {
+    return (
+      <div className="transaction-form">
+        <div className="buy-sell">
+          <h1
+            onClick={this.toggleBuy}
+            className={`buy${this.state.order === true ? " active-buy" : ""}`}
+          >
+            Buy {`${this.props.ticker}`}
+          </h1>
+          <h1
+            onClick={this.toggleBuy}
+            className={`sell${
+              this.state.order === false ? " active-sell" : ""
+            }`}
+          >
+            Sell {`${this.props.ticker}`}
+          </h1>
+        </div>
+        <form className="form-content" onSubmit={this.handleSubmit}>
+          <div className="shares">
+            <label htmlFor="share-input">Shares:</label>
+            <input
+              type="text"
+              onChange={this.handleChange("shares")}
+              placeholder="0"
+            />
+          </div>
+
+          <div className="market-price">
+            <h1>Market Price:</h1>
+            <h2>${this.state.price.toFixed(2)}</h2>
+          </div>
+
+          <div className="estimated-cost">
+            <h1>Estimated Cost</h1>
+            <h2>${this.state.estimated_cost}</h2>
+          </div>
+          <div className="transaction-errors">{this.state.errors}</div>
+          <input
+            type="submit"
+            className={`${
+              this.state.order === true ? "buy-button" : "sell-button"
+            }`}
+            value={
+              this.state.order === true
+                ? `Buy ${this.props.ticker}`
+                : `Sell ${this.props.ticker}`
             }
-        }
-    }
-   
-
-    toggleBuy(e) {
-        
-        if (e.target.className.slice(" ").includes("buy")) {
-            
-            this.setState({
-                order : true
-            },()=>{
-                
-            })
-        } else {
-            this.setState({
-                order : false
-            },() => {
-                
-            })
-        }
-    }
-
-    render() {
-        
-        return (
-            
-            
-            <div className='transaction-form'>
-                <div className='buy-sell'>
-                    <h1 onClick={this.toggleBuy} className={`buy${this.state.order === true ? " active-buy" : ""}`}>Buy {`${this.props.ticker}`}</h1>
-                    <h1 onClick={this.toggleBuy} className={`sell${this.state.order === false ? " active-sell" : ""}`}>Sell {`${this.props.ticker}`}</h1>
-                </div>
-                <form className='form-content' onSubmit={this.handleSubmit}>
-                <div className='shares'>
-                    <label htmlFor="share-input">
-                        Shares: 
-                    </label>
-                    <input type="text" onChange={this.handleChange("shares")} placeholder="0"/>
-
-                </div>
-
-                <div className='market-price'>
-                        <h1>Market Price:</h1>
-                        <h2>${this.state.price.toFixed(2)}</h2>
-                </div>
-
-               <div className='estimated-cost'>
-                <h1>
-                    Estimated Cost 
-                </h1>
-                <h2>
-                    ${this.state.estimated_cost}
-                </h2>
-               </div>
-                <div className='transaction-errors'>{this.state.errors}</div>
-                    <input type="submit" className={`${this.state.order === true ? "buy-button" : "sell-button"}`} value={this.state.order === true ? `Buy ${this.props.ticker}` : `Sell ${this.props.ticker}`}/>
-                <div className="buying-power">
-                        <h2>${this.state.funds.toLocaleString("en-US")}</h2><h1>Buying Power Available</h1>
-                       
-                    </div>
-
-
-
-                </form>
-                
-            </div>
-        
-            
-            
-           
-        )
-    
-    } 
-
+          />
+          <div className="buying-power">
+            <h2>${this.state.funds.toLocaleString("en-US")}</h2>
+            <h1>Buying Power Available</h1>
+          </div>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default TransactionForm;
