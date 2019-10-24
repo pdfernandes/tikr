@@ -12,7 +12,7 @@ class TransactionForm extends React.Component {
             price: 0,
             shares: 0,
             id: null,
-            estimated_cost: Number(0).toFixed(2),
+            estimated_cost: parseInt(Number(0).toFixed(2)),
             errors: null,
         }
         this.showPrice = this.showPrice.bind(this);
@@ -20,10 +20,11 @@ class TransactionForm extends React.Component {
         this.findCompany = this.findCompany.bind(this);
         this.toggleBuy = this.toggleBuy.bind(this);
         this.buildPortfolio = this.buildPortfolio.bind(this);
-        debugger
+        
     }
 
     componentDidMount () {
+        
         this.props.allTransactions()
         this.props.allCompanies()
             .then(() => {
@@ -58,6 +59,7 @@ class TransactionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        
         let quantity = this.buildPortfolio()[this.props.ticker]
         if ((this.state.order && this.isValidBuy()) || (this.state.order === false && this.isValidSell(quantity))) {
             this.props.transact({
@@ -68,11 +70,15 @@ class TransactionForm extends React.Component {
                 price: this.state.estimated_cost,
             })
 
+            
+
             if (this.state.order) {
+                
                 this.setState({
                     funds : this.state.funds - this.state.estimated_cost
                 })
             } else {
+                
                 this.setState({
                     funds: this.state.funds + this.state.estimated_cost
                 })
@@ -154,18 +160,18 @@ class TransactionForm extends React.Component {
     handleChange(field) {
         return (e) => {
             
-            if (e.target.value === "" || isNaN(parseInt(e.target.value))) {
+            if (e.target.value === "" || isNaN(parseFloat(e.target.value))) {
                 this.setState({
                     errors: null,
                     [field]: 0,
-                    estimated_cost: Number(0).toFixed(2)
+                    estimated_cost: parseFloat(parseInt(Number(0)).toFixed(2))
                 })
             } else {
                
                 this.setState({
                     errors: null,
-                    [field] : parseInt(e.target.value),
-                    estimated_cost: (parseInt(e.target.value) * this.state.price).toFixed(2)
+                    [field] : parseFloat(e.target.value),
+                    estimated_cost: parseFloat((parseFloat(e.target.value) * this.state.price).toFixed(2))
                 })
                 
             }
@@ -174,25 +180,25 @@ class TransactionForm extends React.Component {
    
 
     toggleBuy(e) {
-        debugger
+        
         if (e.target.className.slice(" ").includes("buy")) {
             
             this.setState({
                 order : true
             },()=>{
-                debugger
+                
             })
         } else {
             this.setState({
                 order : false
             },() => {
-                debugger
+                
             })
         }
     }
 
     render() {
-
+        
         return (
             
             
