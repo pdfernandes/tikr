@@ -8,3 +8,4 @@ json.username user.username
 json.funds user.funds
 json.transactions user.transaction_ids
 json.companies user.company_ids.uniq
+json.watched_companies user.watched_company_ids
