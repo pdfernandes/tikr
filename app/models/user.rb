@@ -32,13 +32,13 @@ class User < ApplicationRecord
     source: :company
 
     has_many :watchlists,
-    primary_key :id,
-    foreign_key :user_id,
-    class_name :Watchlist
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Watchlist
 
     has_many :watched_companies,
-    through :watchlists,
-    source :company
+    through: :watchlists,
+    source: :company
 
 
 

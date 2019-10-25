@@ -17,9 +17,9 @@ class Company < ApplicationRecord
 
 
     has_many :watchlists,
-    primary_key :id,
-    foreign_key :company_id,
-    class_name :Watchlist
+    primary_key: :id,
+    foreign_key: :company_id,
+    class_name: :Watchlist
 
     
 
