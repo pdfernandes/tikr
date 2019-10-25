@@ -36,7 +36,9 @@ class User < ApplicationRecord
     foreign_key :user_id,
     class_name :Watchlist
 
-    has_many
+    has_many :watched_companies,
+    through :watchlists,
+    source :company
 
 
 
