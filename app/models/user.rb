@@ -31,6 +31,15 @@ class User < ApplicationRecord
     through: :transactions,
     source: :company
 
+    has_many :watchlists,
+    primary_key :id,
+    foreign_key :user_id,
+    class_name :Watchlist
+
+    has_many
+
+
+
     
    
     def set_defaults
