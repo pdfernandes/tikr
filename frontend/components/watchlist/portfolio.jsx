@@ -8,7 +8,7 @@ import CustomTooltip from '../dashboard/tooltip_content';
 
 
 
-class Watchlist extends React.Component {
+class Portfolio extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,10 +18,15 @@ class Watchlist extends React.Component {
 
     }
     componentDidMount () {
-        Promise.all([this.props.allCompanies(), this.props.allTransactions()])
-        .then(() => {
-            this.buildPortfolio();
-        })
+        debugger
+        Promise.all([
+          this.props.allCompanies(),
+          this.props.allTransactions(),
+          this.props.allWatchlistItems()
+        ]).then(response => {
+          debugger;
+          this.buildPortfolio();
+        });
     }
 
 
@@ -147,4 +152,4 @@ class Watchlist extends React.Component {
 
 }
 
-export default Watchlist;
+export default Portfolio;

@@ -1,8 +1,9 @@
-class WatchlistController < ApplicationController
+class Api::WatchlistsController < ApplicationController
 
 
 def index
-    @\companies = current_user.watched_companies
+    @companies = current_user.watched_companies
+    # debugger
     render '/api/companies/index'
 end 
 
