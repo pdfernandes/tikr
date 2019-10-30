@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { allTransactions } from "../../actions/transaction_actions";
-import { allUserCompanies} from "../../actions/company_actions";
+import { allUserCompanies } from "../../actions/company_actions";
 import { getLastPrices } from "../../actions/stocks_actions"
 import Dashboard from "./dashboard";
 

@@ -10,10 +10,9 @@ class Api::TransactionsController < ApplicationController
 
     def create 
         @transaction = Transaction.new(transaction_params)
-        debugger
         if @transaction.save
             if @transaction.order_type
-                debugger
+    
                 remaining_funds = current_user.funds - @transaction.price
             else
                 remaining_funds = current_user.funds + @transaction.price

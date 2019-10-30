@@ -83,7 +83,7 @@ class Watchlist extends React.Component {
                     [ticker]: data.slice(.93 * data.length),
                     [ticker_price] : price
                 },() => {
-                    debugger
+                    
                 })
 
             })

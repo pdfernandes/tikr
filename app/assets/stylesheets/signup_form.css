@@ -63,9 +63,8 @@
     height: 19px;
 }
 
-::placeholder {
+:placeholder {
     color: rgb(180, 194, 198);
-    /* font-family: 'Arimo', sans-serif; */
     font-weight: 100;
 }
 

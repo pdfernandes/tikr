@@ -18,6 +18,9 @@ const usersReducer = (state= {}, action) => {
             return {};
         // case RECEIVE_TRANSACTION:
         //     debugger
+        // let newState = merge({}, state)
+        // newState[action.transaction.user_id].transactions.push(action.transaction.id)
+        // i can also make jbuilder return the user and snag it here 
 
         //     return merge({}, state[action.transaction.user_id], state)
         default:
