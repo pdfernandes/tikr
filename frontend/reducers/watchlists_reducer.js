@@ -4,6 +4,9 @@ import {
   RECEIVE_WATCHLIST_ITEM,
   REMOVE_WATCHLIST_ITEM
 } from "../actions/watchlist_actions";
+import {
+    REMOVE_USER
+} from "../actions/session_actions";
 
 const watchlistsReducer = (state = [], action) => {
   Object.freeze(state);
