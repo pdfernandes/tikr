@@ -1,5 +1,3 @@
-import { watch } from "fs"
-
 export const allWatchlistItems = () => {
     return $.ajax({
         method: "GET",

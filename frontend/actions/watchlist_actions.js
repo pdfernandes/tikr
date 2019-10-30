@@ -6,10 +6,41 @@ export const REMOVE_WATCHLIST_ITEM = "REMOVE_WATCHLIST_ITEM";
 
 
 
+const receiveAllWatchlistItems = watchlist => {
+    return {
+        type: RECEIVE_ALL_WATCHLIST_ITEMS,
+        watchlist
+    }
+}
+
+const receiveWatchlistItem = item => {
+    return {
+        type: RECEIVE_WATCHLIST_ITEM,
+        item
+    }
+}
+const removeWatchlistItem = item => {
+    return {
+        type: REMOVE_WATCHLIST_ITEM,
+        item
+    }
+}
 
 
 
 
 
+export const allWatchlistItems = () => dispatch => {
+    return WatchlistAPIUtil.allWatchlistItems()
+    .then(watchlist => dispatch(receiveAllWatchlistItems(watchlist)))
+}
 
-export const 
+export const postWatchlistItem = item => dispatch => {
+    return WatchlistAPIUtil.postWatchlistItem(item)
+    .then(item => dispatch(receiveWatchlistItem(item)))
+}
+
+export const deleteWatchlistItem = item => dispatch => {
+    return WatchlistAPIUtil.deleteWatchlistItem(item)
+    .then(item => dispatch(removeWatchlistItem(item)))
+}

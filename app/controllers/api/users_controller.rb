@@ -2,6 +2,7 @@ class Api::UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
+        @user.funds = 100000
         if @user.save
             login(@user)
             render :show
