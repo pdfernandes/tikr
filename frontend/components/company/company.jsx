@@ -42,7 +42,7 @@ class Company extends React.Component {
 
 
     Promise.all([p1(ticker), p2(ticker), p3(ticker)]).then(responseArr => {
-        debugger;
+        // debugger;
         this.setCompanyName(responseArr[0]);
         this.setState({
            value: parseFloat(responseArr[1].last_price.toFixed(2))
@@ -145,7 +145,7 @@ class Company extends React.Component {
     //   percentGain = 0;
     // }
          else {
-      debugger;
+      // debugger;
     //   let stateArray = this.state[this.state.selected];
     //   latestPrice = stateArray[stateArray.length - 1].price;
       let firstPrice = this.state[this.state.selected][0].price;

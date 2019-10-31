@@ -14,7 +14,7 @@ class News extends React.Component {
            this.props.getTopNews("?q=business")
        } else {
         
-           this.props.getTopNews(`?q=${this.props.match.params.ticker}`)
+        //    this.props.getTopNews(`?q=${this.props.match.params.ticker}`)
 
        }
         

@@ -3,20 +3,21 @@ import { Link } from 'react-router-dom';
 import * as StocksAPIUtil from '../../util/stocks_api_util';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import CustomTooltip from '../dashboard/tooltip_content';
-
-
-
-
+import WatchlistItem from "./watchlist_item";
 
 class Portfolio extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            portfolio: {}
+            portfolio: {},
+            // watchlist: []
         }
         this.buildPortfolio = this.buildPortfolio.bind(this)
+        this.buildWatchlist = this.buildWatchlist.bind(this)
+        this.watchlist = [];
 
     }
+
     componentDidMount () {
         debugger
         Promise.all([
@@ -26,9 +27,9 @@ class Portfolio extends React.Component {
         ]).then(response => {
           debugger;
           this.buildPortfolio();
+          this.buildWatchlist();
         });
     }
-
 
 
     buildPortfolio() {
@@ -60,14 +61,16 @@ class Portfolio extends React.Component {
         this.setState({
             portfolio : portfolio
         },() => {
-            this.buildCharts()
+            this.buildCharts(this.state.portfolio)
         })
+        
 
     }
 
-    buildCharts() {
-        let { portfolio } = this.state;
-        Object.keys(portfolio).forEach(ticker => {
+    buildCharts(data) {
+        debugger
+        // let { portfolio } = this.state;
+        Object.keys(data).forEach(ticker => {
             const tick = ticker;
             Promise.all([StocksAPIUtil.getIntradayPrices(ticker), ticker, StocksAPIUtil.getLastPrice(ticker)])
             .then(response => {
@@ -95,14 +98,61 @@ class Portfolio extends React.Component {
         })
     }
 
+    buildWatchlist() {
+        let watchlist = [];
+        let { watchlists } = this.props;
+        watchlists.forEach((item, i) => {
+            watchlist.push(
+              <li key={i}>
+                <WatchlistItem ticker={item.ticker} />
+              </li>
+            );
+        })
+
+        // return watchlist;
+
+        this.watchlist = watchlist;
+        debugger
+        // let { watchlists } = this.props
+        // if (watchlists.length === 0) return null;
+
+        // watchlists.forEach(company => {
+        //     let ticker = company.ticker;
+        //     Promise.all([StocksAPIUtil.getIntradayPrices(ticker), ticker, StocksAPIUtil.getLastPrice(ticker)])
+        //     .then(response => {
+        //         let ticker = response[1];
+        //         let data = response[0];
+        //         let price = response[2].last_price;
+        //         let ticker_price = `${ticker}Price`
+
+        //         this.setState({
+        //             watchlist: this.state.watchlist.push({
+        //                 [ticker] : {
+        //                     data,
+        //                     price
+        //                 }
+        //             })
+        //         },() => {
+        //             debugger
+        //         })
+
+        //     })
+
+        // })
+    }
+
+
+
 
 
     render () {
         let {transactions, companies } = this.props;
         let { portfolio } = this.state;
         let portfolioComponent = [];
+        // let watchlistComponent = []
         if (Object.keys(portfolio).length === 0) {
             portfolioComponent = null;
+            // watchlistComponent = null;
         } else {
           
                 Object.keys(portfolio).forEach((company, i) => {
@@ -133,6 +183,7 @@ class Portfolio extends React.Component {
                     )
                 
                 })
+                // watchlistComponent = this.buildWatchlist();
             
         }
 
@@ -143,6 +194,9 @@ class Portfolio extends React.Component {
             <h1>Portfolio</h1> 
             <ul>
                 {portfolioComponent}
+            </ul>
+            <ul>
+                {this.watchlist}
             </ul>
 
             </div>

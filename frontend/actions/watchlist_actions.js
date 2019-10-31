@@ -31,7 +31,7 @@ const removeWatchlistItem = item => {
 
 
 export const allWatchlistItems = () => dispatch => {
-    debugger
+    // debugger
     return WatchlistAPIUtil.allWatchlistItems()
     .then(watchlist => dispatch(receiveAllWatchlistItems(watchlist)))
 }

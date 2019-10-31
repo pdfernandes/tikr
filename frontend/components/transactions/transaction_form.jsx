@@ -18,7 +18,7 @@ class TransactionForm extends React.Component {
     this.findCompany = this.findCompany.bind(this);
     this.toggleBuy = this.toggleBuy.bind(this);
     this.buildPortfolio = this.buildPortfolio.bind(this);
-    debugger
+    // debugger
   }
 
   componentDidMount() {

@@ -9,7 +9,7 @@ import {
 } from "../actions/session_actions";
 
 const watchlistsReducer = (state = {}, action) => {
-    debugger
+    // debugger
   Object.freeze(state);
   let newState;
   switch (action.type) {
