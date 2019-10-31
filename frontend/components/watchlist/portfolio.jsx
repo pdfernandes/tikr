@@ -176,7 +176,7 @@ class Portfolio extends React.Component {
                             </LineChart>
                             </div>
                             <div className='portfolio-value'>
-                                $ {totalValue}
+                                $ {totalValue.toFixed(2)}
                             </div>
                         </Link>
                     </li>
@@ -192,11 +192,11 @@ class Portfolio extends React.Component {
             <div className='watchlist'>
 
             <h1>Portfolio</h1> 
-            <ul class='sidebar-ul'>
+            <ul className='sidebar-ul'>
                 {portfolioComponent}
             </ul>
-            <h1 class='watchlist-heading'>Watchlist</h1>
-            <ul class='sidebar-nav'>
+            <h1 className='watchlist-heading'>Watchlist</h1>
+            <ul className='sidebar-nav'>
                 {this.watchlist}
             </ul>
 
