@@ -162,10 +162,7 @@ class Portfolio extends React.Component {
                         <Link className='watchlist-link'to={`/stocks/${company}`}>
                             <div>
                                 <h1>{company}</h1>
-                                <h2>{portfolio[company]} shares</h2>
-                            </div>
-                            <div className='portfolio-value'>
-                                $ {totalValue}
+                                <h2>{portfolio[company]} {portfolio[company] === 1 ? "share" : "shares"}</h2>
                             </div>
                             <div className='watchlist-chart'>
                             <LineChart
@@ -175,8 +172,11 @@ class Portfolio extends React.Component {
                                 >
                                 <XAxis dataKey="minute" hide={true} domain={['dataMin', 'dataMax']} />
                                 <YAxis hide={true} domain={['dataMin', 'dataMax']} />
-                                <Line type="monotone" connectNulls dataKey="close" stroke="#34D199" strokeWidth='2' dot={false} />
+                                <Line type="monotone" connectNulls dataKey="close" stroke="#34D199" strokeWidth='1' dot={false} />
                             </LineChart>
+                            </div>
+                            <div className='portfolio-value'>
+                                $ {totalValue}
                             </div>
                         </Link>
                     </li>
@@ -192,10 +192,11 @@ class Portfolio extends React.Component {
             <div className='watchlist'>
 
             <h1>Portfolio</h1> 
-            <ul>
+            <ul class='sidebar-ul'>
                 {portfolioComponent}
             </ul>
-            <ul>
+            <h1 class='watchlist-heading'>Watchlist</h1>
+            <ul class='sidebar-nav'>
                 {this.watchlist}
             </ul>
 

@@ -41,12 +41,12 @@ class WatchlistItem extends React.Component {
   render() {
     debugger;
     return (
-      <div>
+      <>
         {/* <h1>{this.props.ticker}</h1> */}
         <Link className="watchlist-link" to={`/stocks/${this.props.ticker}`}>
           <div>
             <h1>{this.props.ticker}</h1>
-        <h2>{`$ ${this.state.price.toFixed(2)}`}</h2>
+            {/* <h2>{`$ ${this.state.price.toFixed(2)}`}</h2> */}
             {/* <h2>{portfolio[company]} shares</h2> */}
           </div>
           {/* <div className="portfolio-value">$ {totalValue}</div> */}
@@ -63,13 +63,16 @@ class WatchlistItem extends React.Component {
                 connectNulls
                 dataKey="close"
                 stroke="#34D199"
-                strokeWidth="2"
+                strokeWidth="1"
                 dot={false}
               />
             </LineChart>
           </div>
+          <div className="portfolio-value">{`$ ${this.state.price.toFixed(
+            2
+          )}`}</div>
         </Link>
-      </div>
+      </>
     );
   }
 }
