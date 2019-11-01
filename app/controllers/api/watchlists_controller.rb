@@ -23,7 +23,7 @@ end
 
 def destroy
     debugger
-    @watchlist_item = Watchlist.find_by(params[:company_id])
+    @watchlist_item = Watchlist.where(:user_id == current_user.id && :company_id == params[:id] )
     @watchlist_item.destroy
     @company = Company.find(@watchlist_item.company_id)
     debugger
