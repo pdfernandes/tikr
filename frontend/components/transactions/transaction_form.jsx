@@ -45,7 +45,7 @@ class TransactionForm extends React.Component {
       obj[company.ticker] = company;
       return obj;
     }, {});
-
+  
      this.setState({
        id: formatCompanies[this.props.ticker].id
      },() => {

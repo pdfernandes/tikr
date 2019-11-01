@@ -1,5 +1,5 @@
-@watched_companies.each do |company|
-    json.set! company.id do
-        json.extract! company, :id, :user_id, :company_id
+@watched_companies.each do |entry|
+    json.set! entry.id do
+        json.extract! entry, :id, :user_id, :company_id
     end
 end

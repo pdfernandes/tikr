@@ -13,8 +13,9 @@ def create
     @watchlist_item = Watchlist.new(watchlist_params)
     debugger
     if @watchlist_item.save 
+        @company = Company.find(@watchlist_item.company_id)
         debugger
-        render ["success"], status: 200
+        render '/api/watchlists/show'
     else
         render ["not a valid watchlist"], status: 406    
     end 
@@ -22,10 +23,11 @@ end
 
 def destroy
     debugger
-    @watchlist_item = Watchlist.find(params[:id])
+    @watchlist_item = Watchlist.find_by(params[:company_id])
     @watchlist_item.destroy
+    @company = Company.find(@watchlist_item.company_id)
     debugger
-    render json: ["successful"], status: 200
+    render '/api/watchlists/show'
 end
 
 

@@ -1,3 +1,2 @@
-json.set! @watchlist.company_id do |item|
-    json.extract! item, :id, :user_id, :company_id
-end
+json.set! @company.id
+json.extract! @company, :id, :name, :ticker
