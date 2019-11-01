@@ -27,7 +27,7 @@ class Portfolio extends React.Component {
         ]).then(response => {
           debugger;
           this.buildPortfolio();
-          this.buildWatchlist();
+        //   this.buildWatchlist();
         });
     }
 
@@ -57,11 +57,19 @@ class Portfolio extends React.Component {
 
             }
         }
+
+          let dataWithoutZeros = {};
+          for (let ticker in portfolio) {
+            if (portfolio[ticker] !== 0) {
+              dataWithoutZeros[ticker] = portfolio[ticker];
+            }
+          }
         
         this.setState({
-            portfolio : portfolio
+            portfolio : dataWithoutZeros
         },() => {
             this.buildCharts(this.state.portfolio)
+            this.buildWatchlist();
         })
         
 
@@ -69,7 +77,14 @@ class Portfolio extends React.Component {
 
     buildCharts(data) {
         debugger
+        // let dataWithoutZeros = {};
+        // for (let ticker in data) {
+        //     if (data[ticker] !== 0) {
+        //         dataWithoutZeros[ticker] = data[ticker];
+        //     }
+        // }
         // let { portfolio } = this.state;
+        debugger
         Object.keys(data).forEach(ticker => {
             const tick = ticker;
             Promise.all([StocksAPIUtil.getIntradayPrices(ticker), ticker, StocksAPIUtil.getLastPrice(ticker)])
@@ -91,7 +106,7 @@ class Portfolio extends React.Component {
                     [ticker]: data.slice(.93 * data.length),
                     [ticker_price] : price
                 },() => {
-                    
+                    debugger
                 })
 
             })
@@ -101,7 +116,14 @@ class Portfolio extends React.Component {
     buildWatchlist() {
         let watchlist = [];
         let { watchlists } = this.props;
-        watchlists.forEach((item, i) => {
+        debugger
+        let watchlistWithoutPortfolio = [];
+        watchlists.forEach(item => {
+            if (this.state.portfolio[item.ticker] === undefined) {
+                watchlistWithoutPortfolio.push(item)
+            }
+        })
+        watchlistWithoutPortfolio.forEach((item, i) => {
             watchlist.push(
               <li key={i}>
                 <WatchlistItem ticker={item.ticker} />

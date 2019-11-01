@@ -103,7 +103,8 @@ class TransactionForm extends React.Component {
   }
 
   isValidSell(owned) {
-    if (owned > this.state.shares && this.state.shares !== 0) {
+
+    if (owned >= this.state.shares && this.state.shares !== 0) {
       return true;
     } else if (this.state.shares <= 0) {
       this.setState({

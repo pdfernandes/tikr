@@ -16,13 +16,19 @@ const usersReducer = (state= {}, action) => {
             return merge({}, { [action.user.id]: action.user});
         case REMOVE_USER:
             return {};
-        // case RECEIVE_TRANSACTION:
-        //     debugger
-        // let newState = merge({}, state)
-        // newState[action.transaction.user_id].transactions.push(action.transaction.id)
+        case RECEIVE_TRANSACTION:
+            let newState = merge({}, state)
+            newState[action.transaction.user_id].funds -= parseFloat(
+              action.transaction.price
+            );
+            debugger
+            // newState[action.transaction.user_id].transactions.push(action.transaction.id)
+            // debugger
+            // return newState;
         // i can also make jbuilder return the user and snag it here 
 
-        //     return merge({}, state[action.transaction.user_id], state)
+            // return merge({}, state[action.transaction.user_id], state)
+            return merge({}, state, newState);
         default:
             return state;
     }
