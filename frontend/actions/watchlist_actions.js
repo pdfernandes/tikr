@@ -41,7 +41,7 @@ export const postWatchlistItem = item => dispatch => {
     .then(item => dispatch(receiveWatchlistItem(item)))
 }
 
-export const deleteWatchlistItem = item => dispatch => {
-    return WatchlistAPIUtil.deleteWatchlistItem(item)
+export const deleteWatchlistItem = id => dispatch => {
+    return WatchlistAPIUtil.deleteWatchlistItem(id)
     .then(item => dispatch(removeWatchlistItem(item)))
 }

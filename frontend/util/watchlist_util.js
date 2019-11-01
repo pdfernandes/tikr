@@ -7,12 +7,12 @@ export const allWatchlistItems = () => {
 }
 
 
-export const postWatchlistItem = watchlistItem => {
+export const postWatchlistItem = watchlist => {
     return $.ajax({
         method: "POST",
         url: "/api/watchlists",
         data: {
-            watchlistItem
+            watchlist
         }
     })
 }

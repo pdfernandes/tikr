@@ -1,5 +1,6 @@
 import React from "react";
 import * as StocksAPIUtil from "../../util/stocks_api_util";
+// import { postWatchlistItem, deleteWatchlistItem } from "../../util/watchlist_util";
 
 class TransactionForm extends React.Component {
   constructor(props) {
@@ -11,17 +12,24 @@ class TransactionForm extends React.Component {
       shares: 0,
       id: null,
       estimated_cost: parseInt(Number(0).toFixed(2)),
-      errors: null
+      errors: null,
+      watched: false,
     };
+    this.watched = false;
     this.showPrice = this.showPrice.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.findCompany = this.findCompany.bind(this);
     this.toggleBuy = this.toggleBuy.bind(this);
     this.buildPortfolio = this.buildPortfolio.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.checkWatched = this.checkWatched.bind(this);
     // debugger
   }
 
+
   componentDidMount() {
+    // debugger
+    // this.checkWatched();
     this.props.allTransactions();
     this.props.allCompanies().then(() => {
       this.findCompany();
@@ -31,6 +39,7 @@ class TransactionForm extends React.Component {
     });
   }
 
+
   findCompany() {
     const formatCompanies = this.props.companies.reduce((obj, company) => {
       obj[company.ticker] = company;
@@ -39,6 +48,8 @@ class TransactionForm extends React.Component {
 
      this.setState({
        id: formatCompanies[this.props.ticker].id
+     },() => {
+       this.checkWatched();
      });
 
     // if (this.state.order) {
@@ -78,6 +89,35 @@ class TransactionForm extends React.Component {
         });
       }
     }
+  }
+
+  handleClick(e) {
+    debugger
+    if(this.state.watched) {
+      this.props.deleteWatchlistItem(this.state.id)
+      debugger
+      this.setState({
+        watched: false,
+      })
+    } else {
+      debugger
+      this.props.postWatchlistItem({user_id: this.props.user.id, company_id: this.state.id})
+    }
+  }
+
+  checkWatched() {
+    debugger
+    let { watched_companies } = this.props.user;
+    let { id } = this.state;
+    if (watched_companies.includes(id)) {
+      this.setState({
+        watched: true,
+      })
+      debugger
+    } else {
+      debugger
+    }
+
   }
 
   showPrice(price) {
@@ -280,7 +320,8 @@ class TransactionForm extends React.Component {
         </form>
       </div>
       <div>
-        <h1>hello from button</h1>
+        <button onClick={this.handleClick} className={`watchlist-button${this.state.watched ? " hidden" : ""}`}>Add to watchlist</button>
+        <button onClick={this.handleClick} className={`watchlist-button${this.state.watched ? "" : " hidden"}`}>Remove from watchlist</button>
       </div>
       </>
     );
