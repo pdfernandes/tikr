@@ -68,9 +68,9 @@ class WatchlistItem extends React.Component {
               />
             </LineChart>
           </div>
-          <div className="portfolio-value">{`$ ${this.state.price.toFixed(
-            2
-          )}`}</div>
+          <div className="portfolio-value">{`$ ${
+            isNaN(this.state.price.toFixed(2)) ? 0 : this.state.price.toFixed(2)
+          }`}</div>
         </Link>
       </>
     );

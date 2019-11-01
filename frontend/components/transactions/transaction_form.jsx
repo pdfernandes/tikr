@@ -224,6 +224,7 @@ class TransactionForm extends React.Component {
 
   render() {
     return (
+      <>
       <div className="transaction-form">
         <div className="buy-sell">
           <h1
@@ -278,6 +279,10 @@ class TransactionForm extends React.Component {
           </div>
         </form>
       </div>
+      <div>
+        <h1>hello from button</h1>
+      </div>
+      </>
     );
   }
 }

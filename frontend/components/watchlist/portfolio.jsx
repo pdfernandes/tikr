@@ -180,29 +180,52 @@ class Portfolio extends React.Component {
                 Object.keys(portfolio).forEach((company, i) => {
                     let totalValue = this.state[`${company}Price`] * portfolio[company]
                     portfolioComponent.push(
-                    <li key={i}>
-                        <Link className='watchlist-link'to={`/stocks/${company}`}>
-                            <div>
-                                <h1>{company}</h1>
-                                <h2>{portfolio[company]} {portfolio[company] === 1 ? "share" : "shares"}</h2>
-                            </div>
-                            <div className='watchlist-chart'>
+                      <li key={i}>
+                        <Link
+                          className="watchlist-link"
+                          to={`/stocks/${company}`}
+                        >
+                          <div>
+                            <h1>{company}</h1>
+                            <h2>
+                              {portfolio[company]}{" "}
+                              {portfolio[company] === 1 ? "share" : "shares"}
+                            </h2>
+                          </div>
+                          <div className="watchlist-chart">
                             <LineChart
-                                width={50}
-                                height={50}
-                                data={this.state[company]}
-                                >
-                                <XAxis dataKey="minute" hide={true} domain={['dataMin', 'dataMax']} />
-                                <YAxis hide={true} domain={['dataMin', 'dataMax']} />
-                                <Line type="monotone" connectNulls dataKey="close" stroke="#34D199" strokeWidth='1' dot={false} />
+                              width={50}
+                              height={50}
+                              data={this.state[company]}
+                            >
+                              <XAxis
+                                dataKey="minute"
+                                hide={true}
+                                domain={["dataMin", "dataMax"]}
+                              />
+                              <YAxis
+                                hide={true}
+                                domain={["dataMin", "dataMax"]}
+                              />
+                              <Line
+                                type="monotone"
+                                connectNulls
+                                dataKey="close"
+                                stroke="#34D199"
+                                strokeWidth="1"
+                                dot={false}
+                              />
                             </LineChart>
-                            </div>
-                            <div className='portfolio-value'>
-                                $ {totalValue.toFixed(2)}
-                            </div>
+                          </div>
+                          <div className="portfolio-value">
+                            ${" "}
+                            {isNaN(totalValue.toFixed(2))
+                              ? 0
+                              : totalValue.toFixed(2)}
+                          </div>
                         </Link>
-                    </li>
-                    )
+                      </li>
+                    );
                 
                 })
                 // watchlistComponent = this.buildWatchlist();
