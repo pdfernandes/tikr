@@ -102,6 +102,9 @@ class TransactionForm extends React.Component {
     } else {
       debugger
       this.props.postWatchlistItem({user_id: this.props.user.id, company_id: this.state.id})
+       this.setState({
+         watched: true
+       });
     }
   }
 
@@ -109,6 +112,7 @@ class TransactionForm extends React.Component {
     debugger
     let { watched_companies } = this.props.user;
     let { id } = this.state;
+    debugger
     if (watched_companies.includes(id)) {
       this.setState({
         watched: true,

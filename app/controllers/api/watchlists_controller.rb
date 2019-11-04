@@ -9,12 +9,12 @@ end
 
 
 def create
-    debugger
+    # debugger
     @watchlist_item = Watchlist.new(watchlist_params)
-    debugger
+    # debugger
     if @watchlist_item.save 
         @company = Company.find(@watchlist_item.company_id)
-        debugger
+        # debugger
         render '/api/watchlists/show'
     else
         render ["not a valid watchlist"], status: 406    
@@ -22,11 +22,12 @@ def create
 end
 
 def destroy
-    debugger
-    @watchlist_item = Watchlist.where(:user_id == current_user.id && :company_id == params[:id] )
-    @watchlist_item.destroy
-    @company = Company.find(@watchlist_item.company_id)
-    debugger
+    # debugger
+    @watchlist_item = Watchlist.where(["user_id = ? and company_id = ?", current_user.id, params[:id].to_i])
+    # debugger
+    @watchlist_item.first.destroy
+    @company = Company.find(params[:id])
+    # debugger
     render '/api/watchlists/show'
 end
 

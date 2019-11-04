@@ -1,2 +1,3 @@
-json.set! @company.id
-json.extract! @company, :id, :name, :ticker
+json.set! @company.id do 
+    json.extract! @company, :id, :name, :ticker
+end 
