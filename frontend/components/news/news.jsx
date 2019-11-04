@@ -11,10 +11,10 @@ class News extends React.Component {
     componentDidMount() {
       let { news } = this.props;
        if (this.props.match.url === "/") {
-        //    this.props.getTopNews("?q=business")
+           this.props.getTopNews("?q=business")
        } else {
         
-        //    this.props.getTopNews(`?q=${this.props.match.params.ticker}`)
+           this.props.getTopNews(`?q=${this.props.match.params.ticker}`)
 
        }
         
