@@ -11,7 +11,6 @@ import { merge } from "lodash";
 
 const transactionsReducer = (state = {}, action) => {
     Object.freeze(state)
-    debugger
     switch (action.type) {
         case RECEIVE_TRANSACTION:
             return merge({}, state, {[action.transaction.id]: action.transaction})

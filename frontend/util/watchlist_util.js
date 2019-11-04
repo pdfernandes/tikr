@@ -1,5 +1,4 @@
 export const allWatchlistItems = () => {
-    // debugger
     return $.ajax({
         method: "GET",
         url: "/api/watchlists"

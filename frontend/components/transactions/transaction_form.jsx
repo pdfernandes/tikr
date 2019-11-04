@@ -23,12 +23,12 @@ class TransactionForm extends React.Component {
     this.buildPortfolio = this.buildPortfolio.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.checkWatched = this.checkWatched.bind(this);
-    // debugger
+    // 
   }
 
 
   componentDidMount() {
-    // debugger
+    // 
     // this.checkWatched();
     this.props.allTransactions();
     this.props.allCompanies().then(() => {
@@ -91,15 +91,15 @@ class TransactionForm extends React.Component {
   }
 
   handleClick(e) {
-    debugger
+    
     if(this.state.watched) {
       this.props.deleteWatchlistItem(this.state.id)
-      debugger
+      
       this.setState({
         watched: false,
       })
     } else {
-      debugger
+      
       this.props.postWatchlistItem({user_id: this.props.user.id, company_id: this.state.id})
        this.setState({
          watched: true
@@ -108,17 +108,17 @@ class TransactionForm extends React.Component {
   }
 
   checkWatched() {
-    debugger
+    
     let { watched_companies } = this.props.user;
     let { id } = this.state;
-    debugger
+    
     if (watched_companies.includes(id)) {
       this.setState({
         watched: true,
       })
-      debugger
+      
     } else {
-      debugger
+      
     }
 
   }

@@ -22,13 +22,13 @@ class WatchlistItem extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
+    
     let { ticker } = this.props;
     Promise.all([
       StocksAPIUtil.getIntradayPrices(ticker),
       StocksAPIUtil.getLastPrice(ticker)
     ]).then(response => {
-      debugger;
+      
       let dayPrices = response[0];
       let lastPrice = response[1].last_price;
       this.setState({
@@ -39,7 +39,7 @@ class WatchlistItem extends React.Component {
   }
 
   render() {
-    debugger;
+    
     return (
       <>
         {/* <h1>{this.props.ticker}</h1> */}
