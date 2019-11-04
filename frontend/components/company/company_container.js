@@ -7,7 +7,7 @@ import * as StocksAPIUtil from '../../util/stocks_api_util';
 const msp = (state, ownProps) => {
 
     return {
-        ticker: ownProps.match.params.ticker,
+        ticker: ownProps.match.params.ticker.toUpperCase(),
         user: Object.values(state.entities.user)[0]
     }
 
