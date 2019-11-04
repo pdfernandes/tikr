@@ -7,7 +7,7 @@ import { Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import Splash from './splash/splash';
 import NewsContainer from './news/news_container';
-import WatchlistContainer from "./watchlist/watchlist_container";
+import PortfolioContainer from "./watchlist/portfolio_container";
 import CompanyContainer from './company/company_container';
 import CompanyInfo from "./company/company_info";
 import TransactionFormContainer from './transactions/transaction_form_container'
@@ -34,7 +34,7 @@ const App = () => (
                 <ProtectedRoute exact path='/' component={NewsContainer} />
             </div>
             <div className='homepage-watchlist'>
-                <ProtectedRoute exact path='/' component={WatchlistContainer} />
+                <ProtectedRoute exact path='/' component={PortfolioContainer} />
             </div>
         </div>
     </>

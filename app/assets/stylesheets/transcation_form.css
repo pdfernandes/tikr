@@ -1,16 +1,23 @@
 .company-show-transactions {
+    font-family: 'Arimo', sans-serif;
     position: relative;
     width: 30%;
     height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 .transaction-form {
-    position: fixed;
+    position: sticky;
+    top: 90px;
     height: 355px;
     width: 282px;
     border-radius: 4px;
     box-shadow: 0 0 14px rgb(220,220,220);
     margin-top: 20px;
+    background-color: white;
 }
 .buy-sell {
     display:flex;
@@ -19,8 +26,10 @@
     border-bottom: 1px solid rgb(240,240,240);
 }
 .buy-sell > h1 {
+    width: 50%;
      padding: 8px 34px;
      text-align: center;
+     font-size: 15px;
 }
 
 .form-content {
@@ -78,6 +87,9 @@
     color: white;
 
 }
+.buy-button:hover {
+    background-color:rgb(9, 233,173);
+}
 
 .sell-button {
     text-align: center;
@@ -86,9 +98,12 @@
     padding: 20px 5px;
     font-size: 13px;
     border-radius: 6px;
-    background-color:rgb(236, 81,56);
+    background-color:rgb(245, 85,51);
     color: white;
 
+}
+.sell-button:hover {
+    background-color:rgb(255,99,66);
 }
 
 .buying-power {
@@ -98,6 +113,7 @@
     margin: 5px;
     padding-top: 8px;
     color: rgb(53,206,153);
+    margin-bottom: 10px;
 }
 
 .buying-power > h2 {
@@ -110,13 +126,69 @@
     border: 1px solid  rgb(53,206,153);
     border-radius: 4px;
 }
+.active-buy:hover {
+    background-color: rgb(9,233,173);
+    color: white;
+    border: 1px solid  rgb(9,233,173);
+    border-radius: 4px;
+}
 
 .active-sell {
-    background-color:rgb(236, 81,56);
+    background-color:rgb(245, 85,51);
     color: white;
-    border: 1px solid rgb(236, 81,56);
+    border: 1px solid rgb(245, 85,51);
     border-radius: 4px;
 
 }
+.active-sell:hover {
+    background-color:rgb(255,99,66);
+    color: white;
+    border: 1px solid rgb(255,99,66);
+    border-radius: 4px;
+
+}
+
+.hidden {
+    display:none;
+}
+
+.watchlist-buttons {
+    margin-top: 30px;
+    /* margin-left: 0 auto; */
+    font-size: 14px;
+}
+
+
+.watchlist-buttons {
+  position: sticky;
+  top: 475px;
+}
+
+.watchlist-button {
+    padding: 10px 20px;
+    border: 1px solid;
+    border-color: rgb(52,206,153);
+    background-color: white;
+    border-radius: 6px;
+}
+
+.watchlist-button:nth-child(1) {
+    border-color: rgb(52,206,153);
+    color: rgb(52,206,153);
+}
+.watchlist-button:nth-child(1):hover {
+    border-color: rgb(9,233,173);
+    color: rgb(9,233,173);
+}
+.watchlist-button:nth-child(2) {
+    border-color:rgb(245,85,51);
+    color: rgb(245,85,51);
+}
+.watchlist-button:nth-child(2):hover {
+    border-color: rgb(255,99,66);
+    color: rgb(255,99,66);
+}
+
+
 
 

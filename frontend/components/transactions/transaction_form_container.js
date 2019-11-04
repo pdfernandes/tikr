@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { allTransactions, transact } from '../../actions/transaction_actions';
 import TransactionForm from './transaction_form';
 import { allCompanies } from "../../actions/company_actions";
+import { postWatchlistItem, deleteWatchlistItem } from "../../actions/watchlist_actions"
 
 
 const msp = (state, Ownprops) => {
@@ -18,7 +19,9 @@ const mdp = dispatch => {
     return {
         transact: transaction => dispatch(transact(transaction)),
         allCompanies: () => dispatch(allCompanies()),
-        allTransactions:  () => dispatch(allTransactions())
+        allTransactions:  () => dispatch(allTransactions()),
+        postWatchlistItem: item => dispatch(postWatchlistItem(item)),
+        deleteWatchlistItem: item => dispatch(deleteWatchlistItem(item))
 
     }
 }

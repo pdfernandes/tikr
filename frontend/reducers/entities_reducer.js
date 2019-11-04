@@ -4,6 +4,7 @@ import transactionsReducer from './transactions_reducer';
 import companiesReducer from "./companies_reducer";
 import stocksReducer from './stocks_reducer';
 import newsReducer from './news_reducer';
+import watchlistsReducer from './watchlists_reducer';
 
 
 const entitiesReducer = combineReducers({
@@ -12,6 +13,7 @@ const entitiesReducer = combineReducers({
     companies: companiesReducer,
     prices: stocksReducer,
     news: newsReducer,
+    watchlists: watchlistsReducer
 })
 
 export default entitiesReducer;
