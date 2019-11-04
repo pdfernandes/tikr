@@ -323,9 +323,9 @@ class TransactionForm extends React.Component {
           </div>
         </form>
       </div>
-      <div>
-        <button onClick={this.handleClick} className={`watchlist-button${this.state.watched ? " hidden" : ""}`}>Add to watchlist</button>
-        <button onClick={this.handleClick} className={`watchlist-button${this.state.watched ? "" : " hidden"}`}>Remove from watchlist</button>
+      <div className='watchlist-buttons'>
+        <button onClick={this.handleClick} className={`watchlist-button${this.state.watched ? " hidden" : ""}`}>Add to Watchlist</button>
+        <button onClick={this.handleClick} className={`watchlist-button${this.state.watched ? "" : " hidden"}`}>Remove from Watchlist</button>
       </div>
       </>
     );
