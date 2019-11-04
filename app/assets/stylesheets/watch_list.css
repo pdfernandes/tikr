@@ -1,6 +1,6 @@
 .watchlist {
     font-family: 'Arimo', sans-serif;
-    height: 870px;
+    /* height: 870px; */
     background-color: white;
 }
 
@@ -23,7 +23,7 @@
 
 .watchlist > ul {
     width:100%;
-    height: 394px;
+    max-height: 300px;
     overflow-y: auto;
 }
 /* 

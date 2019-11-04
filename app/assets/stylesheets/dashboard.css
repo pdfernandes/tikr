@@ -18,7 +18,7 @@
 
 .watchlist {
     position:fixed;
-    height: 90% ;
+    /* height: 90% ; */
     width: 282px;
     border-radius: 4px;
     box-shadow: 0 0 14px rgb(220,220,220)
