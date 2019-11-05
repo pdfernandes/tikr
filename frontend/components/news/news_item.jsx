@@ -5,7 +5,7 @@ const NewsItem = ({ author, content, description, publishedAt, source, imageUrl,
 
     return (
         <>
-            <a href={url}>
+            <a target='_blank' href={url}>
                 <div className='news-text'>
                     <h1>{source}</h1>
                     <h2>{title}</h2>
