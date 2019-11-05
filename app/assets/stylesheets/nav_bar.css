@@ -38,9 +38,9 @@
 .nav-logo:hover i, .nav-logo:hover .logo{
     color: rgb(52, 209, 153);
 }
-.nav-logo:hover .logo{
+/* .nav-logo:hover .logo{
     text-decoration: underline;
-}
+} */
 
 /* .logo-image {
     max-width: 25%;
@@ -73,32 +73,42 @@
     color: white;
 }
 
-.github {
-    color: black;
-    margin: 0 8px;
-    font-size: 22px
+.plugs {
+    display: flex;
+
 }
 
-.github:hover, .linkedin:hover {
+.personal-links {
+    margin: 0 6px;
+    font-size: 22px;
+    color: black;
+}
+
+.personal-links:hover {
     color: rgb(52, 209, 153);
 }
 
+/* .github:hover, .linkedin:hover {
+    color: rgb(52, 209, 153);
+} */
+
 .left-nav {
     display: flex;
-    width: 13%;
+    width: 18%;
     justify-content: space-between;
 
 }
 
-
+/* 
 .github {
     margin: 0 8px;
-    font-size: 22px
+    font-size: 22px;
+    color: black;
 }
 .linkedin {
     margin: 0 8px;
-    font-size: 22px;
-}
+    font-size: 22px; */
+/* } */
 
 .logout-button {
     padding: 10px 20px;
@@ -111,5 +121,19 @@
 .logout-button:hover {
     background-color: rgb(236, 81,56);
 }
+
+.loggedin-left-nav {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.left-nav-links {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+}
+
+
 
 

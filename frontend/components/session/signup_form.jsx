@@ -50,7 +50,7 @@ class SignupForm extends React.Component {
                 switch (word){
                     case 'Username':
                         usernameClassError = 'errored'
-                        usernameError = <div className='signup-error'>{'Please enter your desired username'}</div>;
+                        usernameError = <div className='signup-error'>{'Please enter your desired username.'}</div>;
                         return;
                     case 'Email':
                         emailClassError = 'errored'
@@ -58,15 +58,15 @@ class SignupForm extends React.Component {
                         return;
                     case 'Fname':
                         fnameClassError = 'errored'
-                        fnameError = <div className='signup-error'>{"Please enter your first name."}</div>;
+                        fnameError = <div className='signup-error'>{"Please enter your name."}</div>;
                         return;
                     case 'Lname':
                         lnameClassError = 'errored'
-                        lnameError = <div className='signup-error'>{"Please enter your last name."}</div>;
+                        lnameError = <div className='signup-error'>{"Please enter your name."}</div>;
                         return;
                     case 'Password':
                         passwordClassError = 'errored';
-                        passwordError = <div className='signup-error'>{'Your password must be at least 10 characters'}</div>
+                        passwordError = <div className='signup-error'>{'Your password must be at least 10 characters.'}</div>
                         return;
 
                 }
@@ -81,8 +81,8 @@ class SignupForm extends React.Component {
             <main className='signup-form-container'>
                 <form onSubmit={this.handleSubmit} className='signup-form'>
                     <div className='signup-header'>
-                        <h1>Make Your Money Samba </h1>
-                        <h2>Tikr lets you make pretend you're investing, commision free.</h2>
+                        <h1>Make Your Money Move</h1>
+                        <h2>Tikr lets you make pretend you're investing, commission free.</h2>
                     </div>
                     <div className='signup-component'>
                         <div className='names'>
