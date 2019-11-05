@@ -136,7 +136,9 @@ class TransactionForm extends React.Component {
       })
       
     } else {
-      
+        this.setState({
+          watched: false
+        });
     }
 
   }
