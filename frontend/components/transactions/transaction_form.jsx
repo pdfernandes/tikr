@@ -27,6 +27,24 @@ class TransactionForm extends React.Component {
   }
 
 
+  componentDidUpdate(prevProps) {
+    debugger
+    if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
+      // this.props.history.push(`/stocks/${this.props.match.params.ticker}`)
+      // window.location.reload();
+         this.props.allTransactions();
+         this.props.allCompanies().then(() => {
+           this.findCompany();
+         });
+         StocksAPIUtil.getLastPrice(this.props.ticker).then(response => {
+           this.showPrice(response.last_price);
+         });
+  
+      
+    }
+  }
+
+
   componentDidMount() {
     // 
     // this.checkWatched();

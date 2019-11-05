@@ -30,25 +30,23 @@ class Company extends React.Component {
     this.formatData = this.formatData.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.showValue = this.showValue.bind(this);
-    this.setCompanyName = this.setCompanyName.bind(this)
+    this.setCompanyName = this.setCompanyName.bind(this);
   }
 
   componentDidMount() {
-      let { ticker } = this.props;
-      let p1 = StocksAPIUtil.getCompanyName;
+    let { ticker } = this.props;
+    let p1 = StocksAPIUtil.getCompanyName;
     //   let p2 = StocksAPIUtil.setCompanyName;
-      let p2 = StocksAPIUtil.getLastPrice;
-      let p3 = StocksAPIUtil.getIntradayPrices;
-
+    let p2 = StocksAPIUtil.getLastPrice;
+    let p3 = StocksAPIUtil.getIntradayPrices;
 
     Promise.all([p1(ticker), p2(ticker), p3(ticker)]).then(responseArr => {
-        this.setCompanyName(responseArr[0]);
-        this.setState({
-           value: parseFloat(responseArr[1].last_price.toFixed(2))
-        })
-        this.formatData("1D", responseArr[2]);
-        
-    })
+      this.setCompanyName(responseArr[0]);
+      this.setState({
+        value: parseFloat(responseArr[1].last_price.toFixed(2))
+      });
+      this.formatData("1D", responseArr[2]);
+    });
     // StocksAPIUtil.getCompanyName(this.props.ticker)
     //   .then(response => this.setCompanyName(response))
     //   .then(() => StocksAPIUtil.getLastPrice(this.props.ticker))
@@ -64,10 +62,23 @@ class Company extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    debugger
+    debugger;
     if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
       // this.props.history.push(`/stocks/${this.props.match.params.ticker}`)
-      window.location.reload();
+      // window.location.reload();
+      let { ticker } = this.props;
+      let p1 = StocksAPIUtil.getCompanyName;
+      //   let p2 = StocksAPIUtil.setCompanyName;
+      let p2 = StocksAPIUtil.getLastPrice;
+      let p3 = StocksAPIUtil.getIntradayPrices;
+
+      Promise.all([p1(ticker), p2(ticker), p3(ticker)]).then(responseArr => {
+        this.setCompanyName(responseArr[0]);
+        this.setState({
+          value: parseFloat(responseArr[1].last_price.toFixed(2))
+        });
+        this.formatData("1D", responseArr[2]);
+      });
     }
   }
 
@@ -151,9 +162,9 @@ class Company extends React.Component {
     //   gain = 0;
     //   percentGain = 0;
     // }
-         else {
-    //   let stateArray = this.state[this.state.selected];
-    //   latestPrice = stateArray[stateArray.length - 1].price;
+    else {
+      //   let stateArray = this.state[this.state.selected];
+      //   latestPrice = stateArray[stateArray.length - 1].price;
       let firstPrice = this.state[this.state.selected][0].price;
       //state array this.state[this.state.selected]
       //last price stateArray[stateArray.length - 1].price

@@ -11,7 +11,7 @@
 
 .search-bar {
   width: 100%;
-      border-radius: 6px;
+    border-radius: 6px;
     text-align: left;
     padding: 5px 20px;
     border: 1px solid rgb(240,240,240);
@@ -50,7 +50,7 @@
   border-left: 1px solid rgb(240, 240, 240);
   border-right: 1px solid rgb(240, 240, 240);
   border-bottom: 1px solid rgb(240, 240, 240);
-  /* box-shadow: -10px 0px 10px 1px rgb(220, 220, 220); */
+  box-shadow: 0 8px 10px -10px rgb(220, 220, 220), 8px 0px 10px -10px rgb(220, 220, 220), -8px 0px 10px -10px rgb(220, 220, 220);
 }
 
 .category-title {
@@ -78,4 +78,11 @@
 }
 .search-items > li > a > * {
   font-weight: bold;
+}
+
+.fa-search:before {
+    position: absolute;
+    line-height: 26px;
+    left: 5px;
+    color: rgb(203, 203, 205);
 }
