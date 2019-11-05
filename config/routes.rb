@@ -9,7 +9,10 @@ Rails.application.routes.draw do
       resources :transactions, only: [:create,:index, :show]
       resources :companies, only: [:index, :show]
       resources :watchlists, only: [:index, :create, :destroy]
+      
   end
+
+  get 'search/companies', :to => 'search#index'
 
 
   root to: "static_pages#root"

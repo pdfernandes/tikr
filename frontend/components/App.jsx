@@ -11,6 +11,7 @@ import PortfolioContainer from "./watchlist/portfolio_container";
 import CompanyContainer from './company/company_container';
 import CompanyInfo from "./company/company_info";
 import TransactionFormContainer from './transactions/transaction_form_container'
+import Searchbar from "./search/searchbar";
 
 const App = () => (
     <>
@@ -18,6 +19,7 @@ const App = () => (
         <AuthRoute exact path='/' component={Splash} />
         <AuthRoute exact path='/login' component={LoginFormContainer} />
         <AuthRoute exact path='/signup' component={SignupFormContainer} />
+        <ProtectedRoute path='/' component={Searchbar} />
         <div className="company-show">
             <div className='company-show-main'>
                 <ProtectedRoute exact path='/stocks/:ticker' component={CompanyContainer} />
