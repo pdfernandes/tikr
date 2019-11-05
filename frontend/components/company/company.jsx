@@ -63,6 +63,14 @@ class Company extends React.Component {
     // });
   }
 
+  componentDidUpdate(prevProps) {
+    debugger
+    if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
+      // this.props.history.push(`/stocks/${this.props.match.params.ticker}`)
+      window.location.reload();
+    }
+  }
+
   setCompanyName(response) {
     this.setState({
       name: response.companyName

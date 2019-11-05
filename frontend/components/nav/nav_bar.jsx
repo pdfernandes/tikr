@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SignupFormContainer from '../session/signup_form_container';
 import LoginFormContainer from "../session/login_form_container";
+import Searchbar from '../search/searchbar';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class NavBar extends React.Component {
                             {linkedin}
                         </div>
                     </div>
-                    <div className='search-bar'>Search Goes Here</div>
+                    <div className='searchbar-container'><Searchbar/></div>
                     <button className='logout-button' type="submit" onClick={this.handleClick}>Log Out</button>
 
 
