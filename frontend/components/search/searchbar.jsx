@@ -56,7 +56,7 @@ class Searchbar extends React.Component {
           type="text"
           name=""
           id=""
-          onKeyUp={this.debounceEvent(this.getData, 500)}
+          onKeyUp={this.debounceEvent(this.getData, 300)}
           placeholder='This is the searchbar'
         />
         <ul className='search-items'>

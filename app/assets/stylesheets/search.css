@@ -1,8 +1,9 @@
 .searchbar-container {
+    position: relative;
     width: 25%;
     display:flex;
     flex-direction: column;
-    z-index: 4;
+    z-index: 2;
 }
 
 .search-bar {
@@ -10,10 +11,16 @@
 }
 
 .search-items {
-    position: sticky;
-    top: 20px;
+    position: absolute;
+    top: 32px;
+    width: 100%;
 }
 
 .search-items > li {
     height: 20px;
+}
+
+.search-items > li > a {
+    height: 20px;
+    padding: 0px;
 }
