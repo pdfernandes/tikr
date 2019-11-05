@@ -1,53 +1,62 @@
 import React from "react";
-import * as SearchAPIUtil from '../../util/search_util';
+import * as SearchAPIUtil from "../../util/search_util";
+import { debounce } from "lodash";
 
 class Searchbar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      results: [],
+    }
 
-    // this.handleClick = this.handleClick.bind(this);
-    this.debounce = this.debounce.bind(this)
-
+    this.getData = this.getData.bind(this);
+    this.debounceEvent = this.debounceEvent.bind(this);
   }
 
-  // handleClick (e) {
-  //   debugger
-  //   SearchAPIUtil.searchDB('AApl')
-  //   .then((response) => {
-  //       debugger
-  //   })
-  // }
+  debounceEvent(...args) {
+    this.debouncedEvent = debounce(...args);
+    return e => {
+      e.persist();
+      return this.debouncedEvent(e);
+    };
+  }
 
   getData(e) {
-      debugger
-    SearchAPIUtil.searchDB('AApl')
-    .then((response) => {
-        debugger
-    })
-  }
-
-  // debounce function! :D
-  debounce (func, wait, immediate) {
-    let timer;
-    return () => {
-      let context = this;
-      args = arguments;
-      clearTimeout(timer)
-      timer = setTimeout(() => {
-        getData.apply(context, arguments)
-      }, wait)
+    if (e.target.value !== "") {
+      SearchAPIUtil.searchDB(e.target.value).then(response => {
+        prepareSearchItems(response)
+      });
     }
   }
+
+  prepareSearchItems(items) {
+    let searchItems = items.map((el, i) => {
+      return(
+        <li key={i}>
+          <SearchItem name={el.name} ticker={el.ticker} id={el.ticker} />
+        </li>
+      )
+    })
+
+    this.setState({ results: searchItems })
+  }
+
 
   render() {
     return (
       <>
-        {/* <h1>Hello from search</h1> */}
-        <input className='search-bar' type="text" name="" id=""  onKeyUp={this.debounce}/>
-        {/* <button onClick={this.handleClick}>This is a button</button> */}
-        {/* <h1>end search</h1> */}
+        <input
+          className="search-bar"
+          type="text"
+          name=""
+          id=""
+          onKeyUp={this.debounceEvent(this.getData, 500)}
+        />
+        <ul>
+          {this.state.results}
+        </ul>
       </>
-    )
+    );
   }
 }
 
