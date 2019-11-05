@@ -59,7 +59,9 @@ class Searchbar extends React.Component {
           onKeyUp={this.debounceEvent(this.getData, 300)}
           placeholder='This is the searchbar'
         />
-        <ul className='search-items'>
+        <ul className={`search-items${this.state.results === null ? " hidden" : ""}`}>
+          <li className='category-title'>
+            <h1>Stocks</h1></li>
           {this.state.results}
         </ul>
       </>

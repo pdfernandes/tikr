@@ -113,21 +113,3 @@
 }
 
 
-.search-bar {
-    width: 40%;
-    border-radius: 6px;
-    text-align: center;
-    padding: 5px 20px;
-    border: 1px solid rgb(240,240,240);
-    color: grey;
-}
-
-.search-bar:hover {
-    background-color: rgb(240,240,240);
-    box-shadow: 0px 0px 4px 4px rgb(230,230,230);
-    transition: box-shadow .3s ease-in-out;
-}
-
-
-
-
