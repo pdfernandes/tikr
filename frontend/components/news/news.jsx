@@ -9,22 +9,22 @@ class News extends React.Component {
   componentDidMount() {
     let { news } = this.props;
     if (this.props.match.url === "/") {
-         this.props.getTopNews("?q=business")
+        //  this.props.getTopNews("?q=business")
     } else {
-         this.props.getTopNews(`?q=${this.props.match.params.ticker}`)
+        //  this.props.getTopNews(`?q=${this.props.match.params.ticker}`)
     }
   }
 
   componentDidUpdate(prevProps) {
-    debugger;
+    // debugger;
     if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
       // this.props.history.push(`/stocks/${this.props.match.params.ticker}`)
       // window.location.reload();
          let { news } = this.props;
          if (this.props.match.url === "/") {
-              this.props.getTopNews("?q=business")
+              // this.props.getTopNews("?q=business")
          } else {
-              this.props.getTopNews(`?q=${this.props.match.params.ticker}`)
+              // this.props.getTopNews(`?q=${this.props.match.params.ticker}`)
          }
     }
   }

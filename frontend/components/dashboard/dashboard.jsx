@@ -3,6 +3,7 @@ import * as StocksAPIUtil from "../../util/stocks_api_util";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import CustomTooltip from './tooltip_content';
 import Odometer from 'react-odometerjs';
+import * as CompanyAPIUtil from '../../util/companies_util';
 
 
 class Dashboard extends React.Component {
@@ -29,12 +30,22 @@ class Dashboard extends React.Component {
         let userId = this.props.user.id
         let companies;
         let transactions;
-        Promise.all([this.props.allTransactions(), this.props.allUserCompanies(userId)])
-            .then(responseArr => {
-                transactions = Object.values(responseArr[0].transactions);
-                companies = Object.values(responseArr[1].companies).map(company => company.ticker)
-                this.props.getLastPrices(companies).then(() => this.buildPortfolio(this.state.timeFrame))
+        // Promise.all([this.props.allTransactions(), this.props.allUserCompanies(userId)])
+        //     .then(responseArr => {
+        //         transactions = Object.values(responseArr[0].transactions);
+        //         companies = Object.values(responseArr[1].companies).map(company => company.ticker)
+        //         debugger
+        //         this.props.getLastPrices(companies).then(() => this.buildPortfolio(this.state.timeFrame))
+        //     })
+
+        this.props.allTransactions()
+        .then(res => {
+            let transactionsArray = Object.values(res.transactions)
+            CompanyAPIUtil.allUserCompanies(transactionsArray)
+            .then(res => {
+                debugger
             })
+        })
 
     }
 

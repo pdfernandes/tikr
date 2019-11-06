@@ -28,7 +28,7 @@ class TransactionForm extends React.Component {
 
 
   componentDidUpdate(prevProps) {
-    debugger
+    // debugger
     if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
       // this.props.history.push(`/stocks/${this.props.match.params.ticker}`)
       // window.location.reload();

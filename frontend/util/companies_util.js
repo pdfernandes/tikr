@@ -13,11 +13,14 @@ export const getCompany = (ticker) => {
 }
 
 
-export const allUserCompanies = id => {
+export const allUserCompanies = transactions => {
     return $.ajax({
-        method: "GET",
-        url:`api/users/${id}/companies`
-    })
+      method: "GET",
+      url: `api/companies/user_companies`,
+      data: {
+        transactions
+      }
+    });
 }
 
 
