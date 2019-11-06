@@ -4,7 +4,6 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContai
 import CustomTooltip from './tooltip_content';
 import Odometer from 'react-odometerjs';
 
-//this component is in charge of making and showing the graph
 
 class Dashboard extends React.Component {
     constructor(props) {

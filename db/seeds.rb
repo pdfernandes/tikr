@@ -42,8 +42,9 @@ demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_i
 demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '03-08-2006',price: 50 )
 demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '03-07-2012', price: 54 )
 demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '03-23-2016', price: 50 )
+demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany2.id, user_id: demoUser.id,transaction_time: '11-07-2018', price: 36 )
 demoTransaction = Transaction.create!(order_type: false, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '11-07-2018', price: 36 )
-demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '10-03-2019', price: 150 )
+demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany3.id, user_id: demoUser.id,transaction_time: '10-03-2019', price: 150 )
 demoTransaction = Transaction.create!(order_type: true, quantity: 20, company_id: demoCompany.id, user_id: demoUser.id,transaction_time: '10-03-2019', price: 25 )
 
 
