@@ -9,7 +9,6 @@ class Api::CompaniesController < ApplicationController
     end 
     
     def show
-        debugger
         @company = Company.find(params[:ticker])
         render :show
     end
@@ -23,12 +22,10 @@ class Api::CompaniesController < ApplicationController
             @checked_transactions << company_id if !@checked_transactions.include?(company_id)
             # @checked_tickers << Company.find(company_id)
         end
-        debugger
         @checked_transactions.each do |id|
             @companies << Company.find(id)
         end
         @companies
-        debugger
         render :user_companies
     end
 

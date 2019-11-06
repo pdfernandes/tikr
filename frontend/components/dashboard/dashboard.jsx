@@ -43,11 +43,27 @@ class Dashboard extends React.Component {
             let transactionsArray = Object.values(res.transactions)
             CompanyAPIUtil.allUserCompanies(transactionsArray)
             .then(res => {
-                debugger
+                //[{ticker:AAPL}]
+                
+                Promise.all(res.map(obj => StocksAPIUtil.fetchHistoricalPrices(obj.ticker, this.state.timeFrame.toLowerCase())))
+                .then(res => {
+                    let datesArray = res[0].map(obj => obj.date)
+                    this.setState({
+                        date: datesArray
+                    },() => {
+                        debugger
+                    })
+                })
             })
         })
 
     }
+
+
+setDateArray () {
+    // this will make an array with dates starting from now 
+}
+
 
     buildPortfolio(time = this.state.timeFrame) {
         let { user, companies, transactions } = this.props;
