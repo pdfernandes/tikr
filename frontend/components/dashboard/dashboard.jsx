@@ -78,7 +78,7 @@ class Dashboard extends React.Component {
 
     buildHistoricPortfolio(datesArray, tickers) {
         //tickers =>  {id:ticker}
-        // debugger
+        debugger
         let { transactions } = this.props;
         //iterate through the date array while building portfolio
 
@@ -107,6 +107,8 @@ class Dashboard extends React.Component {
                     
                 }
             }
+
+            debugger
             
         }
 
@@ -119,7 +121,7 @@ class Dashboard extends React.Component {
     }
 
     buildHistoricPrices(datesArray, tickers, allCompanyPrices) {
-        // debugger
+        debugger
         let historicPrices = {};
 
         for (let i = 0; i < tickers.length; i++) {
@@ -127,7 +129,7 @@ class Dashboard extends React.Component {
             let companyPrices = allCompanyPrices[i];
             for (let j = 0; j < companyPrices.length; j++) {
                 let price = companyPrices[j];
-                // debugger
+                debugger
                 if (historicPrices[price.date] === undefined) {
                     historicPrices[price.date]= {};
                 }
@@ -137,7 +139,7 @@ class Dashboard extends React.Component {
 
         //historicPrices => {date : {ticker: price}}
 
-        // debugger
+        debugger
         return historicPrices;
 
     }
@@ -156,7 +158,7 @@ class Dashboard extends React.Component {
           }
         }
         let historicPortfolioValues = mergeWith(historicPortfolio, historicPrices, multiplier)
-        // debugger
+        debugger
         return historicPortfolioValues;
 
     }
@@ -175,6 +177,7 @@ class Dashboard extends React.Component {
                 value: parseFloat(value.toFixed(2))
             })
         }
+        debugger
         this.setState({
             portfolioValues: formattedPortfolio
         })
@@ -492,15 +495,15 @@ class Dashboard extends React.Component {
 
 
         let value = parseFloat((funds + this.state.value).toFixed(2));
-        // let gain = this.state.value.toFixed(2)
-        // let percentGain = (((value/funds) - 1) * 100).toFixed(2);
+        let gain = this.state.value.toFixed(2)
+        let percentGain = (((value/funds) - 1) * 100).toFixed(2);
         return (
             <>
                 <div className='portfolio-graph'>
                     <h1>
                         <div className='money-sign'>$</div><Odometer duration={600} value={value} />
                     </h1>
-                    {/* <h2>${gain} ({percentGain}%)</h2> */}
+                    <h2>${gain} ({percentGain}%)</h2>
                     <div>
                         {chart}
                     </div>

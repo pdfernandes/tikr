@@ -88,12 +88,18 @@ class TransactionForm extends React.Component {
       (this.state.order && this.isValidBuy()) ||
       (this.state.order === false && this.isValidSell(quantity))
     ) {
+      let date = new Date().toLocaleDateString();
+      date = date.split("/")
+      let year = date.pop();
+      date.unshift(year)
+      date = date.join("-")
       this.props.transact({
         order_type: this.state.order,
         quantity: this.state.shares,
         company_id: this.state.id,
         user_id: this.props.user.id,
-        price: this.state.estimated_cost
+        price: this.state.estimated_cost,
+        transaction_time: date
       });
 
       if (this.state.order) {
