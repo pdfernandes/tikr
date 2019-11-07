@@ -4,23 +4,18 @@ import React from "react";
 
 const CustomTooltip = ({ active, payload }) => {
     
-    if (active && payload[0] !== undefined) {
-        
-        let date = Date.parse(payload[0].payload.date)
-        let newDate = new Date(date)
-        let time = newDate.toLocaleString('en-US')
-        
-        return (
-        <>
-            <div className="tooltip-content">
-                {time}
-            </div>
-        
-        </>
-        )
+    if (payload !== null && (active && payload[0] !== undefined)) {
+      let date = Date.parse(payload[0].payload.date);
+      let newDate = new Date(date);
+      let time = newDate.toLocaleString("en-US");
 
+      return (
+        <>
+          <div className="tooltip-content">{time}</div>
+        </>
+      );
     } else {
-        return null;
+      return null;
     }
     
 }
