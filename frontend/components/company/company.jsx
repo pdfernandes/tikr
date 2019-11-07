@@ -217,7 +217,7 @@ class Company extends React.Component {
                 connectNulls
                 dataKey="price"
                 stroke={
-                  firstValidPrice < lastValidPrice
+                  firstValidPrice <= lastValidPrice
                     ? "#34D199"
                     : "#f55733"
                 }

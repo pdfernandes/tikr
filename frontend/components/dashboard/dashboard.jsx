@@ -151,6 +151,7 @@ class Dashboard extends React.Component {
                 value: parseFloat(value.toFixed(2))
             })
         }
+        debugger
         this.setState({
             portfolioValues: formattedPortfolio
         })
@@ -297,7 +298,7 @@ class Dashboard extends React.Component {
                         <YAxis hide={true} domain={['dataMin', 'dataMax']} />
                         <Tooltip content={<CustomTooltip />} active={true} position={{y: 0}}/>
                         <Line type="monotone" dataKey="value" stroke={
-                            this.state.portfolioValues[0].value <
+                            this.state.portfolioValues[0].value <=
                             this.state.portfolioValues[this.state.portfolioValues.length - 1].value ? 
                             "#34D199" : "f55733"} connectNulls strokeWidth='2' dot={false} />
 

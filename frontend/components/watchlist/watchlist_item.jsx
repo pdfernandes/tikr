@@ -51,7 +51,7 @@ class WatchlistItem extends React.Component {
             type="monotone"
             connectNulls
             dataKey="close"
-            stroke={this.state.data[0].close < this.state.data[this.state.data.length - 1].close ? "#34D199" : "#f55733"}
+            stroke={this.state.data[0].close <= this.state.data[this.state.data.length - 1].close ? "#34D199" : "#f55733"}
             strokeWidth="1"
             dot={false}
           />
