@@ -4,6 +4,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContai
 import CustomTooltip from './tooltip_content';
 import Odometer from 'react-odometerjs';
 import * as CompanyAPIUtil from '../../util/companies_util';
+import { mergeWith, multiply } from 'lodash'
 
 
 class Dashboard extends React.Component {
@@ -14,6 +15,7 @@ class Dashboard extends React.Component {
             portfolio: {},
             portfolioValue: this.props.user.funds,
             portfolioValuesArray: [],
+            portfolioValues: [],
             timeFrame: "1Y",
             value: 0,
         }
@@ -26,6 +28,8 @@ class Dashboard extends React.Component {
         this.showValue = this.showValue.bind(this)
         //
         this.buildHistoricPortfolio = this.buildHistoricPortfolio.bind(this)
+        this.mergePortfolioWithPrice = this.mergePortfolioWithPrice.bind(this)
+        this.formatPortfolioValues = this.formatPortfolioValues.bind(this)
     }
 
     componentDidMount() {
@@ -46,22 +50,25 @@ class Dashboard extends React.Component {
             CompanyAPIUtil.allUserCompanies(transactionsArray)
             .then(res => {
                 //[{ticker:AAPL, id:id}]
-                debugger
+                // debugger
                 let prevRes = res;
                 let tickers = {};
                 res.forEach(ele => {
                     tickers[[ele.id]] = ele.ticker;
                 })
 
-                debugger
+                // debugger
                 Promise.all(res.map(obj => StocksAPIUtil.fetchHistoricalPrices(obj.ticker, this.state.timeFrame.toLowerCase())))
                 .then(res => {
 
-                    debugger
+                    // debugger
                     let datesArray = res[0].map(obj => obj.date)
                     let currentRes = res;
-                    // this.buildHistoricPortfolio(datesArray, tickers)
-                    this.buildHistoricPrices(datesArray, prevRes, currentRes)
+                    let historicPortfolio = this.buildHistoricPortfolio(datesArray, tickers)
+                    let historicPrices = this.buildHistoricPrices(datesArray, prevRes, currentRes)
+                    let historicPortfolioValues = this.mergePortfolioWithPrice(historicPortfolio,historicPrices)
+                    this.formatPortfolioValues(historicPortfolioValues);
+
 
                 })
             })
@@ -71,7 +78,7 @@ class Dashboard extends React.Component {
 
     buildHistoricPortfolio(datesArray, tickers) {
         //tickers =>  {id:ticker}
-        debugger
+        // debugger
         let { transactions } = this.props;
         //iterate through the date array while building portfolio
 
@@ -105,7 +112,8 @@ class Dashboard extends React.Component {
 
         //historic portfolio =>{ date: {ticker: quantity}}
 
-        debugger
+        // debugger
+        return historicPortfolio;
 
 
     }
@@ -127,9 +135,53 @@ class Dashboard extends React.Component {
             }
         }
 
-        debugger
+        //historicPrices => {date : {ticker: price}}
+
+        // debugger
+        return historicPrices;
 
     }
+
+    mergePortfolioWithPrice (historicPortfolio, historicPrices) {
+        function multiplier (a, b) {
+          const result = multiply (a,b)
+          if (isNaN(result)) {
+              return;
+          } else {
+              if (a === undefined) {
+                  return multiply(0, b)
+              } else {
+                  return multiply(a, b)
+              }
+          }
+        }
+        let historicPortfolioValues = mergeWith(historicPortfolio, historicPrices, multiplier)
+        // debugger
+        return historicPortfolioValues;
+
+    }
+
+    formatPortfolioValues (historicPortfolioValues) {
+        //historicsPortoflioValues => {date: {ticker: aggregateValue}}
+        let formattedPortfolio = [];
+        let dates = Object.keys(historicPortfolioValues);
+
+        for (let i = 0; i < dates.length; i++) {
+            let date = dates[i];
+            let values = Object.values(historicPortfolioValues[date])
+            let value = values.reduce((a, b) => a + b)
+            formattedPortfolio.push({
+                date,
+                value: parseFloat(value.toFixed(2))
+            })
+        }
+        this.setState({
+            portfolioValues: formattedPortfolio
+        })
+    }
+
+
+
 
 
     buildPortfolio(time = this.state.timeFrame) {
@@ -363,10 +415,12 @@ class Dashboard extends React.Component {
 
 
     render() {
+
+        
         
         let { funds, portfolioValue } = this.state;
         let chart;
-        if (this.state.portfolioValuesArray.length === 0) {
+         if (this.state.portfolioValues.length === 0) {
             
             chart = this.state.funds
         } else {
@@ -378,7 +432,7 @@ class Dashboard extends React.Component {
                     <LineChart
                         width={730}
                         height={250}
-                        data={this.state.portfolioValuesArray}
+                        data={this.state.portfolioValues}
                         onMouseMove={this.showValue}
                     >
                         <XAxis dataKey="date" hide={true}/>
@@ -400,19 +454,53 @@ class Dashboard extends React.Component {
             </>
             )
         }
+        // if (this.state.portfolioValuesArray.length === 0) {
+            
+        //     chart = this.state.funds
+        // } else {
+           
+        //     chart = (
+        //          <>
+                    
+        //             <ResponsiveContainer width='100%' aspect={7 / 2.0}>
+        //             <LineChart
+        //                 width={730}
+        //                 height={250}
+        //                 data={this.state.portfolioValuesArray}
+        //                 onMouseMove={this.showValue}
+        //             >
+        //                 <XAxis dataKey="date" hide={true}/>
+        //                 <YAxis hide={true} domain={['dataMin', 'dataMax']} />
+        //                 <Tooltip content={<CustomTooltip />} active={true} position={{y: 0}}/>
+        //                     <Line type="monotone" dataKey="value" stroke="#34D199" connectNulls strokeWidth='2' dot={false} />
+
+
+
+        //             </LineChart>
+        //          </ResponsiveContainer>
+        //     <div className='portfolio-buttons' >
+        //         <button className='dash-button' onClick={this.handleClick} value="1W">1W</button>
+        //         <button className='dash-button active' onClick={this.handleClick} value="1M">1M</button>
+        //         <button className='dash-button' onClick={this.handleClick} value='3M'>3M</button>
+        //         <button className='dash-button' onClick={this.handleClick} value='1Y'>1Y</button>
+        //     </div>
+        //     {/* <button onClick={this.handleClick} value='all'>All</button> */}
+        //     </>
+        //     )
+        // }
 
 
 
         let value = parseFloat((funds + this.state.value).toFixed(2));
-        let gain = this.state.value.toFixed(2)
-        let percentGain = (((value/funds) - 1) * 100).toFixed(2);
+        // let gain = this.state.value.toFixed(2)
+        // let percentGain = (((value/funds) - 1) * 100).toFixed(2);
         return (
             <>
                 <div className='portfolio-graph'>
                     <h1>
                         <div className='money-sign'>$</div><Odometer duration={600} value={value} />
                     </h1>
-                    <h2>${gain} ({percentGain}%)</h2>
+                    {/* <h2>${gain} ({percentGain}%)</h2> */}
                     <div>
                         {chart}
                     </div>
