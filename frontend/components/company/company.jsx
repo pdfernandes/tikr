@@ -139,6 +139,7 @@ class Company extends React.Component {
   }
 
   showValue(e) {
+    debugger
     if (e.activePayload !== undefined) {
       this.setState({ value: e.activePayload[0].payload.price });
     }
@@ -149,7 +150,7 @@ class Company extends React.Component {
     let gain;
     let percentGain;
 
-    let chart;
+    let chart = null;
     if (
       this.state[this.state.selected].length === 0 ||
       this.state.value === null
@@ -157,7 +158,6 @@ class Company extends React.Component {
       value = 0;
       gain = 0;
       percentGain = 0;
-      chart = null;
     }
     // if (
     //   this.state[this.state.selected].length === 0 ||
