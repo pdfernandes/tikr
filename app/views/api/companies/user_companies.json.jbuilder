@@ -1,1 +1,1 @@
-json.array! @companies, :ticker
+json.array! @companies, :ticker, :id

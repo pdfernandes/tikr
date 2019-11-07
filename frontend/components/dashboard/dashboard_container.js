@@ -8,7 +8,7 @@ import Dashboard from "./dashboard";
 const mapState = (state) => {
     return {
         user: Object.values(state.entities.user)[0],
-        transactions: state.entities.transactions,
+        transactions: Object.values(state.entities.transactions),
         companies: state.entities.companies,
         prices: state.entities.prices,
     }
