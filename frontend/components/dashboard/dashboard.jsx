@@ -44,6 +44,9 @@ class Dashboard extends React.Component {
             CompanyAPIUtil.allUserCompanies(transactionsArray)
             .then(res => {
                 //[{ticker:AAPL}]
+                let tickers = res.map(el => {
+                    el.ticker;
+                })
                 
                 Promise.all(res.map(obj => StocksAPIUtil.fetchHistoricalPrices(obj.ticker, this.state.timeFrame.toLowerCase())))
                 .then(res => {
