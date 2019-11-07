@@ -41,9 +41,11 @@ class Company extends React.Component {
     let p3 = StocksAPIUtil.getIntradayPrices;
 
     Promise.all([p1(ticker), p2(ticker), p3(ticker)]).then(responseArr => {
+      debugger
       this.setCompanyName(responseArr[0]);
       this.setState({
         value: parseFloat(responseArr[1].last_price.toFixed(2))
+        // value: parseFloat(responseArr[1].toFixed(2))
       });
       this.formatData("1D", responseArr[2]);
     });
@@ -75,6 +77,7 @@ class Company extends React.Component {
         this.setCompanyName(responseArr[0]);
         this.setState({
           value: parseFloat(responseArr[1].last_price.toFixed(2))
+          // value: parseFloat(responseArr[1].toFixed(2))
         });
         this.formatData("1D", responseArr[2]);
       });

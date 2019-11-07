@@ -36,6 +36,14 @@ export const getLastPrice = (ticker) => {
 }
 
 
+// export const getLastPrice = (ticker) => {
+//     return $.ajax({
+//         method:"GET",
+//         url: `https://sandbox.iexapis.com/stable/stock/${ticker}/price?token=${iexKey}`
+//     })
+// }
+
+
 
 
 
@@ -72,6 +80,20 @@ export const getCompanyName = ticker => {
 
 //production
 
+// export const getLastPrice = (ticker) => {
+//     return $.ajax({
+//         method:"GET",
+//         url: `https://api-v2.intrinio.com/securities/${ticker}/prices/realtime?source=iex&api_key=${intrinioAPIProduction}`
+//     })
+// }
+
+
+// export const getLastPrice = (ticker) => {
+//     return $.ajax({
+//         method:"GET",
+//         url: `https://cloud.iexapis.com/stable/stock/${ticker}/price?token=${iexKeyProduction}`
+//     })
+// }
 // export const fetchHistoricalPrices = (ticker, range) => {
 //     return $.ajax({
 //       method: "GET",
