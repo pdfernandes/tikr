@@ -26,6 +26,7 @@ class Dashboard extends React.Component {
         this.buildPortfolio = this.buildPortfolio.bind(this);
         this.setFrequency = this.setFrequency.bind(this)
         this.buildIntradayPorfolioValues = this.buildIntradayPorfolioValues.bind(this)
+        this.calculateIntradayValues = this.calculateIntradayValues.bind(this)
     }
 
     componentDidMount() {
@@ -37,8 +38,24 @@ class Dashboard extends React.Component {
 
     buildHistoricPortfolio(datesArray, tickers) {
         //tickers =>  {id:ticker}
-        
+       
         let { transactions } = this.props;
+          //build current portfolio
+
+          let currentPortfolio = {};
+          transactions.forEach(transaction => {
+              if (transaction.order_type) {
+                  if (currentPortfolio[tickers[transaction.company_id]] === undefined) {
+                      currentPortfolio[tickers[transaction.company_id]] = transaction.quantity;
+                  } else {
+                      currentPortfolio[tickers[transaction.company_id]] += transaction.quantity
+                  }
+              } else {
+                  currentPortfolio[tickers[transaction.company_id]] -= transaction.quantity
+              }
+          })
+
+        //
 
         let historicPortfolio = {};
 
@@ -51,6 +68,9 @@ class Dashboard extends React.Component {
                 let transaction = transactions[j];
                 let transactionDate = new Date(transaction.transaction_time);
                 transactionDate = transactionDate.getTime();
+                if (i === datesArray.length - 1) {
+                    debugger
+                }
 
                 if (transactionDate <= dateConvertedToTime) {
                     if (transaction.order_type) {
@@ -68,11 +88,11 @@ class Dashboard extends React.Component {
 
             
         }
-        debugger
+        
         //historic portfolio =>{ date: {ticker: quantity}}
         //will set a variable with most recent portfolio
-        let portfoliosArray = Object.values(historicPortfolio)
-        this.currentPortfolio = portfoliosArray[portfoliosArray.length - 1]
+        // let portfoliosArray = Object.values(historicPortfolio)
+        this.currentPortfolio = currentPortfolio
         return historicPortfolio;
 
 
@@ -94,7 +114,6 @@ class Dashboard extends React.Component {
         }
 
         //historicPrices => {date : {ticker: price}}
-
         return historicPrices;
 
     }
@@ -125,10 +144,11 @@ class Dashboard extends React.Component {
 
         for (let i = 0; i < dates.length; i++) {
             let date = dates[i];
+            let dateMinutes = date + " " + "04:00 PM"
             let values = Object.values(historicPortfolioValues[date])
             let value = values.reduce((a, b) => a + b)
             formattedPortfolio.push({
-                date,
+                date: dateMinutes,
                 value: parseFloat(value.toFixed(2))
             })
         }
@@ -201,11 +221,57 @@ class Dashboard extends React.Component {
 
     buildIntradayPorfolioValues() {
         let portfolio = this.currentPortfolio;
-        let portfolioTicker = Object.keys(portfolio)
-        Promise.all(portfolioTicker.map(ticker => StocksAPIUtil.getIntradayPrices(ticker)))
+        let portfolioTickers = Object.keys(portfolio)
+        Promise.all(portfolioTickers.map(ticker => StocksAPIUtil.getIntradayPrices(ticker)))
         .then(res => {
-            debugger
+            // debugger
+            this.calculateIntradayValues(portfolio, portfolioTickers, res)
         })
+
+    }
+
+    calculateIntradayValues(portfolio, portfolioTickers, arrayOfPrices) {
+        let intradayValues = [];
+        for (let i = 0; i < portfolioTickers.length; i++) {
+            let ticker = portfolioTickers[i];
+            let tickerPrices = arrayOfPrices[i];
+            let quantity = portfolio[ticker]
+            let prevClose;
+            for (let j = 0; j < tickerPrices.length; j++) {
+                let data = tickerPrices[j];
+                let close = data.close;
+                let minute = data.minute;
+
+                if (close !== null) {
+                    prevClose = close;
+                }
+
+                if (close === null) {
+                    close = prevClose;
+                }
+                let date = data.date;
+                let value = quantity * close;
+
+                if (intradayValues[j] === undefined) {
+                    intradayValues[j] = {
+                        date: date + " " + minute,
+                        value
+                    }
+                } else {
+                    intradayValues[j].value += value
+                }
+
+            }
+        }
+
+        intradayValues = intradayValues.filter(el => {
+            let minute = parseInt(el.date.split(":")[1]);
+            return minute % 5 === 0;
+        })
+
+        this.setState({
+        portfolioValues: intradayValues
+        });
 
     }
 
