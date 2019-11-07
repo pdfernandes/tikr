@@ -218,7 +218,6 @@ class Company extends React.Component {
       );
     }
 
-    debugger
     return (
       <>
         <div className="portfolio-graph">

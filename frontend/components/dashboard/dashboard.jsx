@@ -69,7 +69,6 @@ class Dashboard extends React.Component {
                 let transactionDate = new Date(transaction.transaction_time);
                 transactionDate = transactionDate.getTime();
                 if (i === datesArray.length - 1) {
-                    debugger
                 }
 
                 if (transactionDate <= dateConvertedToTime) {
@@ -224,7 +223,6 @@ class Dashboard extends React.Component {
         let portfolioTickers = Object.keys(portfolio)
         Promise.all(portfolioTickers.map(ticker => StocksAPIUtil.getIntradayPrices(ticker)))
         .then(res => {
-            // debugger
             this.calculateIntradayValues(portfolio, portfolioTickers, res)
         })
 

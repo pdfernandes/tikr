@@ -16,10 +16,7 @@ class News extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // debugger;
     if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
-      // this.props.history.push(`/stocks/${this.props.match.params.ticker}`)
-      // window.location.reload();
          let { news } = this.props;
          if (this.props.match.url === "/") {
               this.props.getTopNews("?q=business")
