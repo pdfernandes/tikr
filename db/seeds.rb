@@ -11,13 +11,31 @@ Company.destroy_all
 Transaction.destroy_all
 Watchlist.destroy_all
 
+# require 'csv'
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'companies.csv'))
+# csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+# csv.each do |row|
+#   c = Company.new
+#   c.ticker = row["TICKER"]
+#   c.name = row["NAME"]
+#   c.save
+# end
 require 'csv'
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'companies.csv'))
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'nasdaq.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   c = Company.new
-  c.ticker = row["TICKER"]
-  c.name = row["NAME"]
+  c.ticker = row["Symbol"]
+  c.name = row["Company Name"]
+  c.save
+end
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'nyse.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  c = Company.new
+  c.ticker = row["ACT Symbol"]
+  c.name = row["Company Name"]
   c.save
 end
 
@@ -27,11 +45,11 @@ end
 
 demoUser = User.create!(username:"DemoUser", email:'demoUser@tikr.app', fname:'Demo', lname:'User', funds:100000, password: "password123")
 
-demoCompany = Company.first
-demoCompany2 = Company.second
-demoCompany3 = Company.third
-demoCompany4 = Company.fourth
-demoCompany5 = Company.fifth
+demoCompany = Company.find_by(:ticker => "AAPL")
+demoCompany2 = Company.find_by(:ticker => "AXP")
+demoCompany3 = Company.find_by(:ticker => "BA")
+demoCompany4 = Company.find_by(:ticker => "CAT")
+demoCompany5 = Company.find_by(:ticker => "CSCO")
 
 demoTransaction = Transaction.create!(order_type: true, quantity: 10, company_id: demoCompany.id, user_id: demoUser.id, transaction_time: '2010-01-06', price: 50)
 demoTransaction = Transaction.create!(order_type: true, quantity: 20, company_id: demoCompany.id, user_id: demoUser.id, transaction_time: '2010-01-06', price: 100 )

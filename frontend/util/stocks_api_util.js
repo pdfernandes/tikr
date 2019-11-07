@@ -35,6 +35,11 @@ export const getLastPrice = (ticker) => {
     })
 }
 
+
+
+
+
+
 export const fetchHistoricalPrices = (ticker, range) => {
     return $.ajax({
         method:"GET",
