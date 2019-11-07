@@ -45,8 +45,9 @@ class Dashboard extends React.Component {
             let transactionsArray = Object.values(res.transactions)
             CompanyAPIUtil.allUserCompanies(transactionsArray)
             .then(res => {
-                //[{ticker:AAPL}]
+                //[{ticker:AAPL, id:id}]
                 debugger
+                let prevRes = res;
                 let tickers = {};
                 res.forEach(ele => {
                     tickers[[ele.id]] = ele.ticker;
@@ -55,10 +56,12 @@ class Dashboard extends React.Component {
                 debugger
                 Promise.all(res.map(obj => StocksAPIUtil.fetchHistoricalPrices(obj.ticker, this.state.timeFrame.toLowerCase())))
                 .then(res => {
+
+                    debugger
                     let datesArray = res[0].map(obj => obj.date)
-
-
-                    this.buildHistoricPortfolio(datesArray, tickers)
+                    let currentRes = res;
+                    // this.buildHistoricPortfolio(datesArray, tickers)
+                    this.buildHistoricPrices(datesArray, prevRes, currentRes)
 
                 })
             })
@@ -104,6 +107,27 @@ class Dashboard extends React.Component {
 
         debugger
 
+
+    }
+
+    buildHistoricPrices(datesArray, tickers, allCompanyPrices) {
+        // debugger
+        let historicPrices = {};
+
+        for (let i = 0; i < tickers.length; i++) {
+            let ticker = tickers[i].ticker;
+            let companyPrices = allCompanyPrices[i];
+            for (let j = 0; j < companyPrices.length; j++) {
+                let price = companyPrices[j];
+                // debugger
+                if (historicPrices[price.date] === undefined) {
+                    historicPrices[price.date]= {};
+                }
+                  historicPrices[price.date][ticker] = price.close;
+            }
+        }
+
+        debugger
 
     }
 
