@@ -24,6 +24,8 @@ class Dashboard extends React.Component {
         this.runningPortfolioTotal = this.runningPortfolioTotal.bind(this);
         this.formatStartDate = this.formatStartDate.bind(this);
         this.showValue = this.showValue.bind(this)
+        //
+        this.buildHistoricPortfolio = this.buildHistoricPortfolio.bind(this)
     }
 
     componentDidMount() {
@@ -65,6 +67,7 @@ class Dashboard extends React.Component {
     }
 
     buildHistoricPortfolio(datesArray, tickers) {
+        //tickers =>  {id:ticker}
         debugger
         let { transactions } = this.props;
         //iterate through the date array while building portfolio
@@ -72,24 +75,34 @@ class Dashboard extends React.Component {
         let historicPortfolio = {};
 
         for (let i = 0; i < datesArray.length; i++) {
-            let date = new Date(datesArray[i]);
-            date = date.getTime();
-            for (let j = 0; i < transactions.length; j++) {
+            let dateString = datesArray[i]
+            let date = new Date(dateString);
+            historicPortfolio[dateString] = {};
+            let dateConvertedToTime = date.getTime();
+            for (let j = 0; j < transactions.length; j++) {
                 let transaction = transactions[j];
                 let transactionDate = new Date(transaction.transaction_time);
                 transactionDate = transactionDate.getTime();
 
-                if (transactionDate <= date) {
+                if (transactionDate <= dateConvertedToTime) {
+                    if (transaction.order_type) {
+                        if (historicPortfolio[dateString][transaction.company_id] === undefined) {
+                            historicPortfolio[dateString][tickers[transaction.company_id]] = transaction.quantity;
+                        } else {
+                            historicPortfolio[dateString][tickers[transaction.company_id]] += transaction.quantity;
+                        } 
+                    } else {
+                        historicPortfolio[dateString][tickers[transaction.company_id]] += transaction.quantity;
+                    }
                     
                 }
-
-
-
             }
-
-
             
         }
+
+        //historic portfolio =>{ date: {ticker: quantity}}
+
+        debugger
 
 
     }
