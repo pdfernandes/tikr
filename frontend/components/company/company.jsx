@@ -62,7 +62,6 @@ class Company extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // debugger;
     if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
       // this.props.history.push(`/stocks/${this.props.match.params.ticker}`)
       // window.location.reload();
@@ -114,25 +113,28 @@ class Company extends React.Component {
   }
 
   handleClick(e) {
-    if (e.target.value === "1D") {
-      StocksAPIUtil.getIntradayPrices(this.props.ticker).then(response => {
-        this.formatData("1D", response);
-      });
-    } else if (e.target.value === "1W") {
-      let val = e.target.value;
-      StocksAPIUtil.fetchHistoricalPrices(this.props.ticker, "5dm").then(
-        response => {
+    if (e.target.value !== this.state.selected) {
+
+      if (e.target.value === "1D") {
+        StocksAPIUtil.getIntradayPrices(this.props.ticker).then(response => {
+          this.formatData("1D", response);
+        });
+      } else if (e.target.value === "1W") {
+        let val = e.target.value;
+        StocksAPIUtil.fetchHistoricalPrices(this.props.ticker, "5dm").then(
+          response => {
+            this.formatData(val, response);
+          }
+        );
+      } else {
+        let val = e.target.value;
+        StocksAPIUtil.fetchHistoricalPrices(
+          this.props.ticker,
+          e.target.value
+        ).then(response => {
           this.formatData(val, response);
-        }
-      );
-    } else {
-      let val = e.target.value;
-      StocksAPIUtil.fetchHistoricalPrices(
-        this.props.ticker,
-        e.target.value
-      ).then(response => {
-        this.formatData(val, response);
-      });
+        });
+      }
     }
   }
 
@@ -146,6 +148,8 @@ class Company extends React.Component {
     let value;
     let gain;
     let percentGain;
+
+    let chart;
     if (
       this.state[this.state.selected].length === 0 ||
       this.state.value === null
@@ -153,6 +157,7 @@ class Company extends React.Component {
       value = 0;
       gain = 0;
       percentGain = 0;
+      chart = null;
     }
     // if (
     //   this.state[this.state.selected].length === 0 ||
@@ -172,7 +177,48 @@ class Company extends React.Component {
       value = parseFloat(this.state.value.toFixed(2));
       gain = (this.state.value - firstPrice).toFixed(2);
       percentGain = ((value / firstPrice - 1) * 100).toFixed(2);
+      chart = (
+        <>
+          <ResponsiveContainer width="100%" aspect={7 / 2.0}>
+            <LineChart
+              width={730}
+              height={250}
+              data={this.state[this.state.selected]}
+              onMouseMove={this.showValue}
+            >
+              <XAxis
+                dataKey="date"
+                hide={true}
+                domain={["dataMin", "dataMax"]}
+              />
+              <YAxis hide={true} domain={["dataMin", "dataMax"]} />
+              <Tooltip
+                content={<CustomTooltip />}
+                active={true}
+                position={{ y: 0 }}
+              />
+              <Line
+                type="monotone"
+                connectNulls
+                dataKey="price"
+                stroke={
+                  this.state[this.state.selected][0].price <
+                  this.state[this.state.selected][
+                    this.state[this.state.selected].length - 1
+                  ].price
+                    ? "#34D199"
+                    : "#f55733"
+                }
+                strokeWidth="2"
+                dot={false}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </>
+      );
     }
+
+    debugger
     return (
       <>
         <div className="portfolio-graph">
@@ -185,34 +231,7 @@ class Company extends React.Component {
             ${gain} ({percentGain}%)
           </h2>
           <div>
-            <ResponsiveContainer width="100%" aspect={7 / 2.0}>
-              <LineChart
-                width={730}
-                height={250}
-                data={this.state[this.state.selected]}
-                onMouseMove={this.showValue}
-              >
-                <XAxis
-                  dataKey="date"
-                  hide={true}
-                  domain={["dataMin", "dataMax"]}
-                />
-                <YAxis hide={true} domain={["dataMin", "dataMax"]} />
-                <Tooltip
-                  content={<CustomTooltip />}
-                  active={true}
-                  position={{ y: 0 }}
-                />
-                <Line
-                  type="monotone"
-                  connectNulls
-                  dataKey="price"
-                  stroke="#34D199"
-                  strokeWidth="2"
-                  dot={false}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+            {chart}
             <div className="portfolio-buttons">
               <button
                 className="dash-button"

@@ -39,6 +39,25 @@ class WatchlistItem extends React.Component {
   }
 
   render() {
+    let chart;
+    if (this.state.data.length === 0) {
+      chart = null;
+    } else {
+      chart = (
+        <LineChart width={50} height={50} data={this.state.data}>
+          <XAxis dataKey="minute" hide={true} domain={["dataMin", "dataMax"]} />
+          <YAxis hide={true} domain={["dataMin", "dataMax"]} />
+          <Line
+            type="monotone"
+            connectNulls
+            dataKey="close"
+            stroke={this.state.data[0].close < this.state.data[this.state.data.length - 1].close ? "#34D199" : "#f55733"}
+            strokeWidth="1"
+            dot={false}
+          />
+        </LineChart>
+      );
+    }
     
     return (
       <>
@@ -51,22 +70,7 @@ class WatchlistItem extends React.Component {
           </div>
           {/* <div className="portfolio-value">$ {totalValue}</div> */}
           <div className="watchlist-chart">
-            <LineChart width={50} height={50} data={this.state.data}>
-              <XAxis
-                dataKey="minute"
-                hide={true}
-                domain={["dataMin", "dataMax"]}
-              />
-              <YAxis hide={true} domain={["dataMin", "dataMax"]} />
-              <Line
-                type="monotone"
-                connectNulls
-                dataKey="close"
-                stroke="#34D199"
-                strokeWidth="1"
-                dot={false}
-              />
-            </LineChart>
+            {chart}
           </div>
           <div className="portfolio-value">{`$ ${
             isNaN(this.state.price.toFixed(2)) ? 0 : this.state.price.toFixed(2)
