@@ -19,14 +19,21 @@
 
 }
 
+
 .splash-two-phones {
-    width: 45%;
-    height:100%;
+    width: 100%;
+    // height:100%;
+    height: 0;
     background-image: image-url("two_phones_2.png");
-    background-size: cover;
+    background-size: contain;
+    padding-bottom: 50%;
     background-position: center;
-    box-sizing: border-box;
-    background-origin: padding-box;
+    // box-sizing: border-box;
+    // background-origin: padding-box;
+    // background-position:50% 50%;
+    // resize: both;
+    // overflow: hidden;
+    
 }
 .splash-container-text {
    width: 30%;
@@ -151,6 +158,7 @@ strong {
 .splash-links {
     color: rgb(52,209,153);
     font-weight: bold;
+    font-size: 14px;
 }
 
 .no-manual-needed {
@@ -256,7 +264,7 @@ strong {
 }
 
 .keep-tabs {
-    width: 1190px;
+    width: 100%;
     height: 700px;
     margin: 0 auto;
     display: flex;
@@ -298,12 +306,13 @@ strong {
     height: 800px;
     background-color: rgb(4,12,20);
     color: white;
+    display: flex;
+    align-items: center;
 }
 
 .trusted-by-millions {
     font-family: 'Arimo', sans-serif;
-    height: 100%;
-    width: 1190px;
+    width: 70%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -344,13 +353,10 @@ strong {
 
 .get-started {
     width: 40%;
-    height: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    // justify-content: s;
-
 }
 .get-started > h1 {
     padding-top: 100px;
