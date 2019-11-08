@@ -1,4 +1,5 @@
-import { newsAPIKey } from '../../api_keys';
+// import { newsAPIKey } from '../../api_keys';
+export const newsAPIKey = "a9ce65ec9b19425baf27277e97aa1775";
 export const getTopNews = (query) => {
     
     return $.ajax ({
