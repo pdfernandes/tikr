@@ -151,7 +151,7 @@ class Dashboard extends React.Component {
                 value: parseFloat(value.toFixed(2))
             })
         }
-        debugger
+        
         this.setState({
             portfolioValues: formattedPortfolio
         })
@@ -159,6 +159,7 @@ class Dashboard extends React.Component {
     }
 
     buildPortfolio() {
+        
         let { transactions } = this.props;
         let formattedPortfolio;
             CompanyAPIUtil.allUserCompanies(transactions)
@@ -221,9 +222,11 @@ class Dashboard extends React.Component {
 
     buildIntradayPorfolioValues() {
         let portfolio = this.currentPortfolio;
+        
         let portfolioTickers = Object.keys(portfolio)
         Promise.all(portfolioTickers.map(ticker => StocksAPIUtil.getIntradayPrices(ticker)))
         .then(res => {
+            
             this.calculateIntradayValues(portfolio, portfolioTickers, res)
         })
 
@@ -249,7 +252,7 @@ class Dashboard extends React.Component {
                     close = prevClose;
                 }
                 let date = data.date;
-                let value = quantity * close;
+                let value = parseFloat((quantity * close).toFixed(2));
 
                 if (intradayValues[j] === undefined) {
                     intradayValues[j] = {
@@ -262,11 +265,13 @@ class Dashboard extends React.Component {
 
             }
         }
+        
 
         intradayValues = intradayValues.filter(el => {
             let minute = parseInt(el.date.split(":")[1]);
             return minute % 5 === 0;
         })
+        
 
         this.setState({
         portfolioValues: intradayValues
@@ -278,13 +283,12 @@ class Dashboard extends React.Component {
 
     render() {
  
-        let { funds, portfolioValue } = this.state;
+        let { funds } = this.state;
         let chart;
          if (this.state.portfolioValues.length === 0) {
-            
             chart = this.state.funds
         } else {
-           
+
             chart = (
                  <>
                     <ResponsiveContainer width='100%' aspect={7 / 2.0}>
@@ -300,7 +304,8 @@ class Dashboard extends React.Component {
                         <Line type="monotone" dataKey="value" stroke={
                             this.state.portfolioValues[0].value <=
                             this.state.portfolioValues[this.state.portfolioValues.length - 1].value ? 
-                            "#34D199" : "f55733"} connectNulls strokeWidth='2' dot={false} />
+                             "#34D199" : "#f55733"
+                        } connectNulls strokeWidth='2' dot={false} />
 
 
 
