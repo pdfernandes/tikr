@@ -24,12 +24,12 @@ The company show page displays the market value of a stock. The user can toggle 
 
 User can purchase and sell assets through a form that contains the most recent market price of an asset.
 ## Credits
-* ![React Odometer] (https://www.npmjs.com/package/react-odometerjs)
-* ![Font Awesome] (https://fontawesome.com/?from=io)
-* ![Recharts] (http://recharts.org/en-US/)
-* ![Api News] (https://newsapi.org/)
-* ![Intrinio] (https://intrinio.com/)
-* ![IEX] (https://iexcloud.io/)
+* **[React Odometer](https://www.npmjs.com/package/react-odometerjs)**
+* **[Font Awesome](https://fontawesome.com/?from=io)**
+* **[Recharts](http://recharts.org/en-US/)**
+* **[Api News](https://newsapi.org/)**
+* **[Intrinio](https://intrinio.com/)**
+* **[IEX](https://iexcloud.io/)**
 
 
 
