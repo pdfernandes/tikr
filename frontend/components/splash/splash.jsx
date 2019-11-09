@@ -167,17 +167,20 @@ const Splash = props => {
         </div>
         <div className="next-level-investing">
           <div className="next-level-img"></div>
-          <div className="next-level-text">
-            <h1>Next Level Investing</h1>
-            <p>
-              Access professional research reports, trade on margin, and make
-              bigger instant deposits with tikr Premium—all starting at $0 a
-              month.
-            </p>
-            <div>
-              {" "}
-              <Link to="/signup">Sign Up</Link>
+          <div className='next-level-text-container'>
+            <div className="next-level-text">
+                <h1>Next Level Investing</h1>
+                <p>
+                Access professional research reports, trade on margin, and make
+                bigger instant deposits with tikr Premium—all starting at $0 a
+                month.
+                </p>
+                <div>
+                {" "}
+                <Link to="/signup">Sign Up</Link>
+                </div>
             </div>
+
           </div>
         </div>
         <div className="keep-tabs-outer">

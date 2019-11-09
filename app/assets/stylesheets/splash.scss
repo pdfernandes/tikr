@@ -11,20 +11,20 @@
 .commission-free-container {
     margin-top: 70px;
     width: 100%;
-    height: 570px;
+    // height: 570px;
     display:flex;
     align-items: center;
     margin-bottom: 10px;
-    justify-content: space-around;
+    justify-content: space-between;
 
 }
 
 
 .splash-two-phones {
-    width: 100%;
+    width: 60%;
     // height:100%;
-    height: 0;
     background-image: image-url("two_phones_2.png");
+    height: 0;
     background-size: contain;
     padding-bottom: 50%;
     background-position: center;
@@ -162,14 +162,18 @@ strong {
 }
 
 .no-manual-needed {
-    height: 600px;
     display: flex;
+    justify-content: space-around;
 }
+
+
 
 .white-phone {
     background: image-url("splash_white_phone");
     width: 100%;
+    height: 0;
     background-size: cover;
+    padding-bottom: 50%;
     background-position: center;
 
 }
@@ -177,12 +181,10 @@ strong {
 .white-phone-text {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
 }
 .white-phone-text > div {
-    width: 65%;
-    height: 30%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -206,44 +208,58 @@ strong {
     width: 100%;
     overflow: hidden;
     display: flex;
+    align-items: center;
 }
 
 .next-level-img {
     background: image-url("splash_phones");
-    width: 50%;
+    // width: 50%;
+    // background-position-y: 65%;
+    // box-sizing: border-box;
+    // transform: scale(1.5);
+    transform: translate(-8%);
+    width: 100%;
+    // height: 0;
     background-size: cover;
-    // background-position-x: 10px;
-    background-position-y: 65%;
-    transform: scale(1.5);
-    box-sizing: border-box;
+    padding-bottom: 100%;
+    background-position: center;
+}
+
+.next-level-text-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .next-level-text {
+    width: 80%;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative
+    // position: relative
 } 
 
-.next-level-text > * {
-    width: 60%;
-}  
+// .next-level-text > * {
+//     width: 60%;
+// }  
 .next-level-text > h1 {
     font-size: 45px;
     font-weight: bold;
     margin-bottom: 50px;
-    position: absolute;
+    // position: absolute;
     top: 170px;
     
 }  
 
 .next-level-text > p {
     line-height: 25px;
+    margin-bottom: 30px;
 }  
 .next-level-text > div {
-    position:absolute;
+    // position:absolute;
     bottom: 150px;
     width: 140px;
     left: 150px;
@@ -255,6 +271,7 @@ strong {
     height: 48px;
     line-height: 50px;
     font-weight: bold;
+    align-self: flex-start;
 }  
 
 .keep-tabs-outer {
