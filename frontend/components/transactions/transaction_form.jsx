@@ -160,7 +160,7 @@ class TransactionForm extends React.Component {
       return false;
     } else if (this.state.shares <= 0) {
       this.setState({
-        errors: "Please enter a positive number of shares"
+        errors: "Please enter a positive number of shares."
       });
       return false;
     } else {
@@ -170,7 +170,7 @@ class TransactionForm extends React.Component {
 
   isValidSell(owned) {
 
-    if (owned >= this.state.shares && this.state.shares !== 0) {
+    if (owned >= this.state.shares && this.state.shares !== 0 && !(this.state.shares <= 0) ) {
       return true;
     } else if (this.state.shares <= 0) {
       this.setState({
@@ -180,7 +180,7 @@ class TransactionForm extends React.Component {
       return false;
     } else {
       this.setState({
-        errors: "Not Valid"
+        errors: "Not a valid transaction."
       });
 
       return false;

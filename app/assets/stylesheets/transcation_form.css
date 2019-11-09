@@ -196,6 +196,13 @@
     color: rgb(255,99,66);
 }
 
+.transaction-errors {
+    height: 14px;
+    color: rgb(245,85,51);
+    font-size: 12px;
+    text-align: center;
+}
+
 
 
 
