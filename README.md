@@ -1,7 +1,7 @@
 # TIKR
-##### A clone for robinhood.com investment app. This app allows you to make commission free trades.
+##### tikr is a single page web application inspired by robinhood.com. tikr allows uers to make trade comission-free and provides users with real-time stock information. tikr gives users freedom over their finances.
  
-![Tikr Logo](https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tenge.png)
+![Tikr Logo](https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tenge.png = 100x100)
 
 ## Technologies
 
