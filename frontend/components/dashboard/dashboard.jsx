@@ -312,11 +312,11 @@ class Dashboard extends React.Component {
                     </LineChart>
                  </ResponsiveContainer>
             <div className='portfolio-buttons' >
-                <button className='dash-button' onClick={this.handleClick} value="1D">1D</button>
-                <button className='dash-button' onClick={this.handleClick} value="1W">1W</button>
-                <button className='dash-button active' onClick={this.handleClick} value="1M">1M</button>
-                <button className='dash-button' onClick={this.handleClick} value='3M'>3M</button>
-                <button className='dash-button' onClick={this.handleClick} value='1Y'>1Y</button>
+                <button className={`dash-button${this.state.timeFrame === '1D' ? " active" : ""}`} onClick={this.handleClick} value="1D">1D</button>
+                <button className={`dash-button${this.state.timeFrame === '1W' ? " active" : ""}`} onClick={this.handleClick} value="1W">1W</button>
+                <button className={`dash-button${this.state.timeFrame === '1M' ? " active" : ""}`} onClick={this.handleClick} value="1M">1M</button>
+                <button className={`dash-button${this.state.timeFrame === '3M' ? " active" : ""}`} onClick={this.handleClick} value='3M'>3M</button>
+                <button className={`dash-button${this.state.timeFrame === '1Y' ? " active" : ""}`} onClick={this.handleClick} value='1Y'>1Y</button>
             </div>
             </>
             )

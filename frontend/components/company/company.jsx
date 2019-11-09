@@ -280,42 +280,48 @@ class Company extends React.Component {
             {chart === undefined ? "" : chart}
             <div className="portfolio-buttons">
               <button
-                className="dash-button"
+              id='1D'
+                className={`dash-button${this.state.selected === '1D' ? " active" : ""}`}
                 onClick={this.handleClick}
                 value="1D"
               >
                 1D
               </button>
               <button
-                className="dash-button"
+              id='1W'
+                className={`dash-button${this.state.selected === '1W' ? " active" : ""}`}
                 onClick={this.handleClick}
                 value="1W"
               >
                 1W
               </button>
               <button
-                className="dash-button active"
+                id='1M'
+                className={`dash-button${this.state.selected === '1M' ? " active" : ""}`}
                 onClick={this.handleClick}
                 value="1M"
               >
                 1M
               </button>
               <button
-                className="dash-button"
+              id='3M'
+                className={`dash-button${this.state.selected === '3M' ? " active" : ""}`}
                 onClick={this.handleClick}
                 value="3M"
               >
                 3M
               </button>
               <button
-                className="dash-button"
+              id='1Y'
+                className={`dash-button${this.state.selected === '1Y' ? " active" : ""}`}
                 onClick={this.handleClick}
                 value="1Y"
               >
                 1Y
               </button>
               <button
-                className="dash-button"
+              id='5Y'
+                className={`dash-button${this.state.selected === '5Y' ? " active" : ""}`}
                 onClick={this.handleClick}
                 value="5Y"
               >
