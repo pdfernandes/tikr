@@ -1,7 +1,7 @@
 # TIKR
 ##### tikr is a single page web application inspired by robinhood.com. tikr allows uers to make trade comission-free and provides users with real-time stock information. tikr gives users freedom over their finances.
  
-![Tikr Logo](https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tenge.png =100x)
+![Tikr Logo](https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tenge.png)
 
 ## Technologies
 
