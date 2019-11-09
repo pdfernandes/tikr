@@ -7,10 +7,11 @@
 ## Technologies
 
 * Ruby on Rails
-* React
-* Redux
-* JS
-* CSS/SCSS
+* React.js
+* Redux.js
+* JavaScript
+* CSS
+* HTML5
 
 
 
