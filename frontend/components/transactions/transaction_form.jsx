@@ -43,8 +43,6 @@ class TransactionForm extends React.Component {
 
 
   componentDidMount() {
-    // 
-    // this.checkWatched();
     this.props.allTransactions();
     this.props.allCompanies().then(() => {
       this.findCompany();
@@ -332,6 +330,7 @@ class TransactionForm extends React.Component {
             </div>
             <div className="transaction-errors">{this.state.errors}</div>
             <input
+            id='buy/sell-button'
               type="submit"
               className={`${
                 this.state.order === true ? "buy-button" : "sell-button"
