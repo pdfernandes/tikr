@@ -30,7 +30,6 @@ User can purchase and sell assets through a form that contains the most recent m
 * **[Font Awesome](https://fontawesome.com/?from=io)**
 * **[Recharts](http://recharts.org/en-US/)**
 * **[Api News](https://newsapi.org/)**
-* **[Intrinio](https://intrinio.com/)**
 * **[IEX](https://iexcloud.io/)**
 
 
