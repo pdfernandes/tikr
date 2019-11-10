@@ -117,8 +117,7 @@ class Portfolio extends React.Component {
           {
             [ticker]: data.slice(0.93 * data.length),
             [ticker_price]: price
-          },
-          () => {}
+          }
         );
       });
     });

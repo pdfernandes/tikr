@@ -110,8 +110,7 @@ class Company extends React.Component {
       {
         [timeFrame]: dataPoints,
         selected: timeFrame
-      },
-      () => {}
+      }
     );
   }
 

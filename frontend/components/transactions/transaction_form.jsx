@@ -55,7 +55,6 @@ class TransactionForm extends React.Component {
       obj[company.ticker] = company;
       return obj;
     }, {});
-    debugger;
 
     if (formatCompanies[this.props.ticker] === undefined) {
       this.setState({
@@ -72,16 +71,6 @@ class TransactionForm extends React.Component {
         }
       );
     }
-
-    // if (this.state.order) {
-    //   this.setState({
-    //     funds: this.state.funds - this.state.estimated_cost
-    //   });
-    // } else {
-    //   this.setState({
-    //     funds: this.state.funds + this.state.estimated_cost
-    //   });
-    // }
   }
 
   handleSubmit(e) {
@@ -280,19 +269,13 @@ class TransactionForm extends React.Component {
 
   toggleBuy(e) {
     if (e.target.className.slice(" ").includes("buy")) {
-      this.setState(
-        {
-          order: true
-        },
-        () => {}
-      );
+      this.setState({
+        order: true
+      });
     } else {
-      this.setState(
-        {
-          order: false
-        },
-        () => {}
-      );
+      this.setState({
+        order: false
+      });
     }
   }
 
@@ -386,7 +369,7 @@ class TransactionForm extends React.Component {
       form = (
         <div className="transaction-form">
           <div className="not-valid-company">
-            <h1 className='form-ticker'>{this.props.ticker}</h1>
+            <h1 className="form-ticker">{this.props.ticker}</h1>
             <p>
               Sorry, <strong>{this.props.ticker}</strong> is not supported by
               tikr, we only offer stocks present in the DOW30.
