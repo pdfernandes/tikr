@@ -19,6 +19,7 @@
 ## Features 
 ### Sign up / Log in
 Users are able to create an account through a sign up page or log in to an already existing account. Users can use a demo account to navigate through the site.
+![splash](https://giphy.com/gifs/LPZKBYZKzGFzFKXqVq/html5)
 ### Dashboard
 The user can see a realtime representation of their portfolio value through different time spans. The dashboard has recent news and a component that shows the uers assets and their current market price.
 ### Company Page
