@@ -21,13 +21,13 @@
 Users are able to create an account through a sign up page or log in to an already existing account. Users can use a demo account to navigate through the site.
 <div>
 <img src='https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_splash_page.gif' alt='splash' width="600"/>
-<img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_user_auth.gif" alt="auth" width="400"/>
+<img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_user_auth.gif" alt="auth" width="600"/>
 </div>
 
 ### Dashboard
 The user can see a realtime representation of their portfolio value through different time spans. The dashboard has recent news and a component that shows the uers assets and their current market price.
 <div>
- <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_dashboard.gif" alt="splash" width="400"/>
+ <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_dashboard.gif" alt="splash" width="600"/>
  </div>
 ### Company Page
 The company show page displays the market value of a stock. The user can toggle between different time frames and get a snapshot of the assets values.
