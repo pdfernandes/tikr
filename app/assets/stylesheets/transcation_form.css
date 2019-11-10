@@ -204,5 +204,37 @@
 }
 
 
+.not-valid-company {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: inherit;
+}
+
+.form-ticker {
+    font-weight: bold;
+    color: rgb(52,206,153);
+    font-size: 20px;
+}
+
+.not-valid-company > p {
+    text-align: center;
+    width: 80%;
+    font-size: 14px;
+}
+
+.transaction-form-home {
+    padding: 10px 10px;
+    background-color: rgb(52,206,153);
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+}
+.transaction-form-home:hover {
+    background-color: rgb(9, 233,173);
+}
+
 
 

@@ -30,25 +30,31 @@ export const iexKey = "Tpk_8af615155092418191683b2478cb6bfd";
 //     })
 // }
 
+// export const getLastPrice = (ticker) => {
+//     return $.ajax({
+//         method:"GET",
+//         url: `https://api-v2.intrinio.com/securities/${ticker}/prices/realtime?source=iex&api_key=${apiKey}`
+//     })
+// }
 export const getLastPrice = (ticker) => {
     return $.ajax({
-        method:"GET",
-        url: `https://api-v2.intrinio.com/securities/${ticker}/prices/realtime?source=iex&api_key=${apiKey}`
-    })
+      method: "GET",
+      url: `https://sandbox.iexapis.com/stable/stock/${ticker}/price/?token=${iexKey}`
+    });
 }
 
 export const fetchHistoricalPrices = (ticker, range) => {
     return $.ajax({
-        method:"GET",
-        url: `https://sandbox.iexapis.com/stable/stock/${ticker}/chart/${range}?token=${iexKey}`
-    })
+      method: "GET",
+      url: `https://sandbox.iexapis.com/stable/stock/${ticker}/chart/${range}?filter=close,date,minute&token=${iexKey}`
+    });
 }
 
 export const getIntradayPrices = ticker => {
     return $.ajax({
-        method: "GET",
-        url: `https://sandbox.iexapis.com/stable/stock/${ticker}/intraday-prices/?token=${iexKey}`
-    })
+      method: "GET",
+      url: `https://sandbox.iexapis.com/stable/stock/${ticker}/intraday-prices/?filter=date,minute,close&token=${iexKey}`
+    });
 }
 
 

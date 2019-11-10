@@ -26,14 +26,18 @@ ul > li > a:hover {
 
 }
 .news-image {
-    max-width:100%;
-    max-height:100%;
+    width: 200px;
+    height:200px;
+    display: flex;
+    align-items: center;
+    /* object-fit: cover; */
     
 }
 
-.news-image > * {
-    width: 180px;
-    height: 100%;
+.news-image > img {
+    /* width: 180px;
+    height: 100%; */
+    width: 100%
 }
 
 
@@ -41,24 +45,35 @@ ul > li > a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 80%
+    height: 80%;
+    /* overflow: auto; */
 
 }
 
 .news-text > h1 {
     font-size: 13px;
+    margin-bottom: 3px;
 
 }
 
 
 .news-text > h2 {
-    font-size: 15px;
+    font-size: 12px;
     width: 90%;
+    overflow: auto;
     
 }
 
 .news-text > div {
+    margin-top: 3px;
     font-size: 14px;
     color: rgb(203,203,205);
     
+}
+
+.default-image {
+    background-image: url('tenge.png');
+    background-size: cover;
+    height: 100px;
+    width:100px;
 }

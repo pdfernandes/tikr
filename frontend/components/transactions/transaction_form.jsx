@@ -1,5 +1,6 @@
 import React from "react";
 import * as StocksAPIUtil from "../../util/stocks_api_util";
+import { Link } from "react-router-dom";
 // import { postWatchlistItem, deleteWatchlistItem } from "../../util/watchlist_util";
 
 class TransactionForm extends React.Component {
@@ -14,6 +15,7 @@ class TransactionForm extends React.Component {
       estimated_cost: parseInt(Number(0).toFixed(2)),
       errors: null,
       watched: false,
+      valid: true
     };
     this.watched = false;
     this.showPrice = this.showPrice.bind(this);
@@ -23,24 +25,20 @@ class TransactionForm extends React.Component {
     this.buildPortfolio = this.buildPortfolio.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.checkWatched = this.checkWatched.bind(this);
-    // 
+    //
   }
-
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
-         this.props.allTransactions();
-         this.props.allCompanies().then(() => {
-           this.findCompany();
-         });
-         StocksAPIUtil.getLastPrice(this.props.ticker).then(response => {
-           this.showPrice(response.last_price);
-         });
-  
-      
+      this.props.allTransactions();
+      this.props.allCompanies().then(() => {
+        this.findCompany();
+      });
+      StocksAPIUtil.getLastPrice(this.props.ticker).then(response => {
+        this.showPrice(response);
+      });
     }
   }
-
 
   componentDidMount() {
     this.props.allTransactions();
@@ -48,7 +46,7 @@ class TransactionForm extends React.Component {
       this.findCompany();
     });
     StocksAPIUtil.getLastPrice(this.props.ticker).then(response => {
-      this.showPrice(response.last_price);
+      this.showPrice(response);
     });
   }
 
@@ -57,12 +55,23 @@ class TransactionForm extends React.Component {
       obj[company.ticker] = company;
       return obj;
     }, {});
-  
-     this.setState({
-       id: formatCompanies[this.props.ticker].id
-     },() => {
-       this.checkWatched();
-     });
+    debugger;
+
+    if (formatCompanies[this.props.ticker] === undefined) {
+      this.setState({
+        valid: false
+      });
+    } else {
+      this.setState(
+        {
+          valid: true,
+          id: formatCompanies[this.props.ticker].id
+        },
+        () => {
+          this.checkWatched();
+        }
+      );
+    }
 
     // if (this.state.order) {
     //   this.setState({
@@ -84,10 +93,10 @@ class TransactionForm extends React.Component {
       (this.state.order === false && this.isValidSell(quantity))
     ) {
       let date = new Date().toLocaleDateString();
-      date = date.split("/")
+      date = date.split("/");
       let year = date.pop();
-      date.unshift(year)
-      date = date.join("-")
+      date.unshift(year);
+      date = date.join("-");
       this.props.transact({
         order_type: this.state.order,
         quantity: this.state.shares,
@@ -110,38 +119,36 @@ class TransactionForm extends React.Component {
   }
 
   handleClick(e) {
-    
-    if(this.state.watched) {
-      this.props.deleteWatchlistItem(this.state.id)
-      
+    if (this.state.watched) {
+      this.props.deleteWatchlistItem(this.state.id);
+
       this.setState({
-        watched: false,
-      })
+        watched: false
+      });
     } else {
-      
-      this.props.postWatchlistItem({user_id: this.props.user.id, company_id: this.state.id})
-       this.setState({
-         watched: true
-       });
+      this.props.postWatchlistItem({
+        user_id: this.props.user.id,
+        company_id: this.state.id
+      });
+      this.setState({
+        watched: true
+      });
     }
   }
 
   checkWatched() {
-    
     let { watched_companies } = this.props.user;
     let { id } = this.state;
-    
+
     if (watched_companies.includes(id)) {
       this.setState({
-        watched: true,
-      })
-      
+        watched: true
+      });
     } else {
-        this.setState({
-          watched: false
-        });
+      this.setState({
+        watched: false
+      });
     }
-
   }
 
   showPrice(price) {
@@ -167,8 +174,11 @@ class TransactionForm extends React.Component {
   }
 
   isValidSell(owned) {
-
-    if (owned >= this.state.shares && this.state.shares !== 0 && !(this.state.shares <= 0) ) {
+    if (
+      owned >= this.state.shares &&
+      this.state.shares !== 0 &&
+      !(this.state.shares <= 0)
+    ) {
       return true;
     } else if (this.state.shares <= 0) {
       this.setState({
@@ -287,81 +297,183 @@ class TransactionForm extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        <div className="transaction-form">
-          <div className="buy-sell">
-            <h1
-              onClick={this.toggleBuy}
-              className={`buy${this.state.order === true ? " active-buy" : ""}`}
-            >
-              Buy {`${this.props.ticker}`}
-            </h1>
-            <h1
-              onClick={this.toggleBuy}
-              className={`sell${
-                this.state.order === false ? " active-sell" : ""
-              }`}
-            >
-              Sell {`${this.props.ticker}`}
-            </h1>
-          </div>
-          <form className="form-content" onSubmit={this.handleSubmit}>
-            <div className="shares">
-              <label htmlFor="share-input">Shares:</label>
-              <input
-                className={`${
-                  this.state.order === true ? "buy-shares" : "sell-shares"
+    let { valid } = this.state;
+    let form;
+    if (valid) {
+      form = (
+        <>
+          <div className="transaction-form">
+            <div className="buy-sell">
+              <h1
+                onClick={this.toggleBuy}
+                className={`buy${
+                  this.state.order === true ? " active-buy" : ""
                 }`}
-                type="text"
-                onChange={this.handleChange("shares")}
-                placeholder="0"
+              >
+                Buy {`${this.props.ticker}`}
+              </h1>
+              <h1
+                onClick={this.toggleBuy}
+                className={`sell${
+                  this.state.order === false ? " active-sell" : ""
+                }`}
+              >
+                Sell {`${this.props.ticker}`}
+              </h1>
+            </div>
+            <form className="form-content" onSubmit={this.handleSubmit}>
+              <div className="shares">
+                <label htmlFor="share-input">Shares:</label>
+                <input
+                  className={`${
+                    this.state.order === true ? "buy-shares" : "sell-shares"
+                  }`}
+                  type="text"
+                  onChange={this.handleChange("shares")}
+                  placeholder="0"
+                />
+              </div>
+
+              <div className="market-price">
+                <h1>Market Price:</h1>
+                <h2>${this.state.price.toFixed(2)}</h2>
+              </div>
+
+              <div className="estimated-cost">
+                <h1>Estimated Cost</h1>
+                <h2>${this.state.estimated_cost}</h2>
+              </div>
+              <div className="transaction-errors">{this.state.errors}</div>
+              <input
+                id="buy/sell-button"
+                type="submit"
+                className={`${
+                  this.state.order === true ? "buy-button" : "sell-button"
+                }`}
+                value={
+                  this.state.order === true
+                    ? `Buy ${this.props.ticker}`
+                    : `Sell ${this.props.ticker}`
+                }
               />
-            </div>
-
-            <div className="market-price">
-              <h1>Market Price:</h1>
-              <h2>${this.state.price.toFixed(2)}</h2>
-            </div>
-
-            <div className="estimated-cost">
-              <h1>Estimated Cost</h1>
-              <h2>${this.state.estimated_cost}</h2>
-            </div>
-            <div className="transaction-errors">{this.state.errors}</div>
-            <input
-            id='buy/sell-button'
-              type="submit"
-              className={`${
-                this.state.order === true ? "buy-button" : "sell-button"
+              <div className="buying-power">
+                <h2>${this.state.funds.toLocaleString("en-US")}</h2>
+                <h1>Buying Power Available</h1>
+              </div>
+            </form>
+          </div>
+          <div className="watchlist-buttons">
+            <button
+              onClick={this.handleClick}
+              className={`watchlist-button${
+                this.state.watched ? " hidden" : ""
               }`}
-              value={
-                this.state.order === true
-                  ? `Buy ${this.props.ticker}`
-                  : `Sell ${this.props.ticker}`
-              }
-            />
-            <div className="buying-power">
-              <h2>${this.state.funds.toLocaleString("en-US")}</h2>
-              <h1>Buying Power Available</h1>
-            </div>
-          </form>
+            >
+              Add to Watchlist
+            </button>
+            <button
+              onClick={this.handleClick}
+              className={`watchlist-button${
+                this.state.watched ? "" : " hidden"
+              }`}
+            >
+              Remove from Watchlist
+            </button>
+          </div>
+        </>
+      );
+    } else {
+      form = (
+        <div className="transaction-form">
+          <div className="not-valid-company">
+            <h1 className='form-ticker'>{this.props.ticker}</h1>
+            <p>
+              Sorry, <strong>{this.props.ticker}</strong> is not supported by
+              tikr, we only offer stocks present in the DOW30.
+            </p>
+            <Link className="transaction-form-home" to="/">
+              Home Page
+            </Link>
+          </div>
         </div>
-        <div className="watchlist-buttons">
-          <button
-            onClick={this.handleClick}
-            className={`watchlist-button${this.state.watched ? " hidden" : ""}`}
-          >
-            Add to Watchlist
-          </button>
-          <button
-            onClick={this.handleClick}
-            className={`watchlist-button${this.state.watched ? "" : " hidden"}`}
-          >
-            Remove from Watchlist
-          </button>
-        </div>
-      </>
+      );
+    }
+    return (
+      // <>
+      //   <div className="transaction-form">
+      //     <div className="buy-sell">
+      //       <h1
+      //         onClick={this.toggleBuy}
+      //         className={`buy${this.state.order === true ? " active-buy" : ""}`}
+      //       >
+      //         Buy {`${this.props.ticker}`}
+      //       </h1>
+      //       <h1
+      //         onClick={this.toggleBuy}
+      //         className={`sell${
+      //           this.state.order === false ? " active-sell" : ""
+      //         }`}
+      //       >
+      //         Sell {`${this.props.ticker}`}
+      //       </h1>
+      //     </div>
+      //     <form className="form-content" onSubmit={this.handleSubmit}>
+      //       <div className="shares">
+      //         <label htmlFor="share-input">Shares:</label>
+      //         <input
+      //           className={`${
+      //             this.state.order === true ? "buy-shares" : "sell-shares"
+      //           }`}
+      //           type="text"
+      //           onChange={this.handleChange("shares")}
+      //           placeholder="0"
+      //         />
+      //       </div>
+
+      //       <div className="market-price">
+      //         <h1>Market Price:</h1>
+      //         <h2>${this.state.price.toFixed(2)}</h2>
+      //       </div>
+
+      //       <div className="estimated-cost">
+      //         <h1>Estimated Cost</h1>
+      //         <h2>${this.state.estimated_cost}</h2>
+      //       </div>
+      //       <div className="transaction-errors">{this.state.errors}</div>
+      //       <input
+      //       id='buy/sell-button'
+      //         type="submit"
+      //         className={`${
+      //           this.state.order === true ? "buy-button" : "sell-button"
+      //         }`}
+      //         value={
+      //           this.state.order === true
+      //             ? `Buy ${this.props.ticker}`
+      //             : `Sell ${this.props.ticker}`
+      //         }
+      //       />
+      //       <div className="buying-power">
+      //         <h2>${this.state.funds.toLocaleString("en-US")}</h2>
+      //         <h1>Buying Power Available</h1>
+      //       </div>
+      //     </form>
+      //   </div>
+      //   <div className="watchlist-buttons">
+      //     <button
+      //       onClick={this.handleClick}
+      //       className={`watchlist-button${this.state.watched ? " hidden" : ""}`}
+      //     >
+      //       Add to Watchlist
+      //     </button>
+      //     <button
+      //       onClick={this.handleClick}
+      //       className={`watchlist-button${this.state.watched ? "" : " hidden"}`}
+      //     >
+      //       Remove from Watchlist
+      //     </button>
+      //   </div>
+      // </>
+      <>{form}</>
     );
   }
 }

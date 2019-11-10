@@ -102,7 +102,7 @@ class Portfolio extends React.Component {
       ]).then(response => {
         let ticker = response[1];
         let data = response[0];
-        let price = response[2].last_price;
+        let price = response[2];
         let ticker_price = `${ticker}Price`;
 
         // if (Array.isArray(response[0])) {

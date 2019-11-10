@@ -43,9 +43,10 @@ class Company extends React.Component {
     Promise.all([p1(ticker), p2(ticker), p3(ticker)]).then(responseArr => {
       this.setCompanyName(responseArr[0]);
       this.setState({
-        value: parseFloat(responseArr[1].last_price.toFixed(2))
+        value: parseFloat(responseArr[1].toFixed(2))
       });
       this.formatData("1D", responseArr[2]);
+
     });
     // StocksAPIUtil.getCompanyName(this.props.ticker)
     //   .then(response => this.setCompanyName(response))
@@ -74,7 +75,7 @@ class Company extends React.Component {
       Promise.all([p1(ticker), p2(ticker), p3(ticker)]).then(responseArr => {
         this.setCompanyName(responseArr[0]);
         this.setState({
-          value: parseFloat(responseArr[1].last_price.toFixed(2))
+          value: parseFloat(responseArr[1].toFixed(2))
         });
         this.formatData("1D", responseArr[2]);
       });
