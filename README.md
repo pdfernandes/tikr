@@ -19,8 +19,8 @@
 ## Features 
 ### Sign up / Log in
 Users are able to create an account through a sign up page or log in to an already existing account. Users can use a demo account to navigate through the site.
-![splash](https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_dashboard.gif =250x250)
-![auth](https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_user_auth.gif =250x250)
+![splash](https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_dashboard.gif | =250x250)
+![auth](https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_user_auth.gif | =250x250)
 
 ### Dashboard
 The user can see a realtime representation of their portfolio value through different time spans. The dashboard has recent news and a component that shows the uers assets and their current market price.
