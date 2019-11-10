@@ -1,5 +1,5 @@
 // import { apiKey, iexKey, iexKeyProduction, intrinioAPIProduction } from '../../api_keys';
-export const apiKey = "OmU4MDMzZmM5MjE3YWU2YjEyNjA0YzIxZjlmMmQ4MWE1";
+// export const apiKey = "OmU4MDMzZmM5MjE3YWU2YjEyNjA0YzIxZjlmMmQ4MWE1";
 export const iexKey = "Tpk_8af615155092418191683b2478cb6bfd";
 
 // export const getAllSecurities = (ticker, frequency, start, end) => {
