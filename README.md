@@ -7,17 +7,6 @@
 
 ## Technologies
 
-<div>
- <ul>
-  <li>Ruby on Rails</li>
-  <li>React.js</li>
-  <li>Redux.js</li>
-  <li>JavaScript</li>
-  <li>CSS</li>
-  <li>HTML5</li>
- </ul>
-</div>
-
 * Ruby on Rails
 * React.js
 * Redux.js
@@ -25,25 +14,23 @@
 * CSS
 * HTML5
 
-
-
 ## Features 
 ### Splash Page
 While not logged in, users have access to a splash page with various images and links to external sites. From the splash page users can log in or sign up.
 <p align='center'>
- <img src='https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_splash_page.gif' alt='splash' width="400"/>
+ <img src='https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_splash_page.gif' alt='splash' width="450"/>
 </p>
 
 ### Sign up / Log in
-Users are able to create an account through a sign up page or log in to an already existing account. Users can use a demo account to navigate through the site.
+Users are able to create an account through a sign up page or log in to an already existing account. Users can use a demo account to navigate through the site. Log in and sign up pages have error handling to prevent users from creating accounts without proper information or logging without proper credentials.
 <p align='center'>
- <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_user_auth.gif" alt="auth" width="400"/>
+ <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_user_auth.gif" alt="auth" width="450"/>
 </p>
 
 ### Dashboard
 The user can see a realtime representation of their portfolio value through different time spans. The dashboard has recent news and a component that shows the uers assets and their current market price.
 <p align='center'>
- <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_dashboard.gif" alt="splash" width="400"/>
+ <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_dashboard.gif" alt="splash" width="450"/>
 </p>
 
 ### Company Page
