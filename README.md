@@ -34,15 +34,15 @@ The user can see a realtime representation of their portfolio value through diff
 </p>
 
 ### Search Bar
-The search uses a debounce function to prevent excessive API calls. Users can search via a companies ticker, or by company name. The back-end database uses a CSV with companies present in the DOW30.
+The search uses a debounce function to prevent excessive API calls. Users can search via a company's ticker, or by company name. The back-end database uses a CSV with companies present in the DOW30.
 <p align='center'>
  <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_search.gif" alt="search bar" width="450"/>
 </p>
 
 ### Company Page
-The company show page displays the current market value of a security. A line chart represents the price action of a security. Users can see the price action for several different time periods.
+The company show page displays the current market value of a security. A line chart represents the price action of a security. Users can see the price action for several different time periods. Key financial statistics and company information are located in an About section and company related news can be seen in a News section.
 
-User can purchase and sell assets through a form that contains the most recent market price of an asset.
+Users can buy and sell securities through a form that contains the most recent market price of the security.
 <p align='center'>
  <img src='https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_company.gif' alt='company page' width='450'/>
 </p>
