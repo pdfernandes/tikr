@@ -47,6 +47,49 @@ Users can buy and sell securities through a form that contains the most recent m
  <img src='https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_company.gif' alt='company page' width='450'/>
 </p>
 
+### Building a Portfolio
+The dashboard page displays a line chart with the historic values of the user's portfolio. In order to properly calculate the portfolio value, one must take a running total. This process requires determining which assets the user had on any given day, and the prices of those assets on that day. The snippet below shows the API calls used to construct a portfolio and some of the helper functions used. Many actions were delegated to helper functions that build the portfolio, calculate prices and merge values.
+```js
+buildPortfolio() {
+    let { transactions } = this.props;
+    CompanyAPIUtil.allUserCompanies(transactions).then(res => {
+      let prevRes = res;
+      let tickers = {};
+      res.forEach(ele => {
+        tickers[[ele.id]] = ele.ticker;
+      });
+      let { timeFrame } = this.state;
+      if (timeFrame === "1D") {
+        this.buildIntradayPorfolioValues();
+      } else {
+        Promise.all(
+          res.map(obj =>
+            StocksAPIUtil.fetchHistoricalPrices(
+              obj.ticker,
+              this.setFrequency(timeFrame)
+            )
+          )
+        ).then(res => {
+          let datesArray = res[0].map(obj => obj.date);
+          let currentRes = res;
+          let historicPortfolio = this.buildHistoricPortfolio(
+            datesArray,
+            tickers
+          );
+          let historicPrices = this.buildHistoricPrices(prevRes, currentRes);
+          let historicPortfolioValues = this.mergePortfolioWithPrice(
+            historicPortfolio,
+            historicPrices
+          );
+          this.formatPortfolioValues(historicPortfolioValues);
+        });
+      }
+    });
+  }
+
+
+```
+
 ## Credits
 * **[React Odometer](https://www.npmjs.com/package/react-odometerjs)**
 * **[Font Awesome](https://fontawesome.com/?from=io)**
