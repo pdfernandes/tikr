@@ -46,14 +46,14 @@ export const getLastPrice = (ticker) => {
 export const fetchHistoricalPrices = (ticker, range) => {
     return $.ajax({
       method: "GET",
-      url: `https://sandbox.iexapis.com/stable/stock/${ticker}/chart/${range}?filter=close,date,minute&token=${iexKey}`
+      url: `https://sandbox.iexapis.com/stable/stock/${ticker}/chart/${range}?filter=close,date,minute,label&token=${iexKey}`
     });
 }
 
 export const getIntradayPrices = ticker => {
     return $.ajax({
       method: "GET",
-      url: `https://sandbox.iexapis.com/stable/stock/${ticker}/intraday-prices/?filter=date,minute,close&token=${iexKey}`
+      url: `https://sandbox.iexapis.com/stable/stock/${ticker}/intraday-prices/?filter=date,minute,label,close&token=${iexKey}`
     });
 }
 
