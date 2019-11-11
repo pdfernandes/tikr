@@ -7,6 +7,17 @@
 
 ## Technologies
 
+<div>
+ <ul>
+  <li>Ruby on Rails</li>
+  <li>React.js</li>
+  <li>Redux.js</li>
+  <li>JavaScript</li>
+  <li>CSS</li>
+  <li>HTML5</li>
+ </ul>
+</div>
+
 * Ruby on Rails
 * React.js
 * Redux.js
