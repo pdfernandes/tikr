@@ -28,15 +28,25 @@ Users are able to create an account through a sign up page or log in to an alrea
 </p>
 
 ### Dashboard
-The user can see a realtime representation of their portfolio value through different time spans. The dashboard has recent news and a component that shows the uers assets and their current market price.
+The user can see a realtime representation of their portfolio value through different time frames. The dashboard has recent news. The dashbbord page displays a users portfolio with current stocks and a list of watched stocks.
 <p align='center'>
- <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_dashboard.gif" alt="splash" width="450"/>
+ <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_dashboard.gif" alt="dashboard" width="450"/>
+</p>
+
+### Search Bar
+The search uses a debounce function to prevent excessive API calls. Users can search via a companies ticker, or by company name. The back-end database uses a CSV with companies present in the DOW30.
+<p align='center'>
+ <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_search.gif" alt="search bar" width="450"/>
 </p>
 
 ### Company Page
-The company show page displays the market value of a stock. The user can toggle between different time frames and get a snapshot of the assets values.
+The company show page displays the current market value of a security. A line chart represents the price action of a security. Users can see the price action for several different time periods.
 
 User can purchase and sell assets through a form that contains the most recent market price of an asset.
+<p align='center'>
+ <img src='https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_company.gif' alt='company page' width='450'/>
+</p>
+
 ## Credits
 * **[React Odometer](https://www.npmjs.com/package/react-odometerjs)**
 * **[Font Awesome](https://fontawesome.com/?from=io)**
