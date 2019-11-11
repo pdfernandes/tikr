@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-// import { RECEIVE_WATCHLIST } from '../../actions/company_actions'
 import { allCompanies } from "../../actions/company_actions";
 import { allTransactions } from '../../actions/transaction_actions';
 import { allWatchlistItems } from '../../actions/watchlist_actions';

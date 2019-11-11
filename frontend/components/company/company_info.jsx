@@ -30,8 +30,6 @@ class CompanyInfo extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
-      // this.props.history.push(`/stocks/${this.props.match.params.ticker}`)
-      // window.location.reload();
         let { ticker } = this.state;
         CompanyAPIUtil.getCompanyInfo(ticker).then(company => {
           this.formatState(company);

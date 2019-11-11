@@ -18,7 +18,6 @@ class Portfolio extends React.Component {
     super(props);
     this.state = {
       portfolio: {}
-      // watchlist: []
     };
     this.buildPortfolio = this.buildPortfolio.bind(this);
     this.buildWatchlist = this.buildWatchlist.bind(this);
@@ -32,7 +31,6 @@ class Portfolio extends React.Component {
       this.props.allWatchlistItems()
     ]).then(response => {
       this.buildPortfolio();
-      //   this.buildWatchlist();
     });
   }
 
@@ -85,14 +83,6 @@ class Portfolio extends React.Component {
   }
 
   buildCharts(data) {
-    // let dataWithoutZeros = {};
-    // for (let ticker in data) {
-    //     if (data[ticker] !== 0) {
-    //         dataWithoutZeros[ticker] = data[ticker];
-    //     }
-    // }
-    // let { portfolio } = this.state;
-
     Object.keys(data).forEach(ticker => {
       const tick = ticker;
       Promise.all([
@@ -105,20 +95,10 @@ class Portfolio extends React.Component {
         let price = response[2];
         let ticker_price = `${ticker}Price`;
 
-        // if (Array.isArray(response[0])) {
-        //     data = response[0];
-        //     ticker = response[1];
-        // } else {
-        //     data = response[1];
-        //     ticker = response[0];
-        // }
-
-        this.setState(
-          {
-            [ticker]: data.slice(0.93 * data.length),
-            [ticker_price]: price
-          }
-        );
+        this.setState({
+          [ticker]: data.slice(0.93 * data.length),
+          [ticker_price]: price
+        });
       });
     });
   }
@@ -141,46 +121,15 @@ class Portfolio extends React.Component {
       );
     });
 
-    // return watchlist;
-
     this.watchlist = watchlist;
-
-    // let { watchlists } = this.props
-    // if (watchlists.length === 0) return null;
-
-    // watchlists.forEach(company => {
-    //     let ticker = company.ticker;
-    //     Promise.all([StocksAPIUtil.getIntradayPrices(ticker), ticker, StocksAPIUtil.getLastPrice(ticker)])
-    //     .then(response => {
-    //         let ticker = response[1];
-    //         let data = response[0];
-    //         let price = response[2].last_price;
-    //         let ticker_price = `${ticker}Price`
-
-    //         this.setState({
-    //             watchlist: this.state.watchlist.push({
-    //                 [ticker] : {
-    //                     data,
-    //                     price
-    //                 }
-    //             })
-    //         },() => {
-    //
-    //         })
-
-    //     })
-
-    // })
   }
 
   render() {
-    let { transactions, companies } = this.props;
     let { portfolio } = this.state;
     let portfolioComponent = [];
-    // let watchlistComponent = []
+
     if (Object.keys(portfolio).length === 0) {
       portfolioComponent = null;
-      // watchlistComponent = null;
     } else {
       Object.keys(portfolio).forEach((company, i) => {
         let totalValue = this.state[`${company}Price`] * portfolio[company];
@@ -219,7 +168,6 @@ class Portfolio extends React.Component {
           </li>
         );
       });
-      // watchlistComponent = this.buildWatchlist();
     }
 
     return (

@@ -3,7 +3,6 @@ import * as StocksAPIUtil from "../../util/stocks_api_util";
 import {
   LineChart,
   Line,
-  CartesianGrid,
   XAxis,
   YAxis,
   Tooltip,
@@ -36,7 +35,6 @@ class Company extends React.Component {
   componentDidMount() {
     let { ticker } = this.props;
     let p1 = StocksAPIUtil.getCompanyName;
-    //   let p2 = StocksAPIUtil.setCompanyName;
     let p2 = StocksAPIUtil.getLastPrice;
     let p3 = StocksAPIUtil.getIntradayPrices;
 
@@ -48,27 +46,12 @@ class Company extends React.Component {
       this.formatData("1D", responseArr[2]);
 
     });
-    // StocksAPIUtil.getCompanyName(this.props.ticker)
-    //   .then(response => this.setCompanyName(response))
-    //   .then(() => StocksAPIUtil.getLastPrice(this.props.ticker))
-    //   .then(response => {
-    //     this.setState({
-    //       latestPrice: response.last_price
-    //     });
-    //   });
-
-    // StocksAPIUtil.getIntradayPrices(this.props.ticker).then(response => {
-    //   this.formatData("1D", response);
-    // });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
-      // this.props.history.push(`/stocks/${this.props.match.params.ticker}`)
-      // window.location.reload();
       let { ticker } = this.props;
       let p1 = StocksAPIUtil.getCompanyName;
-      //   let p2 = StocksAPIUtil.setCompanyName;
       let p2 = StocksAPIUtil.getLastPrice;
       let p3 = StocksAPIUtil.getIntradayPrices;
 
@@ -157,24 +140,11 @@ class Company extends React.Component {
       gain = 0;
       percentGain = 0;
     }
-    // if (
-    //   this.state[this.state.selected].length === 0 ||
-    //   this.state.lastestPrice !== 0
-    // ) {
-    //   value = this.state.lastestPrice;
-    //   gain = 0;
-    //   percentGain = 0;
-    // }
     else {
-      //   let stateArray = this.state[this.state.selected];
-      //   latestPrice = stateArray[stateArray.length - 1].price;
       let firstPrice = this.state[this.state.selected][0].price;
-      //state array this.state[this.state.selected]
-      //last price stateArray[stateArray.length - 1].price
       let firstValidPrice = this.state[this.state.selected].find(el => {
         return el.price !== null && el.price !== undefined
       }).price
-
       let lastValidPrice = this.state[this.state.selected].slice()
         .reverse()
         .find(el => {
@@ -242,41 +212,6 @@ class Company extends React.Component {
             ${gain} ({percentGain}%)
           </h2>
           <div>
-            {/* <ResponsiveContainer width="100%" aspect={7 / 2.0}>
-              <LineChart
-                width={730}
-                height={250}
-                data={this.state[this.state.selected]}
-                onMouseMove={this.showValue}
-              >
-                <XAxis
-                  dataKey="date"
-                  hide={true}
-                  domain={["dataMin", "dataMax"]}
-                />
-                <YAxis hide={true} domain={["dataMin", "dataMax"]} />
-                <Tooltip
-                  content={<CustomTooltip />}
-                  active={true}
-                  position={{ y: 0 }}
-                />
-                <Line
-                  type="monotone"
-                  connectNulls
-                  dataKey="price"
-                  stroke={
-                    // this.state[this.state.selected][0].price <
-                    // this.state[this.state.selected][
-                    //   this.state[this.state.selected].length - 1
-                    // ].price
-                      "#34D199"
-                      // : "#f55733"
-                  }
-                  strokeWidth="2"
-                  dot={false}
-                />
-              </LineChart>
-            </ResponsiveContainer> */}
             {chart === undefined ? "" : chart}
             <div className="portfolio-buttons">
               <button
