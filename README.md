@@ -7,11 +7,13 @@
 
 ## Technologies
 
-* Ruby on Rails
-* React.js
-* Redux.js
-* JavaScript
-* CSS
+* Ruby on Rails 5.2.3
+* React.js 16.10.1
+* Redux.js 4.0.4
+* webpack 4.41.0
+* PostgreSQL 2.0
+* JavaScript 9
+* CSS 3
 * HTML5
 
 ## Features 
