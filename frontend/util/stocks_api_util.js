@@ -78,14 +78,14 @@ export const getCompanyName = ticker => {
 // export const fetchHistoricalPrices = (ticker, range) => {
 //     return $.ajax({
 //       method: "GET",
-//       url: `https://cloud.iexapis.com/stable/stock/${ticker}/chart/${range}?token=${iexKeyProduction}`
+//       url: `https://cloud.iexapis.com/stable/stock/${ticker}/chart/${range}?filter=close,date,minute,label&token=${iexKeyProduction}`
 //     });
 // }
 
 // export const getIntradayPrices = ticker => {
 //     return $.ajax({
 //       method: "GET",
-//       url: `https://cloud.iexapis.com/stable/stock/${ticker}/intraday-prices/?token=${iexKeyProduction}`
+//       url: `https://cloud.iexapis.com/stable/stock/${ticker}/intraday-prices/?filter=date,minute,label,close&token=${iexKeyProduction}`
 //     });
 // }
 
