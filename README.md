@@ -92,6 +92,45 @@ buildPortfolio() {
 
 ```
 
+### Making a Transaction
+Users are able to buy and sell securities. Individual transactions are never deleted from the database, instead, buy and sells are determined by "order_type." Buys and sells are separated by the booleans true and false respectively. When a user makes a transaction, it must first determine whether or not the transaction is valid (i.e. the user has enough shares to sell, enough money to buy, etc..) The snippet below demonstrates the handleSubmit function which uses several helper functions to determine whether a transaction is valid. If so, the function constructs a POJO and uses a transact function that has been passed to the component via, "map dispatch to props" and then the users funds are adjusted in the state accordingly as well as funds being updated in the back end.
+
+```js
+handleSubmit(e) {
+    e.preventDefault();
+
+    let quantity = this.buildPortfolio()[this.props.ticker];
+    if (
+      (this.state.order && this.isValidBuy()) ||
+      (this.state.order === false && this.isValidSell(quantity))
+    ) {
+      let date = new Date().toLocaleDateString();
+      date = date.split("/");
+      let year = date.pop();
+      date.unshift(year);
+      date = date.join("-");
+      this.props.transact({
+        order_type: this.state.order,
+        quantity: this.state.shares,
+        company_id: this.state.id,
+        user_id: this.props.user.id,
+        price: this.state.estimated_cost,
+        transaction_time: date
+      });
+
+      if (this.state.order) {
+        this.setState({
+          funds: this.state.funds - this.state.estimated_cost
+        });
+      } else {
+        this.setState({
+          funds: this.state.funds + this.state.estimated_cost
+        });
+      }
+    }
+  }
+```
+
 ## Credits
 * **[React Odometer](https://www.npmjs.com/package/react-odometerjs)**
 * **[Font Awesome](https://fontawesome.com/?from=io)**
