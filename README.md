@@ -5,7 +5,7 @@
  <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tenge.png" alt="drawing" width="200"/>
 </p>
 
-## Table of Content
+## Table of Contents
 * [Technologies](#technologies)
 * [Features](#features)
   * [Splash Page](#splash-page)
