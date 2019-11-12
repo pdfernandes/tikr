@@ -5,12 +5,25 @@
  <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tenge.png" alt="drawing" width="200"/>
 </p>
 
+## Table of Content
+* [Technologies](#technologies)
+* [Features](#features)
+  * [Splash Page](#splash-page)
+  * [Sign up / Log in](#sign-up)
+  * [Dashboard](#dashboard)
+  * [Search Bar](#search-bar)
+  * [Company Page](#company-page)
+* [Building a Portfolio](#building-a-portfolio)
+* [Making a Transaction](#making-a-transaction)
+* [Credits](#credits)
+
 ## Technologies
 
 * Ruby on Rails 5.2.3
 * React.js 16.10.1
 * Redux.js 4.0.4
-* webpack 4.41.0
+* Webpack 4.41.0
+* Recharts 1.7.1
 * PostgreSQL 2.0
 * JavaScript 9
 * CSS 3
@@ -23,7 +36,7 @@ While not logged in, users have access to a splash page with various images and 
  <img src='https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_splash.gif' alt='splash' width="450"/>
 </p>
 
-### Sign up / Log in
+### Sign up / Log in <a name='sign-up'></a>
 Users are able to create an account through a sign up page or log in to an already existing account. Users can use a demo account to navigate through the site. Log in and sign up pages have error handling to prevent users from creating accounts without proper information or logging in without proper credentials.
 <p align='center'>
  <img src="https://github.com/pdfernandes/tikr/blob/master/app/assets/images/tikr_auth.gif" alt="auth" width="450"/>
