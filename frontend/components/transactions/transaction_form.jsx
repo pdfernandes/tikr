@@ -157,6 +157,11 @@ class TransactionForm extends React.Component {
         errors: "Please enter a positive number of shares."
       });
       return false;
+    } else if (this.state.shares % 1 !== 0) {
+      this.setState({
+        errors: "Please enter an integer value."
+      });
+      return false;
     } else {
       return true;
     }
@@ -166,12 +171,12 @@ class TransactionForm extends React.Component {
     if (
       owned >= this.state.shares &&
       this.state.shares !== 0 &&
-      !(this.state.shares <= 0)
+      !(this.state.shares <= 0) && (this.state.shares % 1 === 0)
     ) {
       return true;
     } else if (this.state.shares <= 0) {
       this.setState({
-        errors: "Invalid Transaction."
+        errors: "Please enter a positive number if shares."
       });
 
       return false;
