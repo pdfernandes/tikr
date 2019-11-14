@@ -72,7 +72,7 @@ ul > li > a:hover {
 }
 
 .default-image {
-    background-image: url('tenge.png');
+    background-image: image-url("tenge.png") ;
     background-size: cover;
     height: 100px;
     width:100px;
