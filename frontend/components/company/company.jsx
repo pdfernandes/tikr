@@ -106,7 +106,7 @@ class Company extends React.Component {
         });
       } else if (e.target.value === "1W") {
         let val = e.target.value;
-        StocksAPIUtil.fetchHistoricalPrices(this.props.ticker, "5dm").then(
+        StocksAPIUtil.fetchHistoricalOneWeekPrices(this.props.ticker, "5dm").then(
           response => {
             this.formatData(val, response);
           }

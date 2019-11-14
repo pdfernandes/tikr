@@ -32,7 +32,7 @@ class WatchlistItem extends React.Component {
       let dayPrices = response[0];
       let lastPrice = response[1];
       this.setState({
-        data: dayPrices.slice(0.93 * dayPrices.length),
+        data: dayPrices.slice(0.50 * dayPrices.length),
         price: lastPrice
       });
     });

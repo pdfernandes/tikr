@@ -1,6 +1,8 @@
 // import { apiKey, iexKey, iexKeyProduction, intrinioAPIProduction } from '../../api_keys';
-// export const apiKey = "OmU4MDMzZmM5MjE3YWU2YjEyNjA0YzIxZjlmMmQ4MWE1";
 export const iexKey = "Tpk_8af615155092418191683b2478cb6bfd";
+export const iexKeyProduction = "pk_4eca603a2f694ef2b8b2c6aab0a4d615";
+// export const apiKey = "OmU4MDMzZmM5MjE3YWU2YjEyNjA0YzIxZjlmMmQ4MWE1";
+// export const iexKey = "Tpk_8af615155092418191683b2478cb6bfd";
 
 // export const getAllSecurities = (ticker, frequency, start, end) => {
 //     return $.ajax({
@@ -50,42 +52,10 @@ export const fetchHistoricalPrices = (ticker, range) => {
     });
 }
 
-export const getIntradayPrices = ticker => {
-    return $.ajax({
-      method: "GET",
-      url: `https://sandbox.iexapis.com/stable/stock/${ticker}/intraday-prices/?filter=date,minute,label,close&token=${iexKey}`
-    });
-}
-
-
-
-export const getCompanyInfo = ticker => {
-    return $.ajax({
-        method: "GET",
-        url: `https://sandbox.iexapis.com/stable/stock/${ticker}/company/?token=${iexKey}`
-    })
-}
-
-export const getCompanyName = ticker => {
-    return $.ajax({
-        method:"GET",
-        url: `https://sandbox.iexapis.com/stable/stock/${ticker}/company?filter=companyName&token=${iexKey}`
-    })
-}
-
-//production
-
-// export const fetchHistoricalPrices = (ticker, range) => {
-//     return $.ajax({
-//       method: "GET",
-//       url: `https://cloud.iexapis.com/stable/stock/${ticker}/chart/${range}?filter=close,date,minute,label&token=${iexKeyProduction}`
-//     });
-// }
-
 // export const getIntradayPrices = ticker => {
 //     return $.ajax({
 //       method: "GET",
-//       url: `https://cloud.iexapis.com/stable/stock/${ticker}/intraday-prices/?filter=date,minute,label,close&token=${iexKeyProduction}`
+//       url: `https://sandbox.iexapis.com/stable/stock/${ticker}/intraday-prices/?filter=date,minute,label,close&token=${iexKey}`
 //     });
 // }
 
@@ -93,17 +63,49 @@ export const getCompanyName = ticker => {
 
 // export const getCompanyInfo = ticker => {
 //     return $.ajax({
-//       method: "GET",
-//       url: `https://cloud.iexapis.com/stable/stock/${ticker}/company/?token=${iexKeyProduction}`
-//     });
+//         method: "GET",
+//         url: `https://sandbox.iexapis.com/stable/stock/${ticker}/company/?token=${iexKey}`
+//     })
 // }
 
 // export const getCompanyName = ticker => {
 //     return $.ajax({
-//       method: "GET",
-//       url: `https://cloud.iexapis.com/stable/stock/${ticker}/company?filter=companyName&token=${iexKeyProduction}`
-//     });
+//         method:"GET",
+//         url: `https://sandbox.iexapis.com/stable/stock/${ticker}/company?filter=companyName&token=${iexKey}`
+//     })
 // }
+
+//production
+
+export const fetchHistoricalOneWeekPrices = (ticker, range) => {
+    return $.ajax({
+      method: "GET",
+      url: `https://cloud.iexapis.com/stable/stock/${ticker}/chart/${range}?filter=close,date,minute,label&token=${iexKeyProduction}`
+    });
+}
+
+export const getIntradayPrices = ticker => {
+    return $.ajax({
+      method: "GET",
+      url: `https://cloud.iexapis.com/stable/stock/${ticker}/intraday-prices/?filter=date,minute,label,close&token=${iexKeyProduction}`
+    });
+}
+
+
+
+export const getCompanyInfo = ticker => {
+    return $.ajax({
+      method: "GET",
+      url: `https://cloud.iexapis.com/stable/stock/${ticker}/company/?token=${iexKeyProduction}`
+    });
+}
+
+export const getCompanyName = ticker => {
+    return $.ajax({
+      method: "GET",
+      url: `https://cloud.iexapis.com/stable/stock/${ticker}/company?filter=companyName&token=${iexKeyProduction}`
+    });
+}
 
 
 
