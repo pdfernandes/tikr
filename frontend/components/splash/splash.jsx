@@ -11,7 +11,7 @@ const Splash = props => {
           <div className="commission-free-container">
             <div className="splash-container-text">
               <h1>Invest</h1>
-              <h1>Commision-Free</h1>
+              <h1>Commission-Free</h1>
               <h2>
                 Invest in{" "}
                 <strong>
