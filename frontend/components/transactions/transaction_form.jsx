@@ -147,6 +147,7 @@ class TransactionForm extends React.Component {
   }
 
   isValidBuy() {
+    let { shares } = this.state 
     if (this.state.estimated_cost > this.state.funds) {
       this.setState({
         errors: "Sorry, you do not have enough funds."
@@ -157,7 +158,7 @@ class TransactionForm extends React.Component {
         errors: "Please enter a positive number of shares."
       });
       return false;
-    } else if (this.state.shares % 1 !== 0) {
+    } else if (this.state.shares % 1 !== 0 || shares.split("").filter(el => !isNaN(parseInt(el))).length !== shares.length) {
       this.setState({
         errors: "Please enter an integer value."
       });
@@ -254,7 +255,7 @@ class TransactionForm extends React.Component {
 
   handleChange(field) {
     return e => {
-      if (e.target.value === "" || isNaN(parseFloat(e.target.value))) {
+      if (e.target.value === "" ||  e.target.value.split("").filter(el => !isNaN(parseInt(el))).length !== e.target.value.length) {
         this.setState({
           errors: null,
           [field]: 0,
