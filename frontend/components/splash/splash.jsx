@@ -43,7 +43,7 @@ const Splash = props => {
                     Cryptocurrencies
                   </a>
                 </strong>
-                , all commision-free, right from your phone or desktop.
+                , all commission-free, right from your phone or desktop.
               </h2>
               <Link className="splash-signup-link" to="/signup">
                 Sign Up
