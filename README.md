@@ -151,6 +151,10 @@ handleSubmit(e) {
 * **[Api News](https://newsapi.org/)**
 * **[IEX](https://iexcloud.io/)**
 
+#### Aside
+All data was stored in psql v. 12.1
+
+
 
 
 
