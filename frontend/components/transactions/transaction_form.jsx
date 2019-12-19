@@ -75,8 +75,9 @@ class TransactionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
+    debugger
     let quantity = this.buildPortfolio()[this.props.ticker];
+    debugger
     if (
       (this.state.order && this.isValidBuy()) ||
       (this.state.order === false && this.isValidSell(quantity))
@@ -148,6 +149,7 @@ class TransactionForm extends React.Component {
 
   isValidBuy() {
     let { shares } = this.state 
+    debugger
     if (this.state.estimated_cost > this.state.funds) {
       this.setState({
         errors: "Sorry, you do not have enough funds."
@@ -155,10 +157,10 @@ class TransactionForm extends React.Component {
       return false;
     } else if (this.state.shares <= 0) {
       this.setState({
-        errors: "Please enter a positive number of shares."
+        errors: "Please enter a positive number of shares, no decimals."
       });
       return false;
-    } else if (this.state.shares % 1 !== 0 || shares.split("").filter(el => !isNaN(parseInt(el))).length !== shares.length) {
+    } else if (this.state.shares % 1 !== 0) {
       this.setState({
         errors: "Please enter an integer value."
       });
