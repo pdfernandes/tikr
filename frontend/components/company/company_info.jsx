@@ -29,15 +29,20 @@ class CompanyInfo extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    
     if (prevProps.match.params.ticker !== this.props.match.params.ticker) {
-        let { ticker } = this.state;
+        
+        let { ticker } = this.props.match.params
+        
         CompanyAPIUtil.getCompanyInfo(ticker).then(company => {
+          
           this.formatState(company);
         });
     }
   }
 
   formatState(company) {
+    
     this.setState({
       "Company Name": company.companyName,
       CEO: company.CEO,
