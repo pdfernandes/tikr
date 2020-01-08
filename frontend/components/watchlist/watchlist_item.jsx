@@ -22,20 +22,35 @@ class WatchlistItem extends React.Component {
   }
 
   componentDidMount() {
-    
     let { ticker } = this.props;
     Promise.all([
       StocksAPIUtil.getIntradayPrices(ticker),
       StocksAPIUtil.getLastPrice(ticker)
-    ]).then(response => {
-      
-      let dayPrices = response[0];
-      let lastPrice = response[1];
-      this.setState({
-        data: dayPrices.slice(0.50 * dayPrices.length),
-        price: lastPrice
-      });
-    });
+    ]).then(
+      response => {
+        let dayPrices = response[0];
+        let lastPrice = response[1];
+        this.setState({
+          data: dayPrices.slice(0.5 * dayPrices.length),
+          price: lastPrice
+        });
+      },
+      err => {
+        setTimeout(() => {
+          Promise.all([
+            StocksAPIUtil.getIntradayPrices(ticker),
+            StocksAPIUtil.getLastPrice(ticker)
+          ]).then(response => {
+            let dayPrices = response[0];
+            let lastPrice = response[1];
+            this.setState({
+              data: dayPrices.slice(0.5 * dayPrices.length),
+              price: lastPrice
+            });
+          });
+        }, 1000);
+      }
+    );
   }
 
   render() {
@@ -51,14 +66,19 @@ class WatchlistItem extends React.Component {
             type="monotone"
             connectNulls
             dataKey="close"
-            stroke={this.state.data[0].close <= this.state.data[this.state.data.length - 1].close ? "#34D199" : "#f55733"}
+            stroke={
+              this.state.data[0].close <=
+              this.state.data[this.state.data.length - 1].close
+                ? "#34D199"
+                : "#f55733"
+            }
             strokeWidth="1"
             dot={false}
           />
         </LineChart>
       );
     }
-    
+
     return (
       <>
         {/* <h1>{this.props.ticker}</h1> */}
@@ -69,9 +89,7 @@ class WatchlistItem extends React.Component {
             {/* <h2>{portfolio[company]} shares</h2> */}
           </div>
           {/* <div className="portfolio-value">$ {totalValue}</div> */}
-          <div className="watchlist-chart">
-            {chart}
-          </div>
+          <div className="watchlist-chart">{chart}</div>
           <div className="portfolio-value">{`$ ${
             isNaN(this.state.price.toFixed(2)) ? 0 : this.state.price.toFixed(2)
           }`}</div>
